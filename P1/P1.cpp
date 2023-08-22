@@ -4,43 +4,34 @@ using namespace std;
 
 int main()
 {    
-    int myAge;
-    myAge = 20;
+    string name = "Mohammed Abu-Hadhud.";
+    int age = 44;
+    string city = "Amman.", country = "Jordan.";
+    int monthlySalary = 5000, yearlySalary = monthlySalary * 12;
+    char gender = 'M';
+    bool isMarried = true;
 
-    cout << "My age is " << myAge << " years old" << endl;
-
-    int myNumber = 52;
-    float myFloat = 7.84;
-    double myDouble = 21.89822;
-    char myLetter = 'M \'';
-    string myString = "Mjeed";
-    bool myBoolean = true;
-
-    cout << myNumber << endl;
-    cout << myFloat << endl;
-    cout << myDouble << endl;
-    cout << myLetter << endl;
-    cout << myString << endl;
-    cout << myBoolean << endl;
-
-    int x = 4, y = 10, sum = x + y;
-    cout << sum << endl;
-
-    char char1 = 'A', char2 = 'B', char3 = 'C';
-    cout << char1 << char2 << char3 << " reversed is " << char3 << char2 << char1 << endl << endl;
-
-
-    const float PI = 3.14;
-    cout << PI << endl;
+    cout << "***********************************" << endl;
+    cout << "Name: " << name << "\n";
+    cout << "Age: " << age << " Years.\n";
+    cout << "City: " << city << "\n";
+    cout << "Country: " << country << "\n";
+    cout << "Monthly Salary: " << monthlySalary << "\n";
+    cout << "Yearly Salary: " << yearlySalary << "\n";
+    cout << "Gender: " << gender << "\n";
+    cout << "Married: " << isMarried << "\n";
+    cout << "***********************************" << endl << endl;
 
 
 
 
+    int firstNum = 20, secondNum = 30, thirdNum = 10;
+    cout << "20 +\n30 +\n10\n" << "----------------------------------\nTotal = " << firstNum + secondNum + thirdNum << endl << endl;
 
 
 
-
-
+    int myAge = 25;
+    cout << "After 5 Years you will be " << myAge + 5 << " years old." << endl;
 
     return 0;
 }
