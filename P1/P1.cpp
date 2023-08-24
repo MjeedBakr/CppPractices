@@ -11,20 +11,27 @@ int main()
     char gender;
     bool isMarried;
 
-    cout << "Enter your full name: ";
+    cout << "Enter your full name: " << endl;
     cin >> name;
-    cout << "Enter your age: ";
+
+    cout << "Enter your age: " << endl
     cin >> age;
-    cout << "Enter your city name ";
+
+    cout << "Enter your city name: " << endl;
     cin >> city;
-    cout << "Enter your country name: ";
+
+    cout << "Enter your country name: " << endl;
     cin >> country;
-    cout << "Enter your monthly salary: ";
+
+    cout << "Enter your monthly salary: " << endl;
     cin >> monthlySalary;
-    cout << "Enter your Gender \'M\' or \'F\'?";
+
+    cout << "Enter your Gender \'M\' or \'F\'? " << endl;
     cin >> gender;
-    cout << "Are you married \'true\' of \'false\'? ";
+
+    cout << "Are you married \'1\' for yes and \'0\' for no? " << endl;
     cin >> isMarried;
+
     cout << endl;
 
     cout << "***********************************" << endl;
@@ -42,22 +49,33 @@ int main()
 
 
     int firstNum, secondNum, thirdNum;
-    cout << "Enter the first number: ";
+
+    cout << "Enter the first number: " << endl;
     cin >> firstNum;
 
-    cout << "Enter the second number: ";
+    cout << "Enter the second number: " << endl;
     cin >> secondNum;
 
-    cout << "Enter the third number: ";
+    cout << "Enter the third number: " << endl;
     cin >> thirdNum;
-    cout << firstNum << "+\n" << secondNum << "+\n" << thirdNum << "\n----------------------------------\nTotal = " << firstNum + secondNum + thirdNum << endl << endl;
+
+    int sum = firstNum + secondNum + thirdNum;
+
+    cout << firstNum << endl;
+    cout << secondNum << " + " << endl;
+    cout << thirdNum << " + " << endl;
+    cout << "------------------------" << endl;
+    cout << sum << endl;
 
 
 
     int myAge;
-    cout << "Enter your age: ";
+
+    cout << "Enter your age: " << endl;
     cin >> myAge;
-    cout << "After 5 Years you will be " << myAge + 5 << " years old." << endl;
+
+    int yourAgeAfter5Years = myAge + 5;
+    cout << "After 5 Years you will be " << yourAgeAfter5Years << " years old." << endl;
 
     return 0;
 }
