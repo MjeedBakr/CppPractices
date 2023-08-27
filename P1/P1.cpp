@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {    
     string name;
-    int age;
+    short age;
     string city, country;
     int monthlySalary;
     char gender;
@@ -69,12 +69,12 @@ int main()
 
 
 
-    int myAge;
+    short myAge;
 
     cout << "Enter your age: " << endl;
     cin >> myAge;
 
-    int yourAgeAfter5Years = myAge + 5;
+    short yourAgeAfter5Years = myAge + 5;
     cout << "After 5 Years you will be " << yourAgeAfter5Years << " years old." << endl;
 
     return 0;
