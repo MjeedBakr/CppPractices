@@ -3,7 +3,13 @@
 using namespace std;
 
 int main()
-{    
+{
+    /*int firstNumber, secondNumber;
+    cout << "Please enter the first Number A?" << endl;
+    cin >> firstNumber;
+    cout << "Please enter the second Number B?" << endl;
+    cin >> secondNumber;
+=======
     string name;
     short age;
     string city, country;
@@ -32,52 +38,190 @@ int main()
     cout << "Are you married \'1\' for yes and \'0\' for no? " << endl;
     cin >> isMarried;
 
+>>>>>>> b7bed81a9a6edec5d2b2de1d9e5403e267dc4fc4
     cout << endl;
 
-    cout << "***********************************" << endl;
-    cout << "Name: " << name << "\n";
-    cout << "Age: " << age << " Years.\n";
-    cout << "City: " << city << "\n";
-    cout << "Country: " << country << "\n";
-    cout << "Monthly Salary: " << monthlySalary << "\n";
-    cout << "Yearly Salary: " << monthlySalary * 12 << "\n";
-    cout << "Gender: " << gender << "\n";
-    cout << "Married: " << isMarried << "\n";
-    cout << "***********************************" << endl << endl;
+    cout << firstNumber << " + " << secondNumber << " = " << firstNumber + secondNumber << endl;
+    cout << firstNumber << " - " << secondNumber << " = " << firstNumber - secondNumber << endl;
+    cout << firstNumber << " * " << secondNumber << " = " << firstNumber * secondNumber << endl;
+    cout << firstNumber << " / " << secondNumber << " = " << firstNumber / secondNumber << endl;
+    cout << firstNumber << " % " << secondNumber << " = " << firstNumber % secondNumber << endl;*/
 
 
+    //Problems 7,9,10,14,15,17,19,20,......
+
+    //7#
+    /*int number;
+    cout << "Enter a number" << endl;
+    cin >> number;
+    cout << "Half of " << number << " is " << number / 2;*/
+
+    //9#
+    /*int firstNumber, secondNumber, thirdNumber;
+    cout << "Please enter the first Number?" << endl;
+    cin >> firstNumber;
+    cout << "Please enter the second Number?" << endl;
+    cin >> secondNumber;
+    cout << "Please enter the third Number?" << endl;
+    cin >> thirdNumber;
+    cout << endl;
+    cout << firstNumber + secondNumber + thirdNumber;*/
+
+    //10#
+    /*int firstMark, secondMark, thirdMark;
+    cout << "Please enter the first Mark?" << endl;
+    cin >> firstMark;
+    cout << "Please enter the second Mark?" << endl;
+    cin >> secondMark;
+    cout << "Please enter the third Mark?" << endl;
+    cin >> thirdMark;
+    cout << endl;
+    cout << (firstMark + secondMark + thirdMark) / 3;*/
+
+    //14#
+    /*int firstNumber, secondNumber;
+    cout << "Please enter the first Number A?" << endl;
+    cin >> firstNumber;
+    cout << "Please enter the second Number B?" << endl;
+    cin >> secondNumber;
+    cout << endl;
+
+    cout << firstNumber << endl << secondNumber << endl << endl;
+
+    int temp = firstNumber;
+    firstNumber = secondNumber;
+    secondNumber = temp;
+
+    cout << firstNumber << endl << secondNumber << endl;*/
+
+    //15#
+    /*int a, b;
+    cout << "Please enter the first Number A?" << endl;
+    cin >> a;
+    cout << "Please enter the second Number B?" << endl;
+    cin >> b;
+    cout << endl;
+    int Area = a * b;
+    cout << Area;*/
+
+    //17#
+    /*int a, h;
+    cout << "Please enter the first Number A?" << endl;
+    cin >> a;
+    cout << "Please enter the second Number H?" << endl;
+    cin >> h;
+    cout << endl;
+    int Area = (a/2) * h;
+    cout << Area;*/
+
+    //19#
+    /*const float PI = 3.14;
+    int d;
+    cout << "Please enter the Number D?" << endl;
+    cin >> d;
+    cout << endl;
+    float Area = (PI * (d*d)) / 4;
+    cout << Area;*/
+
+    //20#
+    /*const float PI = 3.14;
+    int a;
+    cout << "Please enter the Number A?" << endl;
+    cin >> a;
+    cout << endl;
+    float Area = (PI * (a * a)) / 4;
+    cout << Area;*/
 
 
-    int firstNum, secondNum, thirdNum;
+    //21,22,31,35,39,40,42,43,47,48.
 
-    cout << "Enter the first number: " << endl;
-    cin >> firstNum;
+    //21#
+    /*const float PI = 3.14;
+    int l;
+    cout << "Please enter the Number L?" << endl;
+    cin >> l;
+    cout << endl;
+    float Area = (l * l) / (4 * PI);
+    cout << Area;*/
 
-    cout << "Enter the second number: " << endl;
-    cin >> secondNum;
+    //22#
+    /*const float PI = 3.14;
+    float a, b;
+    cout << "Please enter the Number A?" << endl;
+    cin >> a;
+    cout << "Please enter the Number B?" << endl;
+    cin >> b;
+    cout << endl;
+    float Area = PI * ( (b*b) / 4 ) * ( (2 * a - b) / (2 * a + b) );
+    cout << Area;*/
 
-    cout << "Enter the third number: " << endl;
-    cin >> thirdNum;
+    //31#
+    /*int number;
+    cout << "Enter a number" << endl;
+    cin >> number;
+    cout << number * number << endl;
+    cout << number * number * number << endl;
+    cout << number * number * number * number << endl;*/
 
-    int sum = firstNum + secondNum + thirdNum;
+    //35#
+    /*int pennies, nickels, dimes, quarters, dollars;
+    cout << "Enter the number of pennies" << endl;
+    cin >> pennies;
+    cout << "Enter the number of nickels" << endl;
+    cin >> nickels;
+    cout << "Enter the number of dimes" << endl;
+    cin >> dimes;
+    cout << "Enter the number of quarters" << endl;
+    cin >> quarters;
+    cout << "Enter the number of dollars" << endl;
+    cin >> dollars;
 
-    cout << firstNum << endl;
-    cout << secondNum << " + " << endl;
-    cout << thirdNum << " + " << endl;
-    cout << "------------------------" << endl;
-    cout << sum << endl;
+    float totalPennies = pennies + (nickels * 5) + (dimes * 10) + (quarters * 25) + (dollars * 100);
+    float totalDollars = totalPennies / 100;
 
+    cout << totalPennies << " Pennies " << endl;
+    cout << totalDollars << " Dollars ";*/
 
+    //39#
+    /*float totalBill, cashPaid;
+    cout << "Enter the total bill: " << endl;
+    cin >> totalBill;
+    cout << "Enter the cash paid: " << endl;
+    cin >> cashPaid;
 
+    cout << cashPaid - totalBill;*/
+
+    //40#
+    /*float billValue;
+    cout << "Enter the bill value: " << endl;
+    cin >> billValue;
+
+    float totalBill = billValue * 1.1;
+    totalBill = totalBill * 1.16;
+    cout << "Total bill = " << totalBill;*/
+
+    //42#
+    /*int days, hours, minutes, seconds;
+    cout << "Enter the number of days" << endl;
+    cin >> days;
+    cout << "Enter the number of hours" << endl;
+    cin >> hours;
+    cout << "Enter the number of minutes" << endl;
+    cin >> minutes;
+    cout << "Enter the number of seconds" << endl;
+    cin >> seconds;
+
+<<<<<<< HEAD
+    float totalSeconds = (days * 24 * 60 * 60) + (hours * 60 * 60) + (minutes * 60) + seconds;
+=======
     short myAge;
+>>>>>>> b7bed81a9a6edec5d2b2de1d9e5403e267dc4fc4
 
-    cout << "Enter your age: " << endl;
-    cin >> myAge;
+    cout << totalSeconds << " Seconds " << endl;*/
 
-    short yourAgeAfter5Years = myAge + 5;
-    cout << "After 5 Years you will be " << yourAgeAfter5Years << " years old." << endl;
+    //43#
 
+    //47#
+    //48#
     return 0;
 }
-
-
