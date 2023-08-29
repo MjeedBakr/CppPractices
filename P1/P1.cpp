@@ -220,8 +220,45 @@ int main()
     cout << totalSeconds << " Seconds " << endl;*/
 
     //43#
+    /*int numberOfSeconds, days, hours, minutes, seconds;
+    cout << "Enter the number of seconds: " << endl;
+    cin >> numberOfSeconds;
+
+    int secondsPerDay = 24 * 60 * 60;
+    int secondsPerHour = 60 * 60;
+    int secondsPerMinutes = 60;
+
+    days = numberOfSeconds / (secondsPerDay);
+    numberOfSeconds -= secondsPerDay * days;
+
+    hours = numberOfSeconds / (secondsPerHour);
+    numberOfSeconds -= secondsPerHour * hours;
+
+    minutes = numberOfSeconds / (secondsPerMinutes);
+    numberOfSeconds -= secondsPerMinutes * minutes;
+
+    seconds = numberOfSeconds;
+
+    cout << days << ":" << hours << ":" << minutes << ":" << seconds;*/
 
     //47#
+    /*float loanAmount, monthlyPayment;
+    cout << "Enter the loan amount: " << endl;
+    cin >> loanAmount;
+    cout << "Enter the monthly payment: " << endl;
+    cin >> monthlyPayment;
+
+    cout << loanAmount / monthlyPayment << " Months" << endl;*/
+
     //48#
+    float loanAmount, numberOfMonths;
+    cout << "Enter the loan amount: " << endl;
+    cin >> loanAmount;
+    cout << "Enter the number of months you need: " << endl;
+    cin >> numberOfMonths;
+
+    cout << "You need to pay " << loanAmount / numberOfMonths << " Monthly" << endl;
+
+
     return 0;
 }
