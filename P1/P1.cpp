@@ -4,17 +4,37 @@ using namespace std;
 
 int main()
 {
-    int firstNumber, secondNumber;
-    cout << "Please enter the first number A?" << endl;
-    cin >> firstNumber;
-    cout << "Please enter the second number B?" << endl;
-    cin >> secondNumber;
+    cout << (12 >= 12) << endl;
+    cout << (8 < 6) << endl;
+    cout << (12 > 7) << endl;
+    cout << (8 == 8) << endl;
+    cout << (12 <= 12) << endl;
+    cout << (7 == 5) << endl;
+    cout << !(12 >= 12) << endl;
+    cout << !(12 < 7) << endl;
+    cout << !(8 < 6) << endl;
+    cout << !(8 == 8 ) << endl;
+    cout << !(12 <= 12) << endl;
+    cout << !(7 == 5) << endl;
+    cout << (1 && 1) << endl;
+    cout << (true && 0) << endl;
+    cout << (0 || 1) << endl;
+    cout << (0 || 0) << endl;
+    cout << !(0) << endl;
+    cout << !(1 || 0) << endl;
+    cout << ((7 == 7) && (7 > 5)) << endl;
+    cout << ((7 == 7) && (7 < 5)) << endl;
+    cout << ((7 == 7) || (7 < 5)) << endl;
+    cout << ((7 < 5) || (7 > 5)) << endl;
+    cout << !( (7 == 7) && (7 > 5) ) << endl;
+    cout << ((7 == 7) && !(7 < 5)) << endl;
 
-    cout << firstNumber << " = " << secondNumber << " is " << (firstNumber == secondNumber) << endl;
-    cout << firstNumber << " != " << secondNumber << " is " << (firstNumber != secondNumber) << endl;
-    cout << firstNumber << " > " << secondNumber << " is " << (firstNumber > secondNumber) << endl;
-    cout << firstNumber << " < " << secondNumber << " is " << (firstNumber < secondNumber) << endl;
-    cout << firstNumber << " >= " << secondNumber << " is " << (firstNumber >= secondNumber) << endl;
-    cout << firstNumber << " <= " << secondNumber << " is " << (firstNumber <= secondNumber) << endl;
+
+    cout << ( ((5 > 6) && (7 == 7)) || (1 || 0) ) << endl;
+    cout << ( !((5 > 6) && (7 == 7)) || (1 || 0) ) << endl;
+    cout << ( !((5 > 6) && (7 == 7)) || !(1 || 0) ) << endl;
+    cout << ( !((5 > 6) || (7 == 7)) && !(1 || 0) ) << endl;
+    cout << ( (((5 > 6) && (7 <= 8)) || ((8 > 1) || (4 <= 3))) && true) << endl;
+    cout << ( (((5 > 6) && !(7 <= 8)) && ((8 > 1) || (4 <= 3))) || true) << endl;
     return 0;
 }
