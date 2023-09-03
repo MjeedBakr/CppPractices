@@ -5,24 +5,25 @@ using namespace std;
 
 int main()
 {
-    string st1 = "43.22";
-    double dt1 = stod(st1);
-    float ft1 = stof(st1);
-    int it1 = stoi(st1);
+    string String1, String2, String3;
 
-    int n1 = 20;
-    string s1 = to_string(n1);
+    cout << "Please enter String1? " << endl;
+    getline(cin, String1);
 
-    double n2 = 33.5;
-    string d2 = to_string(n2);
+    cout << endl << "Please Enter String2? " << endl;
+    cin >> String2;
 
-    float n3 = 55.23;
-    string s3 = to_string(n3);
-    int i3 = n3;
-    i3 = (int) n3;
-    i3 = int(n3);
+    cout << endl << "Please enter String3? " << endl;
+    cin >> String3;
 
-    cout << d2 << endl;
-    
+    cout << "\n**************************************\n";
+
+    cout << "The Length of String1 is " << String1.length() << endl;
+    cout << "Characters at 0,2,4,7 are: " << String1[0] << " " << String1[2] << " " << String1[4] << " " << String1[7] << endl;
+    cout << "Concatenating String2 and String3 = " << String2 + String3 << endl;
+    cout << String2 << " * " << String3 << " = " << stoi(String2) * stoi(String3) << endl;
+
+
+
     return 0;
 }
