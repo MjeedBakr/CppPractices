@@ -3,27 +3,49 @@
 #include <string>
 using namespace std;
 
+void displayMyCardInfo(){
+
+    std::cout << "**************************\n";
+    std::cout << "Name: Abdulmajeed Bakr.\n";
+    std::cout << "Age : 21 Years.\n";
+    std::cout << "City: Makkah.\n";
+    std::cout << "Country: Saudi Arabia.\n";
+    std::cout << "**************************\n\n\n";
+}
+
+void printSquareStars(){
+
+    std::cout << "********\n";
+    std::cout << "********\n";
+    std::cout << "********\n";
+    std::cout << "********\n\n\n";
+}
+
+void printILoveProgramming(){
+
+    std::cout << "I Love Programming!\n\n";
+    std::cout << "I promise to be the best develper ever!\n\n";
+    std::cout << "I know it will take time to practice, but I\nwill achieve my goal.\n\n";
+    std::cout << "Best Regards,\n";
+    std::cout << "Abdulmajeed Bakr.\n\n\n";
+}
+
+void printH(){
+
+    std::cout << "*       *\n";
+    std::cout << "*       *\n";
+    std::cout << "* * * * *\n";
+    std::cout << "*       *\n";
+    std::cout << "*       *\n";
+}
+
+
 int main()
 {
-    string String1, String2, String3;
-
-    cout << "Please enter String1? " << endl;
-    getline(cin, String1);
-
-    cout << endl << "Please Enter String2? " << endl;
-    cin >> String2;
-
-    cout << endl << "Please enter String3? " << endl;
-    cin >> String3;
-
-    cout << "\n**************************************\n";
-
-    cout << "The Length of String1 is " << String1.length() << endl;
-    cout << "Characters at 0,2,4,7 are: " << String1[0] << " " << String1[2] << " " << String1[4] << " " << String1[7] << endl;
-    cout << "Concatenating String2 and String3 = " << String2 + String3 << endl;
-    cout << String2 << " * " << String3 << " = " << stoi(String2) * stoi(String3) << endl;
-
-
+    displayMyCardInfo();
+    printSquareStars();
+    printILoveProgramming();
+    printH();
 
     return 0;
 }
