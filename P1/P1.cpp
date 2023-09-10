@@ -1,36 +1,56 @@
 #include <iostream>
 using namespace std;
 
-void readGrades(float grades[3])
+struct strPersonInfo
 {
-	cout << "Please Enter Grade1 ? \n";
-	cin >> grades[0];
-	
-	cout << "Please Enter Grade2 ? \n";
-	cin >> grades[1];
+	string firstName;
+	string lastName;
+	short age;
+	string phoneNumber;
+};
 
-	cout << "Please Enter Grade3 ? \n";
-	cin >> grades[2];
+void readPersonInfo(strPersonInfo& person)
+{
+	cout << "Enter your first name: ";
+	cin >> person.firstName;
+	cout << "Enter your last name: ";
+	cin >> person.lastName;
+	cout << "Enter your age: ";
+	cin >> person.age;
+	cout << "Enter your phone number: ";
+	cin >> person.phoneNumber;
 }
 
-float calcGradesAvg(float grades[3])
+void printPersonInfo(strPersonInfo person)
 {
-	return (grades[0] + grades[1] + grades[2]) / 3;;
+	cout << "First Name: " << person.firstName << "\n";
+	cout << "Last Name: " << person.lastName << "\n";
+	cout << "Age: " << person.age << " Years.\n";
+	cout << "Phone: " << person.phoneNumber << ".\n";
 }
 
-void printGradesAvg(float grades[3])
+void readPeopleInfo(strPersonInfo person[2])
 {
-	cout << "*******************" << endl;
-	cout << "The average of grades is ";
-	cout << calcGradesAvg(grades) << endl;
+	readPersonInfo(person[0]);
+	readPersonInfo(person[1]);
+}
+
+void printPeopleInfo(strPersonInfo person[2])
+{
+	cout << "********************* \n";
+	printPersonInfo(person[0]);
+	cout << "********************* \n";
+	cout << "********************* \n";
+	printPersonInfo(person[1]);
+	cout << "********************* \n";
 }
 
 int main()
 {
-	float grades[3];
-	readGrades(grades);
-	printGradesAvg(grades);
+	strPersonInfo people[2];
 
+	readPeopleInfo(people);
+	printPeopleInfo(people);
 
 	return 0;
 }
