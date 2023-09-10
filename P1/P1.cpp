@@ -31,5 +31,6 @@ int main()
 	readGrades(grades);
 	printGradesAvg(grades);
 
+
 	return 0;
 }
