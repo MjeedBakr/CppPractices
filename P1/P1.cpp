@@ -1,32 +1,24 @@
 #include <iostream>
 using namespace std;
 
-//14
-void swapNumbers(int& x, int& y)
-{
-	int temp = x;
-	x = y;
-	y = temp;
-
-	cout << x << endl;
-	cout << y << endl;
-
-
-}
-
 int main()
 {
-	int x = 5;
-	int y = 10;
+	float grades[3];
 
-	cout << x << "\n" << y << "\n" << endl;
+	cout << "Please Enter Grade1 ?" << endl;
+	cin >> grades[0];
+	
+	cout << "Please Enter Grade2 ?" << endl;
+	cin >> grades[1];
 
-	swapNumbers(x, y);
+	cout << "Please Enter Grade3 ?" << endl;
+	cin >> grades[2];
 
-	cout << x << "\n" << y << "\n" << endl;
+	float gradesAvg = (grades[0] + grades[1] + grades[2]) / 3;
 
-
-
+	cout << "*******************" << endl;
+	cout << "The average of grades is ";
+	cout << gradesAvg << endl;
 
 	return 0;
 }
