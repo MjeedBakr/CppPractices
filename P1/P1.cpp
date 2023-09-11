@@ -1,56 +1,92 @@
 #include <iostream>
 using namespace std;
 
-struct strPersonInfo
-{
-	string firstName;
-	string lastName;
-	short age;
-	string phoneNumber;
-};
-
-void readPersonInfo(strPersonInfo& person)
-{
-	cout << "Enter your first name: ";
-	cin >> person.firstName;
-	cout << "Enter your last name: ";
-	cin >> person.lastName;
-	cout << "Enter your age: ";
-	cin >> person.age;
-	cout << "Enter your phone number: ";
-	cin >> person.phoneNumber;
-}
-
-void printPersonInfo(strPersonInfo person)
-{
-	cout << "First Name: " << person.firstName << "\n";
-	cout << "Last Name: " << person.lastName << "\n";
-	cout << "Age: " << person.age << " Years.\n";
-	cout << "Phone: " << person.phoneNumber << ".\n";
-}
-
-void readPeopleInfo(strPersonInfo person[2])
-{
-	readPersonInfo(person[0]);
-	readPersonInfo(person[1]);
-}
-
-void printPeopleInfo(strPersonInfo person[2])
-{
-	cout << "********************* \n";
-	printPersonInfo(person[0]);
-	cout << "********************* \n";
-	cout << "********************* \n";
-	printPersonInfo(person[1]);
-	cout << "********************* \n";
-}
-
 int main()
 {
-	strPersonInfo people[2];
+	//4, 8, 11, 24, 49
 
-	readPeopleInfo(people);
-	printPeopleInfo(people);
+	//4#
+	short age;
+	bool hasDriverLicense;
+
+	cout << "Enter your age: ";
+	cin >> age;
+
+	cout << "Do you have a driver license '1' Yes and '0' No ? ";
+	cin >> hasDriverLicense;
+
+	if (age > 21 && hasDriverLicense == true)
+	{
+		cout << "Hired";
+	}
+	else
+	{
+		cout << "Rejected";
+	}
+
+	//8#
+	short studentMark;
+	cout << "Enter your Mark: ";
+	cin >> studentMark;
+	
+	if (studentMark >= 50)
+	{
+		cout << "Pass";
+	}
+	else
+	{
+		cout << "Fail";
+	}
+
+	//11#
+	short mark1, mark2, mark3;
+
+	cout << "Enter Mark1: ";
+	cin >> mark1;
+	cout << "Enter Mark2: ";
+	cin >> mark2;
+	cout << "Enter Mark3: ";
+	cin >> mark3;
+
+	float avgMarks = (mark1 + mark2 + mark3) / 3;
+	
+	if (avgMarks >= 50)
+	{
+		cout << avgMarks << "\nPass";
+	}
+	else
+	{
+		cout << avgMarks << "\nFail";
+	}
+	
+	//24#
+    short age;
+
+	cout << "Enter your age: ";
+	cin >> age;
+
+	if (age >= 18 && age <= 45)
+	{
+		cout << "Valid Age";
+	}
+	else
+	{
+		cout << "Invalid Age";
+	}
+
+	//49#
+	string pinCode;
+	cout << "Enter your PIN code: ";
+	cin >> pinCode;
+
+	if (pinCode == "1234")
+	{
+		cout << "True PIN";
+	}
+	else
+	{
+		cout << "Wrong PIN";
+	}
 
 	return 0;
 }
