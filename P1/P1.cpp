@@ -1,86 +1,113 @@
 #include <iostream>
 using namespace std;
 
-//4#
-void driverHiring()
+//33#
+string studentGrade(short grade)
 {
-	short age;
-	bool hasDriverLicense;
-
-	cout << "Enter your age: ";
-	cin >> age;
-
-	cout << "Do you have a driver license '1' Yes and '0' No ? ";
-	cin >> hasDriverLicense;
-
-	if (age > 21 && hasDriverLicense == true)
-	{
-		cout << "Hired";
-	}
+	if (grade > 100 || grade < 1)
+		return "Incorrect input";
+	else if (grade > 89)
+		return "A";
+	else if (grade > 79)
+		return "B";
+	else if (grade > 69)
+		return "C";
+	else if (grade > 59)
+		return "D";
+	else if (grade > 49)
+		return "E";
 	else
-	{
-		cout << "Rejected";
-	}
-
+		return "F";
 }
 
-//8#
-void ifStudentsPassOrFail(short mark)
+//34#
+double commission(long totalSales)
 {
-
-	if (mark >= 50)
-	{
-		cout << "Pass";
-	}
+	if (totalSales > 1000000 || totalSales < 50000)
+		return 0;
+	else if (totalSales == 1000000)
+		return totalSales * 0.01;
+	else if (totalSales > 499999)
+		return totalSales * 0.02;
+	else if (totalSales > 99999)
+		return totalSales * 0.03;
 	else
-	{
-		cout << "Fail";
-	}
-
+		return totalSales * 0.05;
 }
 
-//11#
-float avgStudentsMark(short mark1, short mark2, short mark3)
+//36#
+int operations(int firstNumber, int secondNumber, char operationType)
 {
-	cout << "Enter Mark1: ";
-	cin >> mark1;
-	cout << "Enter Mark2: ";
-	cin >> mark2;
-	cout << "Enter Mark3: ";
-	cin >> mark3;
-
-	return avgMarks = (mark1 + mark2 + mark3) / 3;
-
-}
-
-//24#
-void ageValidation(short age)
-{
-	if (age >= 18 && age <= 45)
-	{
-		cout << "Valid Age";
-	}
+	if (operationType == '+')
+		return firstNumber + secondNumber;
+	else if (operationType == '-')
+		return firstNumber - secondNumber;
+	else if (operationType == '*')
+		return firstNumber * secondNumber;
+	else if (operationType == '/')
+		return firstNumber / secondNumber;
 	else
-	{
-		cout << "Invalid Age";
-	}
-
+		return -1;
 }
 
-//49#
-void validatePinCode(string pinCode)
+//44#
+string dayName(short day)
 {
-	if (pinCode == "1234")
-	{
-		cout << "True PIN";
-	}
+	if (day > 7 && day < 1)
+		return "Wrong Day";
+	else if (day == 1)
+		return "Sunday";
+	else if (day == 2)
+		return "Monday";
+	else if (day == 3)
+		return "Tuesday";
+	else if (day == 4)
+		return "Wednesday";
+	else if (day == 5)
+		return "Thursday";
+	else if (day == 6)
+		return "Friday";
 	else
-	{
-		cout << "Wrong PIN";
-	}
-
+		return "Saturday";
 }
+
+//45#
+string monthName(short month)
+{
+	if (month > 7 && month < 1)
+		return "Wrong Month";
+	else if (month == 1)
+		return "January";
+	else if (month == 2)
+		return "February";
+	else if (month == 3)
+		return "March";
+	else if (month == 4)
+		return "April";
+	else if (month == 5)
+		return "May";
+	else if (month == 6)
+		return "June";
+	else if (month == 7)
+		return "July";
+	else if (month == 8)
+		return "August";
+	else if (month == 9)
+		return "September";
+	else if (month == 10)
+		return "October";
+	else if (month == 11)
+		return "November";
+	else
+		return "December";
+}
+
+
+
+
+//#33, #34, #36, #44, #45
 int main()
 {
+
 	return 0;
 }
