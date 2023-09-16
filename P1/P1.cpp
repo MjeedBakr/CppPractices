@@ -18,16 +18,23 @@ int main()
 	cin >> choice;
 	color = (enScreenColors)choice; //conver choice variable to enScreenColors
 
-	if (color == enScreenColors::Red)
+	switch (color)
+	{
+	case enScreenColors::Red :
 		system("color 4F");
-	else if (color == enScreenColors::Blue)
+		break;
+	case enScreenColors::Blue :
 		system("color 1F");
-	else if (color == enScreenColors::Green)
+		break;
+	case enScreenColors::Green :
 		system("color 2F");
-	else if (color == enScreenColors::Yellow)
+		break;
+	case enScreenColors::Yellow :
 		system("color 6F");
-	else
-		cout << "Wrong choice";
+		break;
+	default:
+		system("color 4F");
+	}
 
 	return 0;
 }
