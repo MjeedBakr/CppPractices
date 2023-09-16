@@ -1,40 +1,114 @@
 #include <iostream>
 using namespace std;
 
-enum enScreenColors{Red, Blue, Green, Yellow};
+//36 44 45
+
+int simpleCalculator(int number1, int number2, char operation)
+{
+
+	switch (operation)
+	{
+	case '+':
+		return number1 + number2;
+		break;
+	case '-':
+		return number1 - number2;
+		break;
+	case '*':
+		return number1 * number2;
+		break;
+	case '/':
+		return number1 / number2;
+		break;
+	default:
+		return -1;
+		break;
+	}
+
+}
+
+string weekDay(short dayNumber)
+{
+
+	switch (dayNumber)
+	{
+	case 1:
+		return "Sunday";
+		break;
+	case 2:
+		return "Monday";
+		break;
+	case 3:
+		return "Tuesday";
+		break;
+	case 4:
+		return "Wednesday";
+		break;
+	case 5:
+		return "Thursday";
+		break;
+	case 6:
+		return "Friday";
+		break;
+	case 7:
+		return "Saturday";
+		break;
+	default:
+		return "Wrong Day";
+		break;
+	}
+
+}string month(short monthNumber)
+{
+
+	switch (monthNumber)
+	{
+	case 1:
+		return "January";
+		break;
+	case 2:
+		return "Feb";
+		break;
+	case 3:
+		return "Mar";
+		break;
+	case 4:
+		return "Apr";
+		break;
+	case 5:
+		return "May";
+		break;
+	case 6:
+		return "June";
+		break;
+	case 7:
+		return "Jul";
+		break;
+	case 8:
+		return "Aug";
+		break;
+	case 9:
+		return "Sep";
+		break;
+	case 10:
+		return "Oct";
+		break;
+	case 11:
+		return "Nov";
+		break;
+	case 12:
+		return "December";
+	default:
+		return "Wrong Month";
+		break;
+	}
+
+}
+
 
 int main()
 {
-	cout << "Choose ur screen color number: \n\n";
-	cout << "(0) Red \n";
-	cout << "(1) Blue \n";
-	cout << "(2) Green \n";
-	cout << "(3) Yellow \n";
-	cout << "Your choice?\n\n";
 
-	int choice;
-	enScreenColors color;
-
-	cin >> choice;
-	color = (enScreenColors)choice; //conver choice variable to enScreenColors
-
-	switch (color)
-	{
-	case enScreenColors::Red :
-		system("color 4F");
-		break;
-	case enScreenColors::Blue :
-		system("color 1F");
-		break;
-	case enScreenColors::Green :
-		system("color 2F");
-		break;
-	case enScreenColors::Yellow :
-		system("color 6F");
-		break;
-	default:
-		system("color 4F");
-	}
 
 	return 0;
 }
