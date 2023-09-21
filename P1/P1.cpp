@@ -1,66 +1,82 @@
 #include <iostream>
 using namespace std;
 
-struct strPersonInfo
+void l1()
 {
-	string firstName;
-	string lastName;
-	short age;
-	string phoneNumber;
-};
-
-void readPersonInfo(strPersonInfo& person)
-{
-	cout << "Enter your first name: ";
-	cin >> person.firstName;
-	cout << "Enter your last name: ";
-	cin >> person.lastName;
-	cout << "Enter your age: ";
-	cin >> person.age;
-	cout << "Enter your phone number: ";
-	cin >> person.phoneNumber;
-}
-
-void printPersonInfo(strPersonInfo person)
-{
-	cout << "First Name: " << person.firstName << "\n";
-	cout << "Last Name: " << person.lastName << "\n";
-	cout << "Age: " << person.age << " Years.\n";
-	cout << "Phone: " << person.phoneNumber << ".\n";
-}
-
-void readPeopleInfo(strPersonInfo person[], int length)
-{
-	for (int i = 0; i <= length - 1; i++)
+	for (int i = 65; i <= 90; i++)
 	{
-		cout << "For the person (" << i + 1 << ")\n";
-		readPersonInfo(person[i]);
+		cout << "Letter: " << char(i) << endl;
+		for (int j = 65; j <= 90; j++)
+		{
+			cout << char(i) << char(j) << "\n";
+		}
+		cout << "---------------------\n";
+	}
+}
+
+void l2()
+{
+	for (int i = 10; i >= 1; i--)
+	{
+		for (int j = i; j >= 1; j--)
+		{
+			cout << "*";
+		}
 		cout << endl;
 	}
-	cout << "\n" << endl;
 }
 
-void printPeopleInfo(strPersonInfo person[], int length)
+void l3()
 {
-	for (int i = 0; i <= length - 1; i++)
+	for (int i = 1; i <= 10; i++)
 	{
-		cout << "********************* \n";
-		printPersonInfo(person[i]);
-		cout << "\n" << endl;
-		cout << "********************* \n";
+		for (int j = i; j <= 10; j++)
+		{
+			cout << j << " ";
+		}
+		cout << endl;
 	}
 }
 
+void l4()
+{
+	for (int i = 1; i <= 10; i++)
+	{
+		for (int j = 1; j <= i; j++)
+		{
+			cout << j << " ";
+		}
+		cout << endl;
+	}
+}
+
+void l5()
+{
+	for (int i = 65; i <= 70; i++)
+	{
+		for (int j = 65; j <= i; j++)
+		{
+			cout << char(j) << " ";
+		}
+		cout << endl;
+	}
+}
+
+void l6()
+{
+	for (int i = 1; i <= 10; i++)
+	{
+		for (int j = i; j <= 10; j++)
+		{
+			cout << j << " ";
+		}
+		cout << endl;
+	}
+}
 int main()
 {
-	int numberOfPeople = 0;
-	cout << "Enter the number of people you want to add:\n";
-	cin >> numberOfPeople;
+	l4();
 
-	strPersonInfo people[100];
-
-	readPeopleInfo(people, numberOfPeople);
-	printPeopleInfo(people, numberOfPeople);
 
 	return 0;
 }
