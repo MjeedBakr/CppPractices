@@ -1,82 +1,138 @@
 #include <iostream>
 using namespace std;
+//26, 27, 28, 29, 30, 32, 37, 46, 50
 
-void l1()
+//26
+void printNumberFrom1ToN(int number)
 {
-	for (int i = 65; i <= 90; i++)
+	int counter = 1;
+	while (number >= 1)
 	{
-		cout << "Letter: " << char(i) << endl;
-		for (int j = 65; j <= 90; j++)
-		{
-			cout << char(i) << char(j) << "\n";
-		}
-		cout << "---------------------\n";
+		cout << counter << endl;
+		number--;
+		counter++;
 	}
 }
 
-void l2()
+//27
+void printNumberFromNTo1(int number)
 {
-	for (int i = 10; i >= 1; i--)
+	while (number >= 1)
 	{
-		for (int j = i; j >= 1; j--)
-		{
-			cout << "*";
-		}
-		cout << endl;
+		cout << number << endl;
+		number--;
 	}
 }
 
-void l3()
+//28
+int sumOddNumbersFrom1ToN(int number)
 {
-	for (int i = 1; i <= 10; i++)
+	int sum = 0;
+	while (number >= 1)
 	{
-		for (int j = i; j <= 10; j++)
+		if (number % 2 != 0)
 		{
-			cout << j << " ";
+			sum += number;
 		}
-		cout << endl;
+		number--;
+	}
+	return sum;
+}
+
+//29
+int sumEvenNumbersFrom1ToN(int number)
+{
+	int sum = 0;
+	while (number >= 1)
+	{
+		if (number % 2 == 0)
+			sum += number;
+		number--;
+	}
+	return sum;
+}
+
+//30
+void factorial()
+{
+	int number;
+	cout << "Please Enter a number: ";
+	cin >> number;
+	while (number <= 0)
+	{
+		cout << "Please Enter a positive number: ";
+		cin >> number;
+	}
+	int result = 1;
+	while (number >= 1)
+	{
+		result *= number;
+		number--;
+	}
+
+	cout << result;
+}
+
+//32
+int power(int number, int m)
+{
+	while (m > 2)
+	{
+		number *= number;
+		m--;
+	}
+	return number;
+}
+
+//37
+void sumUntil99()
+{
+	int sum = 0;
+	int number = 0;
+	while (number != -99)
+	{
+		sum += number;
+		cout << "Enter a number to add to the sum\n";
+		cin >> number;
+	}
+	cout << sum;
+}
+
+//46
+void printLetters()
+{
+	short counter = 65;
+	while (counter <= 90)
+	{
+		cout << char(counter) << endl;;
+		counter++;
 	}
 }
 
-void l4()
+//50
+void displayBalance()
 {
-	for (int i = 1; i <= 10; i++)
-	{
-		for (int j = 1; j <= i; j++)
-		{
-			cout << j << " ";
-		}
-		cout << endl;
-	}
-}
+	string PIN;
+	cout << "Please Enter your PIN\n";
+	cin >> PIN;
 
-void l5()
-{
-	for (int i = 65; i <= 70; i++)
+	int failCounter = 3;
+	while (PIN != "1234" && failCounter >= 1)
 	{
-		for (int j = 65; j <= i; j++)
-		{
-			cout << char(j) << " ";
-		}
-		cout << endl;
+		cout << "Wrong PIN, Please Enter your PIM again\n";
+		cin >> PIN;
+		failCounter--;
+		if (failCounter == 0)
+			cout << "Card is locked!";
 	}
-}
-
-void l6()
-{
-	for (int i = 1; i <= 10; i++)
+	if (PIN == "1234")
 	{
-		for (int j = i; j <= 10; j++)
-		{
-			cout << j << " ";
-		}
-		cout << endl;
+		cout << "Your Balance is: 7500";
 	}
 }
 int main()
 {
-	l4();
-
+	factorial();
 
 	return 0;
 }
