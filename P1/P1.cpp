@@ -9,8 +9,10 @@ int main()
 	for (int i = 0; i <= 10 - 1; i++)
 	{
 		if (myArray[i] == 20)
-			continue;
-		cout << myArray[i] << endl;
+		{
+			cout << i;
+			break;
+		}
 	}
 	return 0;
 }
