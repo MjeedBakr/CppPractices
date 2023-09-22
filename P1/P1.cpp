@@ -4,15 +4,17 @@ using namespace std;
 int main()
 {
 
-	int myArray[10] = { 10, 20, 44, 55, 33, 22, 99, 100 };
+	int number;
+	int sum = 0;
 
-	for (int i = 0; i <= 10 - 1; i++)
+	cout << "Enter 5 numbers: \n";
+	for (int i = 1; i <= 5; i++)
 	{
-		if (myArray[i] == 20)
-		{
-			cout << i;
-			break;
-		}
+		cin >> number;
+		if (number > 50)
+			continue;
+		sum += number;
 	}
+	cout << sum << endl;
 	return 0;
 }
