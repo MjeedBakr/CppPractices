@@ -1,30 +1,46 @@
 ﻿#include <iostream>
+#include <string>
 using namespace std;
+
+void printHeadOfMultiplicationTable(int start, int end)
+{
+	cout << "\n\n";
+
+	int spaceAmout = floor((end - start) / 2);
+
+	for (int i = 1; i <= spaceAmout - 1; i++)
+		cout << "\t";
+
+	cout << "Multiplication Table From " << to_string(start) << " To " << to_string(end);
+
+	cout << "\n\n\t ";
+	for (int i = start; i <= end; i++)
+	{
+		cout << i << "\t";
+	}
+
+	cout << endl;
+	for (int i = start; i <= end; i++)
+		cout << "---------";
+	cout << endl;
+}
+
+void printMultiplicationTable(int start, int end)
+{
+	printHeadOfMultiplicationTable(start, end);
+	for (int i = start; i <= end; i++)
+	{
+		cout << to_string(i) << "\t|";
+		for (int j = start; j <= end; j++)
+		{
+			cout << to_string(i*j) << "\t";
+		}
+		cout << endl;
+	}
+}
 
 int main()
 {
-	char input;                        // هنا أقرأ القيمة وأخزنها
-	cout << "Enter any character: ";   // في المتغير الي اسمه
-	cin >> input;                      // input
-
-
-
-
-	for (int i = 0; i <= 127; i++)                             	   //هنا أمر على كل الأحرف والأرقام
-	{
-		if (char(i) == input)                                      //أقارن كل حرف مع القيمة الي ادخلتها
-		{
-			if (i >= 65 && i << 90)
-				cout << "Character is a capital letter" << endl;   //اذا طلع حرف كبير
-			else if (i >= 97 && i <= 122)
-				cout << "Character is a small letter" << endl;     //اذا طلع حرف صغير
-			else if (i >= 48 && i <= 57)
-				cout << "Character is a number" << endl;           //اذا رقم
-			else
-				cout << "Character is a special symbol" << endl;   //اذا اي شيء ثاني
-			break;
-		}
-	}
-
+	printMultiplicationTable(1, 10);
 	return 0;
 }
