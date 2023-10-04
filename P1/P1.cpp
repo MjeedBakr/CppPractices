@@ -2,45 +2,41 @@
 #include <string>
 using namespace std;
 
-void printHeadOfMultiplicationTable(int start, int end)
+enum enPrimeOrNot {Prime = 1, NotPrime = 2};
+
+int readPositiveNumber(string message)
 {
-	cout << "\n\n";
-
-	int spaceAmout = floor((end - start) / 2);
-
-	for (int i = 1; i <= spaceAmout - 1; i++)
-		cout << "\t";
-	 
-	cout << "Multiplication Table From " << start << " To " << end;
-
-	cout << "\n\n\t ";
-	for (int i = start; i <= end; i++)
+	int number;
+	do
 	{
-		cout << i << "\t";
-	}
-
-	cout << endl;
-	for (int i = start; i <= end; i++)
-		cout << "---------";
-	cout << endl;
+		cout << message << endl;
+		cin >> number;
+	} while (number < 1);
+		return number;
 }
 
-void printMultiplicationTable(int start, int end)
+enPrimeOrNot checkPrime(int number)
 {
-	printHeadOfMultiplicationTable(start, end);
-	for (int i = start; i <= end; i++)
+	int m = round(number / 2);
+	for (int counter = 2; counter <= m; counter++)
+		if (number % counter == 0)
+			return enPrimeOrNot::NotPrime;
+
+	return enPrimeOrNot::Prime;
+}
+
+void printPrimeNumbersFrom1ToN(int number)
+{
+	cout << "\nPrime number from 1 To " << to_string(number) << " are: " << endl;
+	for (int i = 1; i <= number; i++)
 	{
-		cout << i << "\t|";
-		for (int j = start; j <= end; j++)
-		{
-			cout << i*j << "\t";
-		}
-		cout << endl;
+		if (checkPrime(i) == enPrimeOrNot::Prime)
+			cout << i << endl;
 	}
 }
 
 int main()
 {
-	printMultiplicationTable(1, 13);
+	printPrimeNumbersFrom1ToN(readPositiveNumber("PLease enter a positive number to prine all prime number from 1 to n: "));
 	return 0;
 }
