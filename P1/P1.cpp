@@ -29,17 +29,19 @@ enPerfectOrNot checkPerfect(int number)
 	return enPerfectOrNot::NotPerfect;
 }
 
-void printPerfectNumber(int number)
+void printPerfectNumberFrom1ToN(int number)
 {
-	if (checkPerfect(number) == enPerfectOrNot::Perfect)
-		cout << number << " Is a Pefect Number.";
-	else
-		cout << number << " Is not a Perfect Number.";
+	cout << "\nPerfect numbers from 1 to " << number << " are: \n";
+	for (int i = 1; i <= number; i++)
+	{
+		if (checkPerfect(i) == enPerfectOrNot::Perfect)
+			cout << i << endl;
+	}
 
 }
 
 int main()
 {
-	printPerfectNumber(readPositiveNumber("PLease enter a positive number to check if it is Perfect or Not: "));
+	printPerfectNumberFrom1ToN(readPositiveNumber("PLease enter a positive number to print all perfect numbers between 1 and it: "));
 	return 0;
 }
