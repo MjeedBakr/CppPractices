@@ -16,9 +16,13 @@ int readPositiveNumber(string message)
 
 void printNumberInReversedOrder(int number)
 {
-	string num = to_string(number);
-	for (int i = num.length(); i >= 0; i--)
-		cout << num[i] << endl;
+	int remainder = 0;
+	while (number > 0)
+	{
+		remainder = number % 10;
+		number = number / 10;
+		cout << remainder << endl;
+	}
 }
 
 
