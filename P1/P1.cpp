@@ -10,7 +10,7 @@ void printHeadOfMultiplicationTable(int start, int end)
 
 	for (int i = 1; i <= spaceAmout - 1; i++)
 		cout << "\t";
-
+	 
 	cout << "Multiplication Table From " << start << " To " << end;
 
 	cout << "\n\n\t ";
