@@ -14,22 +14,22 @@ int readPositiveNumber(string message)
 		return number;
 }
 
-int sumOfDigits(int number)
+int reverseDigit(int number)
 {
-	int sum = 0;
+	string sum = "";
 	int remainder = 0;
 	while (number > 0)
 	{
 		remainder = number % 10;
 		number = number / 10;
-		sum += remainder;
+		sum += to_string(remainder);
 	}
-	return sum;
+	return stoi(sum);
 }
 
 void printSumOfInputDigits(int number)
 {
-	cout << "\nSum of Digits = " << sumOfDigits(number) << endl;
+	cout << "\Reverse of " << number << " = " << reverseDigit(number) << endl;
 }
 
 
