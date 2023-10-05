@@ -16,15 +16,15 @@ int readPositiveNumber(string message)
 
 int reverseDigit(int number)
 {
-	string sum = "";
+	int reversedNumber = 0;
 	int remainder = 0;
 	while (number > 0)
 	{
 		remainder = number % 10;
 		number = number / 10;
-		sum += to_string(remainder);
+		reversedNumber = reversedNumber * 10 + remainder;
 	}
-	return stoi(sum);
+	return reversedNumber;
 }
 
 void printSumOfInputDigits(int number)
