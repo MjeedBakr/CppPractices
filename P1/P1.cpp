@@ -28,23 +28,14 @@ int reverseNumber(int number)
 	return reversedNumber;
 }
 
-enPalindromeOrNot checkIfPalindrome(int number, int reversedNumber)
+enPalindromeOrNot checkIfPalindrome(int number)
 {
-	int numberRemainder = 0;
-	int reversedNumberRemainder = 0;
-	while (number > 0 && reversedNumber > 0)
-	{
-		numberRemainder = number % 10;
-		reversedNumberRemainder = reversedNumber % 10;
-
-		if (numberRemainder != reversedNumberRemainder)
-			return enPalindromeOrNot::NotPalindrome;
-
-		number /= 10;
-		reversedNumber /= 10;
-	}
-	return enPalindromeOrNot::Palindrome;
+	if (number == reverseNumber(number))
+		return enPalindromeOrNot::Palindrome;
+	else
+		return enPalindromeOrNot::NotPalindrome;
 }
+
 void printPalindromeOrNot(enPalindromeOrNot number)
 {
 	if (number == enPalindromeOrNot::Palindrome)
@@ -58,6 +49,6 @@ void printPalindromeOrNot(enPalindromeOrNot number)
 int main()
 {
 	int number = readPositiveNumber("Enter a positive number: ");
-	printPalindromeOrNot(checkIfPalindrome(number, reverseNumber(number)));
+	printPalindromeOrNot(checkIfPalindrome(number));
 	return 0;
 }
