@@ -2,6 +2,7 @@
 #include <string>
 using namespace std;
 
+enum enPalindromeOrNot {Palindrome = 1, NotPalindrome = 2};
 
 int readPositiveNumber(string message)
 {
@@ -27,22 +28,36 @@ int reverseNumber(int number)
 	return reversedNumber;
 }
 
-void printAllDigitsinOrder(int number)
+enPalindromeOrNot checkIfPalindrome(int number, int reversedNumber)
 {
-	number = reverseNumber(number);
-	int remainder = 0;
-	while (number > 0)
+	int numberRemainder = 0;
+	int reversedNumberRemainder = 0;
+	while (number > 0 && reversedNumber > 0)
 	{
-		remainder = number % 10;
-		number = number / 10;
-		cout << remainder << endl;
+		numberRemainder = number % 10;
+		reversedNumberRemainder = reversedNumber % 10;
+
+		if (numberRemainder != reversedNumberRemainder)
+			return enPalindromeOrNot::NotPalindrome;
+
+		number /= 10;
+		reversedNumber /= 10;
 	}
+	return enPalindromeOrNot::Palindrome;
+}
+void printPalindromeOrNot(enPalindromeOrNot number)
+{
+	if (number == enPalindromeOrNot::Palindrome)
+		cout << "Yes , it is a Palindrome number." << endl;
+	else
+		cout << "No , it is Not a Palindrome number." << endl;
+
 }
 
 
 int main()
 {
 	int number = readPositiveNumber("Enter a positive number: ");
-	printAllDigitsinOrder(number);
+	printPalindromeOrNot(checkIfPalindrome(number, reverseNumber(number)));
 	return 0;
 }
