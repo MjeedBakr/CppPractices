@@ -28,12 +28,14 @@ int countDigitFrequency(int number, short digitToCheck)
 	return freqCounter;
 }
 
-void printDigitsFrequency(int number)
+void printAllDigitsFrequency(int number)
 {
 	for (int i = 0; i <= 9; i++)
 	{
-		if (countDigitFrequency(number, i) != 0)
-			cout << "\Digit " << i << " Frequency is " << countDigitFrequency(number, i) << " Time(s)." << endl;
+		short digitFrequency = 0;
+		digitFrequency = countDigitFrequency(number, i);
+		if (digitFrequency > 0)
+			cout << "\Digit " << i << " Frequency is " << digitFrequency << " Time(s)." << endl;
 	}
 }
 
@@ -41,6 +43,6 @@ void printDigitsFrequency(int number)
 int main()
 {
 	int number = readPositiveNumber("Enter a positive number: ");
-	printDigitsFrequency(number);
+	printAllDigitsFrequency(number);
 	return 0;
 }
