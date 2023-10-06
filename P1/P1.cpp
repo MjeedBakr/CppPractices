@@ -14,28 +14,28 @@ int readPositiveNumber(string message)
 	return number;
 }
 
-int countDigitFrequency(int number, short digitToCheck)
+int reverseNumber(int number)
 {
-	int freqCounter = 0;
+	int reversedNumber = 0;
 	int remainder = 0;
 	while (number > 0)
 	{
 		remainder = number % 10;
-		if (remainder == digitToCheck)
-			freqCounter++;
 		number = number / 10;
+		reversedNumber = reversedNumber * 10 + remainder;
 	}
-	return freqCounter;
+	return reversedNumber;
 }
 
-void printAllDigitsFrequency(int number)
+void printAllDigitsinOrder(int number)
 {
-	for (int i = 0; i <= 9; i++)
+	number = reverseNumber(number);
+	int remainder = 0;
+	while (number > 0)
 	{
-		short digitFrequency = 0;
-		digitFrequency = countDigitFrequency(number, i);
-		if (digitFrequency > 0)
-			cout << "\Digit " << i << " Frequency is " << digitFrequency << " Time(s)." << endl;
+		remainder = number % 10;
+		number = number / 10;
+		cout << remainder << endl;
 	}
 }
 
@@ -43,6 +43,6 @@ void printAllDigitsFrequency(int number)
 int main()
 {
 	int number = readPositiveNumber("Enter a positive number: ");
-	printAllDigitsFrequency(number);
+	printAllDigitsinOrder(number);
 	return 0;
 }
