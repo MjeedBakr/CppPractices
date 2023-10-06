@@ -11,7 +11,7 @@ int readPositiveNumber(string message)
 		cout << message << endl;
 		cin >> number;
 	} while (number < 1);
-		return number;
+	return number;
 }
 
 int countDigitFrequency(int number, short digitToCheck)
@@ -28,16 +28,19 @@ int countDigitFrequency(int number, short digitToCheck)
 	return freqCounter;
 }
 
-void printDigitFrequency(int number, short digitToCheck)
+void printDigitsFrequency(int number)
 {
-	cout << "\Digit " << digitToCheck << " Frequency is " << countDigitFrequency(number, digitToCheck) << " Time(s)." << endl;
+	for (int i = 0; i <= 9; i++)
+	{
+		if (countDigitFrequency(number, i) != 0)
+			cout << "\Digit " << i << " Frequency is " << countDigitFrequency(number, i) << " Time(s)." << endl;
+	}
 }
 
 
 int main()
 {
 	int number = readPositiveNumber("Enter a positive number: ");
-	short digitToCheck = readPositiveNumber("Enter a positive digit to count its frequency time: ");
-	printDigitFrequency(number, digitToCheck);
+	printDigitsFrequency(number);
 	return 0;
 }
