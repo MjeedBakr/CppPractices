@@ -2,9 +2,6 @@
 #include <cstdlib>
 using namespace std;
 
-enum enCharType {SmallLetter = 1, CapitalLetter = 2, SpecialCharacter = 3, Digit = 4};
-
-
 int readPositiveNumber(string message)
 {
 	int number;
@@ -16,73 +13,50 @@ int readPositiveNumber(string message)
 	return number;
 }
 
-
-//function to generate random number
-int randomNumber(int from, int to)
+void readArrayElements(int arr[], int arraySize)
 {
-	int randNum = rand() % (to - from + 1) + from;
-	return randNum;
-}
-
-char randomCharacter(enCharType charType)
-{
-	switch (charType)
+	cout << "Enter array elements: \n";
+	for (int i = 0; i <= arraySize - 1; i++)
 	{
-	case SmallLetter:
-		return char(randomNumber(97, 122));
-	case CapitalLetter:
-		return char(randomNumber(65, 90));
-	case SpecialCharacter:
-		return char(randomNumber(33, 47));
-	case Digit:
-		return char(randomNumber(48, 57));
-	default:
-		break;
+		cout << "Element [" << i + 1 << "] = ";
+		cin >> arr[i];
+		cout << "\n";
 	}
+	
 }
 
-string generateWord(enCharType charType, short wordLength)
+void printArrayElements(int arr[], int arraySize)
 {
-	string word = "";
-	for (int i = 1; i <= wordLength; i++)
-	{
-		word += randomCharacter(charType);
-	}
-	return word;
+	cout << "Original array: ";
+	for (int i = 0; i <= arraySize - 1; i++)
+		cout << arr[i] << " ";
+
+	cout << endl;
 }
 
-string generateKey()
+short checkElementFrequency(int arr[], int arraySize, short elementToCheck)
 {
-	string key = "";
+	short elementFrequency = 0;
+	for (int i = 0; i <= arraySize; i++)
+		if (elementToCheck == arr[i])
+			elementFrequency++;
 
-
-	key += generateWord(enCharType::CapitalLetter, 4) + "-";
-	key += generateWord(enCharType::CapitalLetter, 4) + "-";
-	key += generateWord(enCharType::CapitalLetter, 4) + "-";
-	key += generateWord(enCharType::CapitalLetter, 4);
-
-
-	return key;
-
+	return elementFrequency;
 }
 
-void generateMultipleKeys(short numberOfKeys)
-{
-	for (int i = 1; i <= numberOfKeys; i++)
-	{
-		cout << "Key [" << i << "] : " << generateKey() << endl;
-	}
-}
 
 int main()
 {
-	//Seeds the random number generator in C++, called only once
-	srand((unsigned)time(NULL));
+	int arraySize = readPositiveNumber("How many Elements do you want in your array: ");
 
-	short numberOfKeys = readPositiveNumber("Please enter the number of keys do you want: ");
-	generateMultipleKeys(numberOfKeys);
+	int newArray[1000];
 
+	readArrayElements(newArray, arraySize);
+	cout << "\n";
+	short numberToCheck = readPositiveNumber("Enter the number you want to check: ");
 
+	printArrayElements(newArray, arraySize);
+	cout << numberToCheck << " is repeated " << checkElementFrequency(newArray, arraySize, numberToCheck) << " time(s)" << endl;
 
 
 	return 0;
