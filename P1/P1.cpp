@@ -7,7 +7,7 @@ string readText()
 	string text = "";
 
 	cout << "PLease enter a text to encrypt it: ";
-	cin >> text;
+	getline(cin, text);
 
 	return text;
 
