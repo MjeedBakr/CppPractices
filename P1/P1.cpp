@@ -4,6 +4,19 @@ using namespace std;
 
 enum enCharType {SmallLetter = 1, CapitalLetter = 2, SpecialCharacter = 3, Digit = 4};
 
+
+int readPositiveNumber(string message)
+{
+	int number;
+	do
+	{
+		cout << message << endl;
+		cin >> number;
+	} while (number < 1);
+	return number;
+}
+
+
 //function to generate random number
 int randomNumber(int from, int to)
 {
@@ -27,15 +40,40 @@ char randomCharacter(enCharType charType)
 		break;
 	}
 }
+
+string generateKey()
+{
+	string key = "";
+	for (int i = 1; i <= 4; i++)
+	{
+		for (int j = 1; j <= 4; j++)
+		{
+			key += randomCharacter(enCharType::CapitalLetter);
+		}
+		if (i < 4)
+			key += "-";
+	}
+	return key;
+
+}
+
+void generateMultipleKeys(short numberOfKeys)
+{
+	for (int i = 1; i <= numberOfKeys; i++)
+	{
+		cout << "Key [" << i << "] : " << generateKey() << endl;
+	}
+}
+
 int main()
 {
 	//Seeds the random number generator in C++, called only once
 	srand((unsigned)time(NULL));
 
-	cout << randomCharacter(enCharType::SmallLetter) << endl;
-	cout << randomCharacter(enCharType::CapitalLetter) << endl;
-	cout << randomCharacter(enCharType::SpecialCharacter) << endl;
-	cout << randomCharacter(enCharType::Digit) << endl;
+	short numberOfKeys = readPositiveNumber("Please enter the number of keys do you want: ");
+	generateMultipleKeys(numberOfKeys);
+
+
 
 
 	return 0;
