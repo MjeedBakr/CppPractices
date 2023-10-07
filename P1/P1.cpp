@@ -41,18 +41,26 @@ char randomCharacter(enCharType charType)
 	}
 }
 
+string generateWord(enCharType charType, short wordLength)
+{
+	string word = "";
+	for (int i = 1; i <= wordLength; i++)
+	{
+		word += randomCharacter(charType);
+	}
+	return word;
+}
 string generateKey()
 {
 	string key = "";
-	for (int i = 1; i <= 4; i++)
-	{
-		for (int j = 1; j <= 4; j++)
+
+		for (int i = 1; i <= 4; i++)
 		{
-			key += randomCharacter(enCharType::CapitalLetter);
+			key += generateWord(enCharType::CapitalLetter, 4);
+			if (i < 4)
+				key += "-";
 		}
-		if (i < 4)
-			key += "-";
-	}
+
 	return key;
 
 }
