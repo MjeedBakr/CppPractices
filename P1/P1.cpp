@@ -2,55 +2,63 @@
 #include <string>
 using namespace std;
 
-string readPassword()
+string readText()
 {
-	string password = "";
+	string text = "";
 
-	cout << "PLease enter a 3-Letter Password (all cabital): ";
-	cin >> password;
+	cout << "PLease enter a text to encrypt it: ";
+	cin >> text;
 
-	return password;
+	return text;
 
 }
 
-bool guessPassword(string originalPassword)
+short getAsciiSymbolCode(char symbol)
 {
-	string word = "";
-	short trialCount = 0;
+	for (int i = 65; i <= 122; i++)
+		if (symbol == char(i))
+			return i;
+	return -1;
+}
 
-		for (int i = 65; i <= 90; i++)
-		{
-			for (int j = 65; j <= 90; j++)
-			{
-				for (int k = 65; k <= 90; k++)
-				{
-					trialCount++;
+string textEncryptor(string text, short EncryptionKey)
+{
+	string encryptedText = "";
 
-					word = word + char(i);
-					word = word + char(j);
-					word = word + char(k);
-				
-					cout << "Trial [" << trialCount << "] : " << word << endl;
+	
+	for (int i = 0; i <= text.length() - 1; i++)
+	{
+		encryptedText += char(getAsciiSymbolCode(text[i]) + EncryptionKey);
+	}
+	
+	return encryptedText;
+}
 
-					if (originalPassword == word)
-					{
-						cout << "\nPassword is " << originalPassword << "\n";
-						cout << "Found after " << trialCount << " Trial(s)\n";
-						return true;
-					}
+string textDecryptor(string text, short EncryptionKey)
+{
+	string textAfterEtextncryption = "";
+	
+	for (int i = 0; i <= text.length() - 1; i++)
+	{
+		textAfterEtextncryption += char(getAsciiSymbolCode(text[i]) - EncryptionKey);
+	}
 
-					word = "";
-				}
-			}
-		}
-
-	return false;
-
+	return textAfterEtextncryption;
 }
 
 
 int main()
 {
-	guessPassword(readPassword());
+	const short EncryptionKey = 2;
+
+	string text = readText();
+	cout << "\nText Before Encryption : " << text << "\n";
+
+	text = textEncryptor(text, EncryptionKey);
+	cout << "Text After Encryption : " << text << "\n";
+
+	text = textDecryptor(text, EncryptionKey);
+	cout << "Text After Decryption : " << text << "\n";
+
 	return 0;
 }
