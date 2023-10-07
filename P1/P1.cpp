@@ -2,29 +2,55 @@
 #include <string>
 using namespace std;
 
-void printLettersFromAAAtoZZZ()
+string readPassword()
+{
+	string password = "";
+
+	cout << "PLease enter a 3-Letter Password (all cabital): ";
+	cin >> password;
+
+	return password;
+
+}
+
+bool guessPassword(string originalPassword)
 {
 	string word = "";
-	for (int i = 65; i <= 90; i++)
-	{
-		for (int j = 65; j <= 90; j++)
+	short trialCount = 0;
+
+		for (int i = 65; i <= 90; i++)
 		{
-			for (int k = 65; k <= 90; k++)
+			for (int j = 65; j <= 90; j++)
 			{
-				word = word + char(i);
-				word = word + char(j);
-				word = word + char(k);
+				for (int k = 65; k <= 90; k++)
+				{
+					trialCount++;
+
+					word = word + char(i);
+					word = word + char(j);
+					word = word + char(k);
 				
-				cout << word << endl;
-				word = "";
+					cout << "Trial [" << trialCount << "] : " << word << endl;
+
+					if (originalPassword == word)
+					{
+						cout << "\nPassword is " << originalPassword << "\n";
+						cout << "Found after " << trialCount << " Trial(s)\n";
+						return true;
+					}
+
+					word = "";
+				}
 			}
 		}
-	}
+
+	return false;
+
 }
 
 
 int main()
 {
-	printLettersFromAAAtoZZZ();
+	guessPassword(readPassword());
 	return 0;
 }
