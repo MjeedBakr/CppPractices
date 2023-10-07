@@ -2,35 +2,29 @@
 #include <string>
 using namespace std;
 
-int readPositiveNumber(string message)
+void printLettersFromAAAtoZZZ()
 {
-	int number;
-	do
+	string word = "";
+	for (int i = 65; i <= 90; i++)
 	{
-		cout << message << endl;
-		cin >> number;
-	} while (number < 1);
-	return number;
-}
-
-void printLettersPattern(int number)
-{
-	short lettersCounter = 65;
-	for (int i = 1; i <= number; i++)
-	{
-		for (int j = 1; j <= i; j++)
-			cout << char(lettersCounter);
-
-		cout << endl;
-		lettersCounter++;
-
+		for (int j = 65; j <= 90; j++)
+		{
+			for (int k = 65; k <= 90; k++)
+			{
+				word = word + char(i);
+				word = word + char(j);
+				word = word + char(k);
+				
+				cout << word << endl;
+				word = "";
+			}
+		}
 	}
 }
 
 
 int main()
 {
-	int number = readPositiveNumber("Enter a positive number: ");
-	printLettersPattern(number);
+	printLettersFromAAAtoZZZ();
 	return 0;
 }
