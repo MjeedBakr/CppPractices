@@ -13,37 +13,26 @@ string readText()
 
 }
 
-short getAsciiSymbolCode(char symbol)
-{
-	for (int i = 65; i <= 122; i++)
-		if (symbol == char(i))
-			return i;
-	return -1;
-}
-
 string textEncryptor(string text, short EncryptionKey)
 {
-	string encryptedText = "";
 
-	
 	for (int i = 0; i <= text.length() - 1; i++)
 	{
-		encryptedText += char(getAsciiSymbolCode(text[i]) + EncryptionKey);
+		text[i] = char((int)text[i] + EncryptionKey);
 	}
 	
-	return encryptedText;
+	return text;
 }
 
 string textDecryptor(string text, short EncryptionKey)
 {
-	string textAfterEtextncryption = "";
 	
 	for (int i = 0; i <= text.length() - 1; i++)
 	{
-		textAfterEtextncryption += char(getAsciiSymbolCode(text[i]) - EncryptionKey);
+		text[i] = char((int)text[i] - EncryptionKey);
 	}
 
-	return textAfterEtextncryption;
+	return text;
 }
 
 
