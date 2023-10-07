@@ -50,16 +50,17 @@ string generateWord(enCharType charType, short wordLength)
 	}
 	return word;
 }
+
 string generateKey()
 {
 	string key = "";
 
-		for (int i = 1; i <= 4; i++)
-		{
-			key += generateWord(enCharType::CapitalLetter, 4);
-			if (i < 4)
-				key += "-";
-		}
+
+	key += generateWord(enCharType::CapitalLetter, 4) + "-";
+	key += generateWord(enCharType::CapitalLetter, 4) + "-";
+	key += generateWord(enCharType::CapitalLetter, 4) + "-";
+	key += generateWord(enCharType::CapitalLetter, 4);
+
 
 	return key;
 
