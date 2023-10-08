@@ -26,19 +26,13 @@ void fillArraywithRandomNumbers(int arr[100], int &arrayLength, int from, int to
 
 }
 
-int sumArray(int arr[100], int arrayLength)
+void copyArray(int oldArray[100], int newArray[100], int arrayLength)
 {
-	int sum = 0;
 	for (int i = 0; i <= arrayLength - 1; i++)
-		sum += arr[i];
+		newArray[i] = oldArray[i];
 
-	return sum;
 }
 
-float arrayAverage(int arr[100], int arrayLength)
-{
-	return (float) sumArray(arr, arrayLength) / arrayLength;
-}
 
 int main()
 {
@@ -49,12 +43,16 @@ int main()
 
 	fillArraywithRandomNumbers(arr, arrayLength, 1, 100);
 
-	cout << "\nArray Elements: ";
+	cout << "\nArray 1 Elements: ";
 	printArray(arr, arrayLength);
 
+	int arr2[100];
+	copyArray(arr, arr2, arrayLength);
 
-	cout << "\nAverage of all Numbers is: ";
-	cout << arrayAverage(arr, arrayLength) << endl;
+	cout << "\nArray 2 Elements after copy: ";
+	printArray(arr2, arrayLength);
+
+
 
 	return 0;
 }
