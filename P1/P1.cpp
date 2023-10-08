@@ -35,6 +35,11 @@ int sumArray(int arr[100], int arrayLength)
 	return sum;
 }
 
+float arrayAverage(int arr[100], int arrayLength)
+{
+	return (float) sumArray(arr, arrayLength) / arrayLength;
+}
+
 int main()
 {
 	//Seeds the random number generator in C++, called only once
@@ -44,13 +49,12 @@ int main()
 
 	fillArraywithRandomNumbers(arr, arrayLength, 1, 100);
 
-  
 	cout << "\nArray Elements: ";
 	printArray(arr, arrayLength);
 
 
-	cout << "\nSum of All Array Numbers is: ";
-	cout << sumArray(arr, arrayLength) << endl;
+	cout << "\nAverage of all Numbers is: ";
+	cout << arrayAverage(arr, arrayLength) << endl;
 
 	return 0;
 }
