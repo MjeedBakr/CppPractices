@@ -2,7 +2,16 @@
 #include <cstdlib>
 using namespace std;
 
-enum enPrimeOrNot { Prime = 1, NotPrime = 2 };
+int readPositiveNumber(string message)
+{
+	int number;
+	do
+	{
+		cout << message << endl;
+		cin >> number;
+	} while (number < 1);
+	return number;
+}
 
 int randomNumber(int from, int to)
 {
@@ -18,56 +27,39 @@ void printArray(int arr[100], int arrayLength)
 	cout << endl;
 }
 
-void fillArraywithRandomNumbers(int arr[100], int &arrayLength, int from, int to)
+void fillArraywithRandomNumbers(int arr[100], int arrayLength, int from, int to)
 {
-	cout << "\nHow many Elements do you want in your array: ";
-	cin >> arrayLength;
 
 	for (int i = 0; i <= arrayLength - 1; i++)
 		arr[i] = randomNumber(from, to);
 
 }
 
-enPrimeOrNot checkPrime(int number)
+void sumArrays(int arr[100], int arr2[100], int arrayLength, int arrSum[100])
 {
-	int m = round(number / 2);
-
-	for (int counter = 2; counter <= m; counter++)
-		if (number % counter == 0)
-			return enPrimeOrNot::NotPrime;
-
-	return enPrimeOrNot::Prime;
-}
-
-void copyOnlyPrimeNumbers(int oldArray[100], int newArray[100], int arrayLength, int &array2Length)
-{
-	int elementsCounter = 0;
 	for (int i = 0; i <= arrayLength - 1; i++)
-		if (checkPrime(oldArray[i]) == enPrimeOrNot::Prime)
-		{
-			newArray[elementsCounter] = oldArray[i];
-			elementsCounter++;
-		}
-	array2Length = elementsCounter;
+		arrSum[i] = arr[i] + arr2[i];
 }
 
 int main()
 {
 	//Seeds the random number generator in C++, called only once
 	srand((unsigned)time(NULL));
-
-	int arr[100], arrayLength;
+	int arrayLength = readPositiveNumber("How many elements: ");
+	int arr[100], arr2[100], arrSum[100];
 
 	fillArraywithRandomNumbers(arr, arrayLength, 1, 100);
+	fillArraywithRandomNumbers(arr2, arrayLength, 1, 100);
 
 	cout << "\nArray 1 Elements: ";
 	printArray(arr, arrayLength);
 
-	int arr2[100], array2Length;
-	copyOnlyPrimeNumbers(arr, arr2, arrayLength, array2Length);
+	cout << "\nArray 2 Elements: ";
+	printArray(arr2, arrayLength);
 
-	cout << "\nArray 2 Elements after copy with only prime numbers: ";
-	printArray(arr2, array2Length);
+	cout << "\nSum of array1 and array2 elements: ";
+	sumArrays(arr, arr2, arrayLength, arrSum);
+	printArray(arrSum, arrayLength);
 
 
 
