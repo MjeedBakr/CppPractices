@@ -26,15 +26,16 @@ void fillArraywithRandomNumbers(int arr[100], int &arrayLength, int from, int to
 
 }
 
-int arrayMaxNumber(int arr[100], int arrayLength)
+int arrayMinNumber(int arr[100], int arrayLength)
 {
-	int maxNumber = 0;
+	int minNumber = 0;
+	minNumber = arr[0];
 
 	for (int i = 0; i < arrayLength; i++)
-		if (arr[i] > maxNumber)
-			maxNumber = arr[i];
+		if (arr[i] < minNumber)
+			minNumber = arr[i];
 
-	return maxNumber;
+	return minNumber;
 
 }
 
@@ -52,8 +53,8 @@ int main()
 	printArray(arr, arrayLength);
 
 
-	cout << "\nMaximun Number is: ";
-	cout << arrayMaxNumber(arr, arrayLength) << endl;
+	cout << "\Minimum Number is: ";
+	cout << arrayMinNumber(arr, arrayLength) << endl;
 
 	return 0;
 }
