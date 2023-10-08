@@ -26,17 +26,13 @@ void fillArraywithRandomNumbers(int arr[100], int &arrayLength, int from, int to
 
 }
 
-int arrayMinNumber(int arr[100], int arrayLength)
+int sumArray(int arr[100], int arrayLength)
 {
-	int minNumber = 0;
-	minNumber = arr[0];
+	int sum = 0;
+	for (int i = 0; i <= arrayLength - 1; i++)
+		sum += arr[i];
 
-	for (int i = 0; i < arrayLength; i++)
-		if (arr[i] < minNumber)
-			minNumber = arr[i];
-
-	return minNumber;
-
+	return sum;
 }
 
 int main()
@@ -53,8 +49,8 @@ int main()
 	printArray(arr, arrayLength);
 
 
-	cout << "\Minimum Number is: ";
-	cout << arrayMinNumber(arr, arrayLength) << endl;
+	cout << "\nSum of All Array Numbers is: ";
+	cout << sumArray(arr, arrayLength) << endl;
 
 	return 0;
 }
