@@ -13,31 +13,33 @@ int readPositiveNumber(string message)
 	return number;
 }
 
-void readArrayElements(int arr[], int arraySize)
+void readArray(int arr[100], int &arrayLength)
 {
-	cout << "Enter array elements: \n";
-	for (int i = 0; i <= arraySize - 1; i++)
+	cout << "\nHow many Elements do you want in your array: ";
+	cin >> arrayLength;
+
+	cout << "\nEnter array elements: \n";
+	for (int i = 0; i <= arrayLength - 1; i++)
 	{
 		cout << "Element [" << i + 1 << "] = ";
 		cin >> arr[i];
-		cout << "\n";
 	}
+		cout << endl;
 	
 }
 
-void printArrayElements(int arr[], int arraySize)
+void printArray(int arr[100], int arrayLength)
 {
-	cout << "Original array: ";
-	for (int i = 0; i <= arraySize - 1; i++)
+	for (int i = 0; i <= arrayLength - 1; i++)
 		cout << arr[i] << " ";
 
 	cout << endl;
 }
 
-short checkElementFrequency(int arr[], int arraySize, short elementToCheck)
+short timesRepeated(int arr[100], int arraySize, short elementToCheck)
 {
 	short elementFrequency = 0;
-	for (int i = 0; i <= arraySize; i++)
+	for (int i = 0; i <= arraySize - 1; i++)
 		if (elementToCheck == arr[i])
 			elementFrequency++;
 
@@ -47,16 +49,20 @@ short checkElementFrequency(int arr[], int arraySize, short elementToCheck)
 
 int main()
 {
-	int arraySize = readPositiveNumber("How many Elements do you want in your array: ");
 
-	int newArray[1000];
+	int arr[100], arrayLength, numberToCheck;
 
-	readArrayElements(newArray, arraySize);
-	cout << "\n";
-	short numberToCheck = readPositiveNumber("Enter the number you want to check: ");
+	readArray(arr, arrayLength);
 
-	printArrayElements(newArray, arraySize);
-	cout << numberToCheck << " is repeated " << checkElementFrequency(newArray, arraySize, numberToCheck) << " time(s)" << endl;
+
+    numberToCheck = readPositiveNumber("Enter the number you want to check: ");
+  
+	cout << "\nOriginal array: ";
+	printArray(arr, arrayLength);
+
+	cout << "Number " << numberToCheck;
+	cout << " is repeated ";
+	cout << timesRepeated(arr, arrayLength, numberToCheck) << " time(s)" << endl;
 
 
 	return 0;
