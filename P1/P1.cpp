@@ -2,6 +2,8 @@
 #include <cstdlib>
 using namespace std;
 
+enum enPrimeOrNot { Prime = 1, NotPrime = 2 };
+
 int randomNumber(int from, int to)
 {
 	int randNum = rand() % (to - from + 1) + from;
@@ -26,13 +28,28 @@ void fillArraywithRandomNumbers(int arr[100], int &arrayLength, int from, int to
 
 }
 
-void copyArray(int oldArray[100], int newArray[100], int arrayLength)
+enPrimeOrNot checkPrime(int number)
 {
-	for (int i = 0; i <= arrayLength - 1; i++)
-		newArray[i] = oldArray[i];
+	int m = round(number / 2);
 
+	for (int counter = 2; counter <= m; counter++)
+		if (number % counter == 0)
+			return enPrimeOrNot::NotPrime;
+
+	return enPrimeOrNot::Prime;
 }
 
+void copyOnlyPrimeNumbers(int oldArray[100], int newArray[100], int arrayLength, int &array2Length)
+{
+	int elementsCounter = 0;
+	for (int i = 0; i <= arrayLength - 1; i++)
+		if (checkPrime(oldArray[i]) == enPrimeOrNot::Prime)
+		{
+			newArray[elementsCounter] = oldArray[i];
+			elementsCounter++;
+		}
+	array2Length = elementsCounter;
+}
 
 int main()
 {
@@ -46,11 +63,11 @@ int main()
 	cout << "\nArray 1 Elements: ";
 	printArray(arr, arrayLength);
 
-	int arr2[100];
-	copyArray(arr, arr2, arrayLength);
+	int arr2[100], array2Length;
+	copyOnlyPrimeNumbers(arr, arr2, arrayLength, array2Length);
 
-	cout << "\nArray 2 Elements after copy: ";
-	printArray(arr2, arrayLength);
+	cout << "\nArray 2 Elements after copy with only prime numbers: ";
+	printArray(arr2, array2Length);
 
 
 
