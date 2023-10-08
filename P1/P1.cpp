@@ -2,30 +2,10 @@
 #include <cstdlib>
 using namespace std;
 
-int readPositiveNumber(string message)
+int randomNumber(int from, int to)
 {
-	int number;
-	do
-	{
-		cout << message << endl;
-		cin >> number;
-	} while (number < 1);
-	return number;
-}
-
-void readArray(int arr[100], int &arrayLength)
-{
-	cout << "\nHow many Elements do you want in your array: ";
-	cin >> arrayLength;
-
-	cout << "\nEnter array elements: \n";
-	for (int i = 0; i <= arrayLength - 1; i++)
-	{
-		cout << "Element [" << i + 1 << "] = ";
-		cin >> arr[i];
-	}
-		cout << endl;
-	
+	int randNum = rand() % (to - from + 1) + from;
+	return randNum;
 }
 
 void printArray(int arr[100], int arrayLength)
@@ -36,33 +16,30 @@ void printArray(int arr[100], int arrayLength)
 	cout << endl;
 }
 
-short timesRepeated(int arr[100], int arraySize, short elementToCheck)
+void fillAraaywithrandomNumber(int arr[100], int &arrayLength, int from, int to)
 {
-	short elementFrequency = 0;
-	for (int i = 0; i <= arraySize - 1; i++)
-		if (elementToCheck == arr[i])
-			elementFrequency++;
+	cout << "\nHow many Elements do you want in your array: ";
+	cin >> arrayLength;
 
-	return elementFrequency;
+	for (int i = 0; i <= arrayLength - 1; i++)
+		arr[i] = randomNumber(from, to);
+
 }
-
 
 int main()
 {
+	//Seeds the random number generator in C++, called only once
+	srand((unsigned)time(NULL));
 
-	int arr[100], arrayLength, numberToCheck;
+	int arr[100], arrayLength;
 
-	readArray(arr, arrayLength);
+	fillAraaywithrandomNumber(arr, arrayLength, 1, 100);
 
-
-    numberToCheck = readPositiveNumber("Enter the number you want to check: ");
   
-	cout << "\nOriginal array: ";
+	cout << "\nArray Elements: ";
 	printArray(arr, arrayLength);
 
-	cout << "Number " << numberToCheck;
-	cout << " is repeated ";
-	cout << timesRepeated(arr, arrayLength, numberToCheck) << " time(s)" << endl;
+
 
 
 	return 0;
