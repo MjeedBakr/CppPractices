@@ -2,16 +2,7 @@
 #include <cstdlib>
 using namespace std;
 
-int readPositiveNumber(string message)
-{
-	int number;
-	do
-	{
-		cout << message << endl;
-		cin >> number;
-	} while (number < 1);
-	return number;
-}
+enum enCharType { SmallLetter = 1, CapitalLetter = 2, SpecialCharacter = 3, Digit = 4 };
 
 int randomNumber(int from, int to)
 {
@@ -19,26 +10,63 @@ int randomNumber(int from, int to)
 	return randNum;
 }
 
-void printArray(int arr[100], int arrayLength)
+char randomCharacter(enCharType charType)
+{
+	switch (charType)
+	{
+	case SmallLetter:
+		return char(randomNumber(97, 122));
+	case CapitalLetter:
+		return char(randomNumber(65, 90));
+	case SpecialCharacter:
+		return char(randomNumber(33, 47));
+	case Digit:
+		return char(randomNumber(48, 57));
+	default:
+		break;
+	}
+}
+
+string generateWord(enCharType charType, short wordLength)
+{
+	string word = "";
+	for (int i = 1; i <= wordLength; i++)
+	{
+		word += randomCharacter(charType);
+	}
+	return word;
+}
+
+string generateKey()
+{
+	string key = "";
+
+
+	key += generateWord(enCharType::CapitalLetter, 4) + "-";
+	key += generateWord(enCharType::CapitalLetter, 4) + "-";
+	key += generateWord(enCharType::CapitalLetter, 4) + "-";
+	key += generateWord(enCharType::CapitalLetter, 4);
+
+
+	return key;
+
+}
+
+void printArray(string arr[100], int arrayLength)
 {
 	for (int i = 0; i <= arrayLength - 1; i++)
-		cout << arr[i] << " ";
+		cout << "Array[" << i << "] : " << arr[i] << endl;
 
 	cout << endl;
 }
 
-void fillArraywithRandomNumbers(int arr[100], int arrayLength)
+void fillArraywithRandomKeys(string arr[100], int &arrayLength)
 {
+	cout << "\nHow many Keys: \n";
+	cin >> arrayLength;
 
 	for (int i = 0; i <= arrayLength - 1; i++)
-		arr[i] = randomNumber(1,100);
-
-}
-
-void copyArrayInReverseOrder(int oldArray[100], int newArray[100], int arrayLength)
-{
-	for (int i = 0; i <= arrayLength - 1; i++)
-		newArray[i] = oldArray[arrayLength - i - 1];
+		arr[i] = generateKey();
 
 }
 
@@ -47,18 +75,13 @@ int main()
 	//Seeds the random number generator in C++, called only once
 	srand((unsigned)time(NULL));
 
-	int arr[100], arr2[100];
-	int arrayLength = readPositiveNumber("How many elements: ");
+	string arr[100];
+	int arrayLength;
+	
+	fillArraywithRandomKeys(arr, arrayLength);
 
-	fillArraywithRandomNumbers(arr, arrayLength);
-
-	cout << "\nArray elements before shuffle: \n";
+	cout << "Array elements: \n\n";
 	printArray(arr, arrayLength);
-
-	copyArrayInReverseOrder(arr, arr2, arrayLength);
-
-	cout << "\nArray 2 elements after copying array 1 in reverse order: \n";
-	printArray(arr2, arrayLength);
 
 
 
