@@ -27,35 +27,19 @@ void printArray(int arr[100], int arrayLength)
 	cout << endl;
 }
 
-void fillArraywithNumbersFrom1ToN(int arr[100], int arrayLength)
+void fillArraywithRandomNumbers(int arr[100], int arrayLength)
 {
 
 	for (int i = 0; i <= arrayLength - 1; i++)
-		arr[i] = i + 1;
+		arr[i] = randomNumber(1,100);
 
 }
 
-void copyArray(int oldArray[100], int newArray[100], int arrayLength)
+void copyArrayInReverseOrder(int oldArray[100], int newArray[100], int arrayLength)
 {
 	for (int i = 0; i <= arrayLength - 1; i++)
-		newArray[i] = oldArray[i];
+		newArray[i] = oldArray[arrayLength - i - 1];
 
-}
-
-void swap(int& a, int& b)
-{
-	int temp;
-	temp = a;
-	a = b;
-	b = temp;
-}
-
-void arrayShuffle(int arr[100], int arrayLength)
-{
-	for (int i = 0; i <= arrayLength - 1; i++)
-	{
-		swap(arr[randomNumber(0, arrayLength - 1)], arr[randomNumber(0, arrayLength - 1)]);
-	}
 }
 
 int main()
@@ -63,18 +47,20 @@ int main()
 	//Seeds the random number generator in C++, called only once
 	srand((unsigned)time(NULL));
 
-	int arr[100];
+	int arr[100], arr2[100];
 	int arrayLength = readPositiveNumber("How many elements: ");
 
-	fillArraywithNumbersFrom1ToN(arr, arrayLength);
+	fillArraywithRandomNumbers(arr, arrayLength);
 
 	cout << "\nArray elements before shuffle: \n";
 	printArray(arr, arrayLength);
 
-	arrayShuffle(arr, arrayLength);
+	copyArrayInReverseOrder(arr, arr2, arrayLength);
 
-	cout << "\nArray elements after shuffle: \n";
-	printArray(arr, arrayLength);
+	cout << "\nArray 2 elements after copying array 1 in reverse order: \n";
+	printArray(arr2, arrayLength);
+
+
 
 
 
