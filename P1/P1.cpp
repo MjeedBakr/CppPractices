@@ -4,6 +4,17 @@ using namespace std;
 
 enum enCharType { SmallLetter = 1, CapitalLetter = 2, SpecialCharacter = 3, Digit = 4 };
 
+int readPositiveNumber(string message)
+{
+	int number;
+	do
+	{
+		cout << message << endl;
+		cin >> number;
+	} while (number < 1);
+	return number;
+}
+
 int randomNumber(int from, int to)
 {
 	int randNum = rand() % (to - from + 1) + from;
@@ -52,18 +63,17 @@ string generateKey()
 
 }
 
-void printArray(string arr[100], int arrayLength)
+void printStringArray(string arr[100], int arrayLength)
 {
+	cout << "\nArray elements: \n";
 	for (int i = 0; i <= arrayLength - 1; i++)
-		cout << "Array[" << i << "] : " << arr[i] << endl;
+		cout << "Array[" << i << "] : " << arr[i] << "\n";
 
 	cout << endl;
 }
 
-void fillArraywithRandomKeys(string arr[100], int &arrayLength)
+void fillArrayWithKeys(string arr[100], int arrayLength)
 {
-	cout << "\nHow many Keys: \n";
-	cin >> arrayLength;
 
 	for (int i = 0; i <= arrayLength - 1; i++)
 		arr[i] = generateKey();
@@ -76,16 +86,13 @@ int main()
 	srand((unsigned)time(NULL));
 
 	string arr[100];
-	int arrayLength;
+	int arrayLength = 0;
+
+	arrayLength = readPositiveNumber("How many keys do you want: ");
 	
-	fillArraywithRandomKeys(arr, arrayLength);
+	fillArrayWithKeys(arr, arrayLength);
 
-	cout << "Array elements: \n\n";
-	printArray(arr, arrayLength);
-
-
-
-
+	printStringArray(arr, arrayLength);
 
 	return 0;
 }
