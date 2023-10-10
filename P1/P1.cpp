@@ -2,82 +2,41 @@
 #include <cstdlib>
 using namespace std;
 
-enum enCharType { SmallLetter = 1, CapitalLetter = 2, SpecialCharacter = 3, Digit = 4 };
-
-int readPositiveNumber(string message)
-{
-	int number;
-	do
-	{
-		cout << message << endl;
-		cin >> number;
-	} while (number < 1);
-	return number;
-}
-
 int randomNumber(int from, int to)
 {
 	int randNum = rand() % (to - from + 1) + from;
 	return randNum;
 }
 
-char randomCharacter(enCharType charType)
+void fillArrayWithRandomNumbers(int arr[100], int &arrayLength)
 {
-	switch (charType)
+	cout << "\nHow many elements do you want in your array: \n";
+	cin >> arrayLength;
+
+	for (int i = 0; i <= arrayLength; i++)
 	{
-	case SmallLetter:
-		return char(randomNumber(97, 122));
-	case CapitalLetter:
-		return char(randomNumber(65, 90));
-	case SpecialCharacter:
-		return char(randomNumber(33, 47));
-	case Digit:
-		return char(randomNumber(48, 57));
-	default:
-		break;
+		arr[i] = randomNumber(1, 100);
 	}
 }
 
-string generateWord(enCharType charType, short wordLength)
-{
-	string word = "";
-	for (int i = 1; i <= wordLength; i++)
-	{
-		word += randomCharacter(charType);
-	}
-	return word;
-}
-
-string generateKey()
-{
-	string key = "";
-
-
-	key += generateWord(enCharType::CapitalLetter, 4) + "-";
-	key += generateWord(enCharType::CapitalLetter, 4) + "-";
-	key += generateWord(enCharType::CapitalLetter, 4) + "-";
-	key += generateWord(enCharType::CapitalLetter, 4);
-
-
-	return key;
-
-}
-
-void printStringArray(string arr[100], int arrayLength)
+void printArray(int arr[100], int arrayLength)
 {
 	cout << "\nArray elements: \n";
 	for (int i = 0; i <= arrayLength - 1; i++)
-		cout << "Array[" << i << "] : " << arr[i] << "\n";
+		cout << arr[i] << " ";
 
 	cout << endl;
 }
 
-void fillArrayWithKeys(string arr[100], int arrayLength)
+int arraySearch(int arr[100], int arrayLength, int targetNumber)
 {
+	for (int i = 0; i <= arrayLength; i++)
+	{
+		if (arr[i] == targetNumber)
+			return i;
+	}
 
-	for (int i = 0; i <= arrayLength - 1; i++)
-		arr[i] = generateKey();
-
+	return -1;
 }
 
 int main()
@@ -85,14 +44,26 @@ int main()
 	//Seeds the random number generator in C++, called only once
 	srand((unsigned)time(NULL));
 
-	string arr[100];
+	int arr[100];
 	int arrayLength = 0;
 
-	arrayLength = readPositiveNumber("How many keys do you want: ");
-	
-	fillArrayWithKeys(arr, arrayLength);
+	fillArrayWithRandomNumbers(arr, arrayLength);
+	printArray(arr, arrayLength);
 
-	printStringArray(arr, arrayLength);
+	int targetNumber;
+	cout << "\nPlease enter a number to search for: ";
+	cin >> targetNumber;
+	cout << "\nNumber you are looking for is: " << targetNumber << endl;
+
+	targetNumber = arraySearch(arr, arrayLength, targetNumber);
+	if (targetNumber == -1)
+		cout << "\nThe number is not found :-(" << endl;
+	else
+	{
+		cout << "\nThe number found at position: " << targetNumber;
+		cout << "\nThe number found order is: " << targetNumber + 1 << endl;
+	}
+
 
 	return 0;
 }
