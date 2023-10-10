@@ -66,12 +66,9 @@ int main()
 
 	short numberPosition = findNumberPositionInArray(arr, arrayLength, number);
 	if (numberPosition == -1)
-		cout << "\nThe number is not found :-(" << endl;
+		cout << "No, The number is not found :-(" << endl;
 	else
-	{
-		cout << "\nThe number found at position: " << numberPosition;
-		cout << "\nThe number found order is: " << numberPosition + 1 << endl;
-	}
+		cout << "Yes, The number is :-)" << endl;
 
 
 	return 0;
