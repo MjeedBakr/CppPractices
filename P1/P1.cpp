@@ -4,14 +4,17 @@ using namespace std;
 
 void printArray(int arr[100], int arrayLength)
 {
-	cout << "\nArray Length: " << arrayLength;
-	cout << "\nArray elements: ";
 	for (int i = 0; i <= arrayLength - 1; i++)
 		cout << arr[i] << " ";
 
 	cout << endl;
 }
 
+void addArrayElement(int number, int arr[100], int& arrayLength)
+{
+	arrayLength++;
+	arr[arrayLength - 1] = number;
+}
 int readNumber()
 {
 	int number;
@@ -22,17 +25,17 @@ int readNumber()
 	return number;
 }
 
-void addNumbersToArray(int arr[100], int& arrayLength)
+void addInputNumbersToArray(int arr[100], int& arrayLength)
 {
-	short choice = 0;
+	bool addMore = true;
 	do
 	{
-		arr[arrayLength] = readNumber();
-		arrayLength++;
+		addArrayElement(readNumber(), arr, arrayLength);
 
-		cout << "Do you want to add more numbers? [0]:No, [1]:Yes? ";
-		cin >> choice;
-	} while (choice == 1);
+		cout << "\nDo you want to add more numbers? [0]:No, [1]:Yes? ";
+		cin >> addMore;
+
+	} while (addMore);
 
 }
 
@@ -43,8 +46,10 @@ int main()
 	int arr[100];
 	int arrayLength = 0;
 
-	addNumbersToArray(arr, arrayLength);
+	addInputNumbersToArray(arr, arrayLength);
 
+	cout << "\nArray Length: " << arrayLength;
+	cout << "\nArray elements: ";
 	printArray(arr, arrayLength);
 
 
