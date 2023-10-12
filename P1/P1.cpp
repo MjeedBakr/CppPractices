@@ -2,6 +2,23 @@
 #include <cstdlib>
 using namespace std;
 
+int randomNumber(int from, int to)
+{
+	int randNum = rand() % (to - from + 1) + from;
+	return randNum;
+}
+
+void fillArrayWithRandomNumbers(int arr[100], int& arrayLength)
+{
+	cout << "\nHow many elements do you want in your array: \n";
+	cin >> arrayLength;
+
+	for (int i = 0; i <= arrayLength; i++)
+	{
+		arr[i] = randomNumber(1, 100);
+	}
+}
+
 void printArray(int arr[100], int arrayLength)
 {
 	for (int i = 0; i <= arrayLength - 1; i++)
@@ -15,42 +32,36 @@ void addArrayElement(int number, int arr[100], int& arrayLength)
 	arrayLength++;
 	arr[arrayLength - 1] = number;
 }
-int readNumber()
+
+void copyArray(int oldArray[100], int newArray[100], int arrayLength, int &newArrayLength)
 {
-	int number;
-
-	cout << "\nPlease enter a number: \n";
-	cin >> number;
-
-	return number;
-}
-
-void addInputNumbersToArray(int arr[100], int& arrayLength)
-{
-	bool addMore = true;
-	do
+	for (int i = 0; i <= arrayLength - 1; i++)
 	{
-		addArrayElement(readNumber(), arr, arrayLength);
-
-		cout << "\nDo you want to add more numbers? [0]:No, [1]:Yes? ";
-		cin >> addMore;
-
-	} while (addMore);
-
+		addArrayElement(oldArray[i], newArray, newArrayLength);
+	}
 }
+
+
 
 int main()
 {
-
+	//Seeds the random number generator in C++, called only once
+	srand((unsigned)time(NULL));
 
 	int arr[100];
 	int arrayLength = 0;
+	int array2Length = 0;
 
-	addInputNumbersToArray(arr, arrayLength);
+	fillArrayWithRandomNumbers(arr, arrayLength);
 
-	cout << "\nArray Length: " << arrayLength;
-	cout << "\nArray elements: ";
+	int arr2[100];
+	copyArray(arr, arr2, arrayLength, array2Length);
+
+	cout << "\nArray 1 elements: ";
 	printArray(arr, arrayLength);
+
+	cout << "\nArray 2 elements: ";
+	printArray(arr2, array2Length);
 
 
 	return 0;
