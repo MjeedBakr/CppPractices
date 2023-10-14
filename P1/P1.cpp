@@ -2,18 +2,21 @@
 #include <cstdlib>
 using namespace std;
 
-void fillArray(int arr[100], int& arrayLength)
+int randomNumber(int from, int to)
 {
-	arrayLength = 7;
-	arr[0] = 10;
-	arr[1] = 20;
-	arr[2] = 30;
-	arr[3] = 50;
-	arr[4] = 30;
-	arr[5] = 20;
-	arr[6] = 10;
+	int randNum = rand() % (to - from + 1) + from;
+	return randNum;
+}
 
+void fillArrayWithRandomNumbers(int arr[100], int& arrayLength)
+{
+	cout << "\nHow many elements do you want in your array: \n";
+	cin >> arrayLength;
 
+	for (int i = 0; i <= arrayLength; i++)
+	{
+		arr[i] = randomNumber(1, 100);
+	}
 }
 
 void printArray(int arr[100], int arrayLength)
@@ -24,30 +27,38 @@ void printArray(int arr[100], int arrayLength)
 	cout << endl;
 }
 
-bool checkPalindrome(int arr[100], int arrayLength)
+bool isOdd(int number)
 {
-	for (int i = 0; i < round(arrayLength / 2); i++)
-		if (arr[i] != arr[arrayLength - i - 1])
-			return false;
+	if (number % 2 != 0)
+		return true;
 
-	return true;
+	return false;
+}
+
+int countOddNumersInArray(int arr[100], int arrayLength)
+{
+	int counter = 0;
+	for (int i = 0; i < arrayLength; i++)
+		if (isOdd(arr[i]))
+			counter++;
+
+	return counter;
 }
 
 int main()
 {
+	//Seeds the random number generator in C++, called only once
+	srand((unsigned)time(NULL));
 
 	int arr[100];
 	int arrayLength = 0;
 
-	fillArray(arr, arrayLength);
+	fillArrayWithRandomNumbers(arr, arrayLength);
 
 	cout << "\nArray 1 elements: ";
 	printArray(arr, arrayLength);
 
-	if (checkPalindrome(arr, arrayLength))
-		cout << "\nyes array is palindrome" << endl;
-	else
-		cout << "\nno array is not palindrome" << endl;
+	cout << "\nOdd numbers count is: " << countOddNumersInArray(arr, arrayLength) << endl;
 
 
 
