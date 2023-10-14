@@ -19,12 +19,13 @@ void fillArrayWithRandomNumbers(int arr[100], int& arrayLength)
 	}
 }
 
-bool isOdd(int number)
+bool isPrime(int number)
 {
-	if (number % 2 != 0)
-		return true;
+	for (int i = 2; i <= round(number / 2); i++)
+		if (number % i == 0)
+			return false;
 
-	return false;
+	return true;
 }
 
 void printArray(int arr[100], int arrayLength)
@@ -41,15 +42,14 @@ void addArrayElement(int number, int arr[100], int& arrayLength)
 	arr[arrayLength - 1] = number;
 }
 
-void copyArrayOnlyOddNumbers(int oldArray[100], int newArray[100], int arrayLength, int &newArrayLength)
+void copyArrayOnlyPrimeNumbers(int oldArray[100], int newArray[100], int arrayLength, int &newArrayLength)
 {
 	for (int i = 0; i <= arrayLength - 1; i++)
 	{
-		if (isOdd(oldArray[i]))
+		if (isPrime(oldArray[i]))
 			addArrayElement(oldArray[i], newArray, newArrayLength);
 	}
 }
-
 
 
 int main()
@@ -64,12 +64,12 @@ int main()
 	fillArrayWithRandomNumbers(arr, arrayLength);
 
 	int arr2[100];
-	copyArrayOnlyOddNumbers(arr, arr2, arrayLength, array2Length);
+	copyArrayOnlyPrimeNumbers(arr, arr2, arrayLength, array2Length);
 
 	cout << "\nArray 1 elements: ";
 	printArray(arr, arrayLength);
 
-	cout << "\nArray 2 elements after copying only odd numbers: ";
+	cout << "\nArray 2 elements after copying only Prime numbers: ";
 	printArray(arr2, array2Length);
 
 
