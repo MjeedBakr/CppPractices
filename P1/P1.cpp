@@ -27,19 +27,19 @@ void printArray(int arr[100], int arrayLength)
 	cout << endl;
 }
 
-bool isOdd(int number)
+bool isEven(int number)
 {
-	if (number % 2 != 0)
+	if (number % 2 == 0)
 		return true;
 
 	return false;
 }
 
-int countOddNumersInArray(int arr[100], int arrayLength)
+int countEvenNumersInArray(int arr[100], int arrayLength)
 {
 	int counter = 0;
 	for (int i = 0; i < arrayLength; i++)
-		if (isOdd(arr[i]))
+		if (isEven(arr[i]))
 			counter++;
 
 	return counter;
@@ -58,7 +58,8 @@ int main()
 	cout << "\nArray 1 elements: ";
 	printArray(arr, arrayLength);
 
-	cout << "\nOdd numbers count is: " << countOddNumersInArray(arr, arrayLength) << endl;
+	cout << "\Even numbers count is: ";
+	cout << countEvenNumersInArray(arr, arrayLength) << endl;
 
 
 
