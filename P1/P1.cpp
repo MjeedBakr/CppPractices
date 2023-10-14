@@ -20,18 +20,25 @@ bool isPositive(float number)
 	return false;
 }
 
+float getFractionPart(float number)
+{
+	return number - (int)number;
+}
+
 float myRound(float number)
 {
-	int decimalNum = number;
+	int intPart = int(number);
+	float fractionPart = getFractionPart(number);
 
-	number -= decimalNum;
-
-	if (abs(number) >= 0.5 && isPositive(number))
-		return ++decimalNum;
-	else if (abs(number) >= 0.5 && !isPositive(number))
-		return --decimalNum;
+	if (abs(fractionPart) >= 0.5)
+	{
+		if (isPositive(number))
+			return ++intPart;
+		else
+			return intPart;
+	}
 	else
-		return decimalNum;
+		return intPart;
 }
 
 int main()
