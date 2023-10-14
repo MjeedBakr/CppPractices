@@ -12,22 +12,36 @@ float readNumber()
 	return number;
 }
 
-float myAbs(float number)
+bool isPositive(float number)
 {
-	if (number < 0)
-		return number * -1;
+	if (number > 0)
+		return true;
 
-	return number;
+	return false;
+}
+
+float myRound(float number)
+{
+	int decimalNum = number;
+
+	number -= decimalNum;
+
+	if (abs(number) >= 0.5 && isPositive(number))
+		return ++decimalNum;
+	else if (abs(number) >= 0.5 && !isPositive(number))
+		return --decimalNum;
+	else
+		return decimalNum;
 }
 
 int main()
 {
 
-	int number = readNumber();
+	float number = readNumber();
 
-	cout << "My abs Result : " << myAbs(number) << endl;
+	cout << "My Round Result : " << myRound(number) << endl;
 
-	cout << "C++ abs Result : " << abs(number) << endl;
+	cout << "C++ Round Result : " << round(number) << endl;
 
 
 	return 0;
