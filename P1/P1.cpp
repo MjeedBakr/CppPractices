@@ -2,17 +2,16 @@
 #include <cstdlib>
 using namespace std;
 
-enum enPalindromeOrNOt {Palindrome, NotPalindrome};
-
 void fillArray(int arr[100], int& arrayLength)
 {
-	arrayLength = 6;
+	arrayLength = 7;
 	arr[0] = 10;
 	arr[1] = 20;
 	arr[2] = 30;
-	arr[3] = 30;
-	arr[4] = 60;
-	arr[5] = 10;
+	arr[3] = 50;
+	arr[4] = 30;
+	arr[5] = 20;
+	arr[6] = 10;
 
 
 }
@@ -25,13 +24,13 @@ void printArray(int arr[100], int arrayLength)
 	cout << endl;
 }
 
-enPalindromeOrNOt checkPalindrome(int arr[100], int arrayLength)
+bool checkPalindrome(int arr[100], int arrayLength)
 {
 	for (int i = 0; i < round(arrayLength / 2); i++)
 		if (arr[i] != arr[arrayLength - i - 1])
-			return enPalindromeOrNOt::NotPalindrome;
+			return false;
 
-	return Palindrome;
+	return true;
 }
 
 int main()
@@ -45,7 +44,7 @@ int main()
 	cout << "\nArray 1 elements: ";
 	printArray(arr, arrayLength);
 
-	if (checkPalindrome(arr, arrayLength) == enPalindromeOrNOt::Palindrome)
+	if (checkPalindrome(arr, arrayLength))
 		cout << "\nyes array is palindrome" << endl;
 	else
 		cout << "\nno array is not palindrome" << endl;
