@@ -25,20 +25,17 @@ float getFractionPart(float number)
 	return number - (int)number;
 }
 
-float myCeil(float number)
+int myCeil(float number)
 {
-	int intPart = int(number);
-	float fractionPart = getFractionPart(number);
-
-	if (abs(fractionPart) >= 0.1)
+	if (abs(getFractionPart(number)) >= 0.1)
 	{
 		if (isPositive(number))
-			return ++intPart;
+			return int(number) + 1;
 		else
-			return intPart;
+			return int(number);
 	}
 	else
-		return intPart;
+		return number;
 }
 
 int main()
