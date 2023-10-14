@@ -25,7 +25,7 @@ float getFractionPart(float number)
 	return number - (int)number;
 }
 
-float myFloor(float number)
+float myCeil(float number)
 {
 	int intPart = int(number);
 	float fractionPart = getFractionPart(number);
@@ -33,9 +33,9 @@ float myFloor(float number)
 	if (abs(fractionPart) >= 0.1)
 	{
 		if (isPositive(number))
-			return intPart;
+			return ++intPart;
 		else
-			return --intPart;
+			return intPart;
 	}
 	else
 		return intPart;
@@ -46,9 +46,9 @@ int main()
 
 	float number = readNumber();
 
-	cout << "My Floor Result : " << myFloor(number) << endl;
+	cout << "My Ceil Result : " << myCeil(number) << endl;
 
-	cout << "C++ Floor Result : " << floor(number) << endl;
+	cout << "C++ Ceil Result : " << ceil(number) << endl;
 
 
 	return 0;
