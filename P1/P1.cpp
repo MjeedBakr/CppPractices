@@ -2,30 +2,20 @@
 #include <cstdlib>
 using namespace std;
 
-int randomNumber(int from, int to)
-{
-	int randNum = rand() % (to - from + 1) + from;
-	return randNum;
-}
-
-void fillArrayWithRandomNumbers(int arr[100], int& arrayLength)
+void fillArrayWithInputNumbers(int arr[100], int& arrayLength)
 {
 	cout << "\nHow many elements do you want in your array: \n";
 	cin >> arrayLength;
 
-	for (int i = 0; i <= arrayLength; i++)
+	int arrayCounter = 0;
+	do
 	{
-		arr[i] = randomNumber(1, 100);
-	}
-}
+		cout << "Enter the " << arrayCounter + 1 << " Element : ";
+		cin >> arr[arrayCounter];
 
-bool isPrime(int number)
-{
-	for (int i = 2; i <= round(number / 2); i++)
-		if (number % i == 0)
-			return false;
+		arrayCounter++;
+	} while (arrayCounter < arrayLength);
 
-	return true;
 }
 
 void printArray(int arr[100], int arrayLength)
@@ -42,35 +32,48 @@ void addArrayElement(int number, int arr[100], int& arrayLength)
 	arr[arrayLength - 1] = number;
 }
 
-void copyArrayOnlyPrimeNumbers(int oldArray[100], int newArray[100], int arrayLength, int &newArrayLength)
+bool checkArrayContainsTheElement(int number, int arr[100], int arrayLength)
 {
-	for (int i = 0; i <= arrayLength - 1; i++)
+	for (int i = 0; i < arrayLength; i++)
+		if (number == arr[i])
+			return true;
+
+	return false;
+}
+
+void copyDistinctNumbers(int arrSource[100], int arrDistination[100], int arrLength, int &arr2Length)
+{
+	for (int i = 0; i < arrLength; i++)
 	{
-		if (isPrime(oldArray[i]))
-			addArrayElement(oldArray[i], newArray, newArrayLength);
+		if (checkArrayContainsTheElement(arrSource[i], arrDistination, arr2Length))
+			continue;
+		else
+			addArrayElement(arrSource[i], arrDistination, arr2Length);
 	}
+
 }
 
 
 int main()
 {
-	//Seeds the random number generator in C++, called only once
-	srand((unsigned)time(NULL));
 
 	int arr[100];
 	int arrayLength = 0;
 	int array2Length = 0;
 
-	fillArrayWithRandomNumbers(arr, arrayLength);
+	fillArrayWithInputNumbers(arr, arrayLength);
 
 	int arr2[100];
-	copyArrayOnlyPrimeNumbers(arr, arr2, arrayLength, array2Length);
+	copyDistinctNumbers(arr, arr2, arrayLength, array2Length);
+
 
 	cout << "\nArray 1 elements: ";
 	printArray(arr, arrayLength);
 
-	cout << "\nArray 2 elements after copying only Prime numbers: ";
+	cout << "\nArray 2 elements with distinct numbers: ";
 	printArray(arr2, array2Length);
+
+
 
 
 	return 0;
