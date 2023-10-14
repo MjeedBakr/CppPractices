@@ -27,19 +27,19 @@ void printArray(int arr[100], int arrayLength)
 	cout << endl;
 }
 
-bool isPositive(int number)
+bool isNegative(int number)
 {
-	if (number > 0)
+	if (number < 0)
 		return true;
 
 	return false;
 }
 
-int countPositive(int arr[100], int arrayLength)
+int countNegative(int arr[100], int arrayLength)
 {
 	int counter = 0;
 	for (int i = 0; i < arrayLength; i++)
-		if (isPositive(arr[i]))
+		if (isNegative(arr[i]))
 			counter++;
 
 	return counter;
@@ -55,12 +55,11 @@ int main()
 
 	fillArrayWithRandomNumbers(arr, arrayLength);
 
-	cout << "\nArray 1 elements: ";
+	cout << "\nArray elements: ";
 	printArray(arr, arrayLength);
 
-	cout << "\Positive numbers count is: ";
-	cout << countPositive(arr, arrayLength) << endl;
-
+	cout << "\nNegative numbers count is: ";
+	cout << countNegative(arr, arrayLength) << endl;
 
 
 	return 0;
