@@ -5,37 +5,18 @@ using namespace std;
 float readNumber()
 {
 	float number;
-
-	cout << "\nEnter a number: ";
-	cin >> number;
+	do
+	{
+		cout << "\nEnter a positive number: ";
+		cin >> number;
+	} while (number < 0);
 
 	return number;
 }
 
-bool isPositive(float number)
+float mySqrt(float number)
 {
-	if (number > 0)
-		return true;
-
-	return false;
-}
-
-float getFractionPart(float number)
-{
-	return number - (int)number;
-}
-
-int myCeil(float number)
-{
-	if (abs(getFractionPart(number)) >= 0.1)
-	{
-		if (isPositive(number))
-			return int(number) + 1;
-		else
-			return int(number);
-	}
-	else
-		return number;
+		return pow(number, .5);
 }
 
 int main()
@@ -43,9 +24,9 @@ int main()
 
 	float number = readNumber();
 
-	cout << "My Ceil Result : " << myCeil(number) << endl;
+	cout << "My Sqrt Result : " << mySqrt(number) << endl;
 
-	cout << "C++ Ceil Result : " << ceil(number) << endl;
+	cout << "C++ Sqrt Result : " << sqrt(number) << endl;
 
 
 	return 0;
