@@ -19,6 +19,14 @@ void fillArrayWithRandomNumbers(int arr[100], int& arrayLength)
 	}
 }
 
+bool isOdd(int number)
+{
+	if (number % 2 != 0)
+		return true;
+
+	return false;
+}
+
 void printArray(int arr[100], int arrayLength)
 {
 	for (int i = 0; i <= arrayLength - 1; i++)
@@ -33,11 +41,12 @@ void addArrayElement(int number, int arr[100], int& arrayLength)
 	arr[arrayLength - 1] = number;
 }
 
-void copyArray(int oldArray[100], int newArray[100], int arrayLength, int &newArrayLength)
+void copyArrayOnlyOddNumbers(int oldArray[100], int newArray[100], int arrayLength, int &newArrayLength)
 {
 	for (int i = 0; i <= arrayLength - 1; i++)
 	{
-		addArrayElement(oldArray[i], newArray, newArrayLength);
+		if (isOdd(oldArray[i]))
+			addArrayElement(oldArray[i], newArray, newArrayLength);
 	}
 }
 
@@ -55,12 +64,12 @@ int main()
 	fillArrayWithRandomNumbers(arr, arrayLength);
 
 	int arr2[100];
-	copyArray(arr, arr2, arrayLength, array2Length);
+	copyArrayOnlyOddNumbers(arr, arr2, arrayLength, array2Length);
 
 	cout << "\nArray 1 elements: ";
 	printArray(arr, arrayLength);
 
-	cout << "\nArray 2 elements: ";
+	cout << "\nArray 2 elements after copying only odd numbers: ";
 	printArray(arr2, array2Length);
 
 
