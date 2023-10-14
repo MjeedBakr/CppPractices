@@ -2,19 +2,18 @@
 #include <cstdlib>
 using namespace std;
 
+enum enPalindromeOrNOt {Palindrome, NotPalindrome};
+
 void fillArray(int arr[100], int& arrayLength)
 {
-	arrayLength = 10;
+	arrayLength = 6;
 	arr[0] = 10;
-	arr[1] = 10;
-	arr[2] = 10;
-	arr[3] = 50;
-	arr[4] = 50;
-	arr[5] = 70;
-	arr[6] = 70;
-	arr[7] = 70;
-	arr[8] = 70;
-	arr[9] = 90;
+	arr[1] = 20;
+	arr[2] = 30;
+	arr[3] = 30;
+	arr[4] = 60;
+	arr[5] = 10;
+
 
 }
 
@@ -26,37 +25,13 @@ void printArray(int arr[100], int arrayLength)
 	cout << endl;
 }
 
-void addArrayElement(int number, int arr[100], int& arrayLength)
+enPalindromeOrNOt checkPalindrome(int arr[100], int arrayLength)
 {
-	arrayLength++;
-	arr[arrayLength - 1] = number;
-}
+	for (int i = 0; i < round(arrayLength / 2); i++)
+		if (arr[i] != arr[arrayLength - i - 1])
+			return enPalindromeOrNOt::NotPalindrome;
 
-short findNumberPositionInArray(int arr[100], int arrayLength, int number)
-{
-	for (int i = 0; i <= arrayLength; i++)
-	{
-		if (arr[i] == number)
-			return i;
-	}
-
-	return -1;
-}
-
-bool isNumberInArray(int arr[100], int arrayLength, int number)
-{
-	return findNumberPositionInArray(arr, arrayLength, number) != -1;
-}
-
-
-void copyDistinctNumbers(int arrSource[100], int arrDistination[100], int arrLength, int &arr2Length)
-{
-	for (int i = 0; i < arrLength; i++)
-	{
-		if (!isNumberInArray(arrDistination, arr2Length, arrSource[i]))
-			addArrayElement(arrSource[i], arrDistination, arr2Length);
-	}
-
+	return Palindrome;
 }
 
 int main()
@@ -64,20 +39,16 @@ int main()
 
 	int arr[100];
 	int arrayLength = 0;
-	int array2Length = 0;
 
 	fillArray(arr, arrayLength);
-
-	int arr2[100];
-	copyDistinctNumbers(arr, arr2, arrayLength, array2Length);
-
 
 	cout << "\nArray 1 elements: ";
 	printArray(arr, arrayLength);
 
-	cout << "\nArray 2 elements with distinct numbers only: ";
-	printArray(arr2, array2Length);
-
+	if (checkPalindrome(arr, arrayLength) == enPalindromeOrNOt::Palindrome)
+		cout << "\nyes array is palindrome" << endl;
+	else
+		cout << "\nno array is not palindrome" << endl;
 
 
 
