@@ -2,19 +2,19 @@
 #include <cstdlib>
 using namespace std;
 
-void fillArrayWithInputNumbers(int arr[100], int& arrayLength)
+void fillArray(int arr[100], int& arrayLength)
 {
-	cout << "\nHow many elements do you want in your array: \n";
-	cin >> arrayLength;
-
-	int arrayCounter = 0;
-	do
-	{
-		cout << "Enter the " << arrayCounter + 1 << " Element : ";
-		cin >> arr[arrayCounter];
-
-		arrayCounter++;
-	} while (arrayCounter < arrayLength);
+	arrayLength = 10;
+	arr[0] = 10;
+	arr[1] = 10;
+	arr[2] = 10;
+	arr[3] = 50;
+	arr[4] = 50;
+	arr[5] = 70;
+	arr[6] = 70;
+	arr[7] = 70;
+	arr[8] = 70;
+	arr[9] = 90;
 
 }
 
@@ -32,27 +32,32 @@ void addArrayElement(int number, int arr[100], int& arrayLength)
 	arr[arrayLength - 1] = number;
 }
 
-bool checkArrayContainsTheElement(int number, int arr[100], int arrayLength)
+short findNumberPositionInArray(int arr[100], int arrayLength, int number)
 {
-	for (int i = 0; i < arrayLength; i++)
-		if (number == arr[i])
-			return true;
+	for (int i = 0; i <= arrayLength; i++)
+	{
+		if (arr[i] == number)
+			return i;
+	}
 
-	return false;
+	return -1;
 }
+
+bool isNumberInArray(int arr[100], int arrayLength, int number)
+{
+	return findNumberPositionInArray(arr, arrayLength, number) != -1;
+}
+
 
 void copyDistinctNumbers(int arrSource[100], int arrDistination[100], int arrLength, int &arr2Length)
 {
 	for (int i = 0; i < arrLength; i++)
 	{
-		if (checkArrayContainsTheElement(arrSource[i], arrDistination, arr2Length))
-			continue;
-		else
+		if (!isNumberInArray(arrDistination, arr2Length, arrSource[i]))
 			addArrayElement(arrSource[i], arrDistination, arr2Length);
 	}
 
 }
-
 
 int main()
 {
@@ -61,7 +66,7 @@ int main()
 	int arrayLength = 0;
 	int array2Length = 0;
 
-	fillArrayWithInputNumbers(arr, arrayLength);
+	fillArray(arr, arrayLength);
 
 	int arr2[100];
 	copyDistinctNumbers(arr, arr2, arrayLength, array2Length);
@@ -70,7 +75,7 @@ int main()
 	cout << "\nArray 1 elements: ";
 	printArray(arr, arrayLength);
 
-	cout << "\nArray 2 elements with distinct numbers: ";
+	cout << "\nArray 2 elements with distinct numbers only: ";
 	printArray(arr2, array2Length);
 
 
