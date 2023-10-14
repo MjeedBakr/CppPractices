@@ -25,17 +25,17 @@ float getFractionPart(float number)
 	return number - (int)number;
 }
 
-float myRound(float number)
+float myFloor(float number)
 {
 	int intPart = int(number);
 	float fractionPart = getFractionPart(number);
 
-	if (abs(fractionPart) >= 0.5)
+	if (abs(fractionPart) >= 0.1)
 	{
 		if (isPositive(number))
-			return ++intPart;
-		else
 			return intPart;
+		else
+			return --intPart;
 	}
 	else
 		return intPart;
@@ -46,9 +46,9 @@ int main()
 
 	float number = readNumber();
 
-	cout << "My Round Result : " << myRound(number) << endl;
+	cout << "My Floor Result : " << myFloor(number) << endl;
 
-	cout << "C++ Round Result : " << round(number) << endl;
+	cout << "C++ Floor Result : " << floor(number) << endl;
 
 
 	return 0;
