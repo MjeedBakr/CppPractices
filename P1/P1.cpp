@@ -1,33 +1,20 @@
-﻿#include <iostream>
-#include <cmath>
+﻿#include<iostream>
+#include "MyLib.h" //use "" cuz it is local library
+#include "MyInputLib.h"
+
 using namespace std;
+using namespace MyLib;
+using namespace MyInputLib;
 
-float readNumber()
+
+int main() 
 {
-	float number;
-	do
-	{
-		cout << "\nEnter a positive number: ";
-		cin >> number;
-	} while (number < 0);
+	MyLib::test();
+	test();
+	cout << sum2Numbers(10, 20) << endl;
 
-	return number;
-}
-
-float mySqrt(float number)
-{
-		return pow(number, .5);
-}
-
-int main()
-{
-
-	float number = readNumber();
-
-	cout << "My Sqrt Result : " << mySqrt(number) << endl;
-
-	cout << "C++ Sqrt Result : " << sqrt(number) << endl;
-
+	int number = readNumber();
+	cout << number;
 
 	return 0;
 }
