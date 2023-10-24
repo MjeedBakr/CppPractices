@@ -23,8 +23,5 @@
     <ClInclude Include="MyLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyInputLib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

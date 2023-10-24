@@ -130,7 +130,6 @@
     <ClCompile Include="P1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyInputLib.h" />
     <ClInclude Include="MyLib.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

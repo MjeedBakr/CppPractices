@@ -1,20 +1,18 @@
 ﻿#include<iostream>
-#include "MyLib.h" //use "" cuz it is local library
-#include "MyInputLib.h"
+
+ //use "" cuz it is local library
+#include "MyLib.h"
 
 using namespace std;
-using namespace MyLib;
-using namespace MyInputLib;
 
 
 int main() 
 {
-	MyLib::test();
-	test();
-	cout << sum2Numbers(10, 20) << endl;
 
-	int number = readNumber();
-	cout << number;
+
+	short age;
+	age = MyRead::readIntInRange(18, 65, "Age");
+
 
 	return 0;
 }
