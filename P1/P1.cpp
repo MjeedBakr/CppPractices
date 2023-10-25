@@ -9,10 +9,16 @@ using namespace std;
 int main() 
 {
 
+	int arrayLength = 10;
+	int arr[10];
 
-	int number = MyRead::readInt("Please enter a number: ");
+	MyArray::fillAraayWithRandomNumbers(arr, arrayLength, 10, 100);
 
-	cout << number;
+	for (int i : arr)
+	{
+		cout << i << " ";
+	}
+	cout << endl;
 
 
 	return 0;
