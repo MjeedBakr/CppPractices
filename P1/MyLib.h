@@ -14,6 +14,15 @@ namespace MyRead
 		cout << message;
 		cin >> number;
 
+		while (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(std::numeric_limits < std::streamsize>::max(), '\n');
+
+			cout << "Invalid number, enter a valid one:";
+			cin >> number;
+		}
+
 		return number;
 	}
 
@@ -29,11 +38,15 @@ namespace MyRead
 	int readIntInRange(int from, int to, string message)
 	{
 		int number;
-		do
+
+		number = MyRead::readInt(message);
+
+		while (number > to || number < from)
 		{
-			cout << "\nPlease Enter " << message << " between " << from << " and " << to << ": ";
+			cout << "\nPlease Enter a number between " << from << " and " << to << ": ";
 			cin >> number;
-		} while (number > to || number < from);
+		}
+
 
 		return number;
 	}
@@ -41,12 +54,16 @@ namespace MyRead
 	int readPositiveNumber(string message)
 	{
 		int number;
-		do
+		number = MyRead::readInt(message);
+
+		while (number < 1)
 		{
-			cout << message << endl;
+			cout << "Please enter a positive number: ";
 			cin >> number;
-		} while (number < 1);
+		}
+
 		return number;
+
 	}
 }
 
