@@ -1,25 +1,12 @@
 ﻿#include<iostream>
-
- //use "" cuz it is local library
-#include "MyLib.h"
-
 using namespace std;
 
 
 int main() 
 {
-
-	int arrayLength = 10;
-	int arr[10];
-
-	MyArray::fillAraayWithRandomNumbers(arr, arrayLength, 10, 100);
-
-	for (int i : arr)
-	{
-		cout << i << " ";
-	}
+	cout << "Result: " << (12 & 25); //(12 Bitwise AND 25)
+	cout << "Result: " << (12 | 25); //(12 Bitwise OR 25)
 	cout << endl;
-
 
 	return 0;
 }
