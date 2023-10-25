@@ -10,8 +10,11 @@ int main()
 {
 
 
-	short age;
-	age = MyRead::readIntInRange(18, 65, "Age");
+	int number = MyRead::readInt("Please enter a number: ");
+
+	(number > 0) ? cout << "\nIs Positive" : cout << "\nIs negative";
+
+	(number == 0) ? cout << "\nEqual zero" : ((number > 0) ? cout << "\nIs Positive" : cout << "\nIs negative");
 
 
 	return 0;
