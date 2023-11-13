@@ -1,17 +1,17 @@
 ﻿#include<iostream>
 using namespace std;
 
-//function declaration
-void add(int, int);
+int sum(int a, int b, int c = 0, int d = 0)
+{
+	return a + b + c + d;
+}
 
 int main() 
 {
-	add(5, 6);
+	cout << sum(5, 6) << endl;
+	cout << sum(5, 6, 7) << endl;
+	cout << sum(5, 6, 7, 8) << endl;
 
 	return 0;
 }
 
-void add(int a, int b)
-{
-	cout << a + b;
-}
