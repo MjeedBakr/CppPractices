@@ -1,12 +1,17 @@
 ﻿#include<iostream>
 using namespace std;
 
+//function declaration
+void add(int, int);
 
 int main() 
 {
-	cout << "Result: " << (12 & 25); //(12 Bitwise AND 25)
-	cout << "Result: " << (12 | 25); //(12 Bitwise OR 25)
-	cout << endl;
+	add(5, 6);
 
 	return 0;
+}
+
+void add(int a, int b)
+{
+	cout << a + b;
 }
