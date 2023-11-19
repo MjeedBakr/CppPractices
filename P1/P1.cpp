@@ -1,26 +1,38 @@
 ﻿#include<iostream>
 using namespace std;
 
-void function3()
+void printNumberMaxToMin(int max, int min)
 {
-	cout << "I am function 3" << endl;
+	if (max >= min)
+	{
+		cout << max << endl;
+		printNumberMaxToMin(max - 1, min);
+	}
 }
 
-void function2()
+void printNumberMinToMax(int max, int min)
 {
-	function3();
+	if (min <= max)
+	{
+		cout << min << endl;
+		printNumberMinToMax(max, min + 1);
+	}
 }
 
-void function1()
+int MyPower(int base, int power)
 {
-	function2();
+	if (power == 0)
+		return 1;
+	else
+	{
+		return (base * MyPower(base, power - 1));
+	}
 }
-
 
 int main() 
 {
-	function1();
 
+	cout << MyPower(5, 4);
 	return 0;
 }
 
