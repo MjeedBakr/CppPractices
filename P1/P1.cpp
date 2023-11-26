@@ -3,23 +3,34 @@
 
 using namespace std;
 
+void fill2DimensionArray(int arr[10][10])
+{
+	for (int i = 0; i < 10; i++)
+		for (int j = 0; j < 10; j++)
+		{
+			arr[i][j] = (i + 1) * (j + 1);
+		}
+}
+
+void print2DimensionArray(int arr[10][10])
+{
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			printf("%0*d ", 2, arr[i][j]);
+		}
+		cout << endl;
+	}
+}
 int main() {
 
-    cout << "------------" << "-" << "-------" << "-" << "---\n";
-    cout << setw(12) << "Name" << "|" << setw(7) << "City" << "|" << setw(3) << "Age\n";
-    cout << "------------" << "+" << "-------" << "+" << "---\n";
+	int x[10][10];
 
-    cout << setw(12) << "Abdulmajeed" << "|" << setw(7) << "Makkah" << "|" << setw(3) << "20\n";
-    cout << setw(12) << "Ahmad" << "|" << setw(7) << "Riyadh" << "|" << setw(3) << "22\n";
-
-    cout << "------------" << "-" << "-------" << "-" << "---\n";
+	fill2DimensionArray(x);
+	print2DimensionArray(x);
 
 
 
-    //------------------------
-    //        Name|   City|Age
-    //------------+-------+---
-    // Abdulmajeed| Makkah|20
-    //       Ahmad| Riyadh|22
-    //------------------------
+
 }
