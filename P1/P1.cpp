@@ -1,22 +1,25 @@
 ﻿#include <iostream>
-#include <cstdio>
+#include <iomanip>
 
 using namespace std;
 
 int main() {
-    char Name[] = "Mohammed Abu-Hadhoud";
-    char SchoolName[] = "Programming Advices";
 
-    // Print string and String
-    printf("Dear %s, How are you?\n\n", Name);
-    printf("Welcome to %s School!\n\n", SchoolName);
+    cout << "------------" << "-" << "-------" << "-" << "---\n";
+    cout << setw(12) << "Name" << "|" << setw(7) << "City" << "|" << setw(3) << "Age\n";
+    cout << "------------" << "+" << "-------" << "+" << "---\n";
 
-    char c = 'S';
-    printf("Setting the width of c: %*c \n", 1, c);
-    printf("Setting the width of c: %*c \n", 2, c);
-    printf("Setting the width of c: %*c \n", 3, c);
-    printf("Setting the width of c: %*c \n", 4, c);
-    printf("Setting the width of c: %*c \n", 5, c)
+    cout << setw(12) << "Abdulmajeed" << "|" << setw(7) << "Makkah" << "|" << setw(3) << "20\n";
+    cout << setw(12) << "Ahmad" << "|" << setw(7) << "Riyadh" << "|" << setw(3) << "22\n";
+
+    cout << "------------" << "-" << "-------" << "-" << "---\n";
 
 
 
+    //------------------------
+    //        Name|   City|Age
+    //------------+-------+---
+    // Abdulmajeed| Makkah|20
+    //       Ahmad| Riyadh|22
+    //------------------------
+}
