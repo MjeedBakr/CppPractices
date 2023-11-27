@@ -20,7 +20,7 @@ void readNumbers(vector <int> &vNumbers)
 
 }
 
-void printNumbers(vector <int> vNumbers)
+void printNumbers(vector <int> &vNumbers) //put it by ref or it will copy the whole vector
 {
 	for (int& number : vNumbers)
 	{
