@@ -3,14 +3,39 @@
 
 using namespace std;
 
+void readNumbers(vector <int> &vNumbers)
+{
+	int number;
+	char enterAnotherNumber;
+
+	do
+	{
+		cout << "Please enter a number: ";
+		cin >> number;
+		vNumbers.push_back(number);
+
+		cout << "Do you want to enter another Number Y:Yes N:No? ";
+		cin >> enterAnotherNumber;
+	} while (enterAnotherNumber == 'y' || enterAnotherNumber == 'Y');
+
+}
+
+void printNumbers(vector <int> vNumbers)
+{
+	for (int& number : vNumbers)
+	{
+		cout << number << "\n";
+	}
+}
+
 int main() {
 
-	vector <int> vNumbrs = { 1, 2, 3, 4, 5, 6, 7 };
+	vector <int> vNumbrs;
 
-	for (int &number : vNumbrs)
-	{
-		cout << number << " ";
-	}
+	readNumbers(vNumbrs);
+	printNumbers(vNumbrs);
+
+
 
 
 
