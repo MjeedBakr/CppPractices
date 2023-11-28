@@ -3,37 +3,59 @@
 
 using namespace std;
 
-void readNumbers(vector <int> &vNumbers)
+struct stEmployee
 {
-	int number;
-	char enterAnotherNumber;
+	string firstName;
+	string lastName;
+	int salary;
+};
+
+void readEmployeesInfo(vector <stEmployee> &vEmployees)
+{
+	
+	char enterAnotherEmployee;
 
 	do
 	{
-		cout << "Please enter a number: ";
-		cin >> number;
-		vNumbers.push_back(number);
+		cout << "\n";
+		stEmployee tempEmployee;
 
-		cout << "Do you want to enter another Number Y:Yes N:No? ";
-		cin >> enterAnotherNumber;
-	} while (enterAnotherNumber == 'y' || enterAnotherNumber == 'Y');
+		cout << "Please enter employee first name: ";
+		cin >> tempEmployee.firstName;
+
+		cout << "Please enter employee last name: ";
+		cin >> tempEmployee.lastName;
+
+		cout << "Please enter employee salary: ";
+		cin >> tempEmployee.salary;
+
+		vEmployees.push_back(tempEmployee);
+		
+		cout << "Do you want to enter another Employee info Y:Yes N:No? ";
+		cin >> enterAnotherEmployee;
+	} while (enterAnotherEmployee == 'y' || enterAnotherEmployee == 'Y');
 
 }
 
-void printNumbers(vector <int> &vNumbers) //put it by ref or it will copy the whole vector
+void printEmployeesInfo(vector <stEmployee> &vEmployees) //put it by ref or it will copy the whole vector
 {
-	for (int& number : vNumbers)
+	cout << "\n";
+	for (stEmployee &employee : vEmployees)
 	{
-		cout << number << "\n";
+		cout << "First Name: " << employee.firstName << "\n";
+		cout << "Last  Name: " << employee.lastName << "\n";
+		cout << "Salary    : " << employee.salary << "\n";
+
+		cout << endl;
 	}
 }
 
 int main() {
 
-	vector <int> vNumbrs;
+	vector <stEmployee> vEmployees;
+	readEmployeesInfo(vEmployees);
+	printEmployeesInfo(vEmployees);
 
-	readNumbers(vNumbrs);
-	printNumbers(vNumbrs);
 
 
 
