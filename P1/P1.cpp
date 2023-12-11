@@ -1,27 +1,20 @@
 ﻿#include <iostream>
-#include <vector>
-
 using namespace std;
 
-struct stPerson 
-{
-	string name;
-	short age;
-};
 
 int main() {
 
-	stPerson person1, * p;
-	person1.name = "Abdulmajeed";
-	person1.age = 20;
+	int i = 10;
+	float f = 5.8;
+	void* p;
 
-	cout << person1.name << endl;
-	cout << person1.age << endl;
+	p = &i;
+	cout << p << endl;
+	cout << *(static_cast<int*>(p)) << endl;
 
-	p = &person1;
-	cout << p->name << endl;
-	cout << p->age << endl;
-
+	p = &f;
+	cout << p << endl;
+	cout << *(static_cast<float*>(p)) << endl;
 
 
 	return 0;
