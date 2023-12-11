@@ -3,23 +3,26 @@
 
 using namespace std;
 
+struct stPerson 
+{
+	string name;
+	short age;
+};
 
 int main() {
 
-	int arr[4] = { 10, 20, 30, 40 };
-	int* p = arr;
+	stPerson person1, * p;
+	person1.name = "Abdulmajeed";
+	person1.age = 20;
 
-	cout << "Array Elements addresses:\n";
-	for (int i = 0; i < 4; i++)
-	{
-		cout << (p + i) << endl;
-	}
+	cout << person1.name << endl;
+	cout << person1.age << endl;
 
-	cout << "Array Elements Values:\n";
-	for (int i = 0; i < 4; i++)
-	{
-		cout << *(p + i) << endl;
-	}
+	p = &person1;
+	cout << p->name << endl;
+	cout << p->age << endl;
+
+
 
 	return 0;
 
