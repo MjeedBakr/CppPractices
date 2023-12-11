@@ -3,26 +3,23 @@
 
 using namespace std;
 
-void swap(int* num1, int *num2)
-{
-	int temp = *num1;
-	*num1 = *num2;
-	*num2 = temp;
-}
 
 int main() {
 
-	int a = 10, b = 5;
-	cout << "Before Swapping \n";
-	cout << "a = " << a << "\n";
-	cout << "b = " << b << "\n";
+	int arr[4] = { 10, 20, 30, 40 };
+	int* p = arr;
 
-	swap(&a, &b);
+	cout << "Array Elements addresses:\n";
+	cout << p << endl;
+	cout << p + 1 << endl;
+	cout << p + 2 << endl;
+	cout << p + 3 << endl;
 
-
-	cout << "after Swapping \n";
-	cout << "a = " << a << "\n";
-	cout << "b = " << b << "\n";
+	cout << "Array Elements Values:\n";
+	cout << *p << endl;
+	cout << *(p + 1) << endl;
+	cout << *(p + 2) << endl;
+	cout << *(p + 3) << endl;
 
 	return 0;
 
