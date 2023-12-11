@@ -10,16 +10,16 @@ int main() {
 	int* p = arr;
 
 	cout << "Array Elements addresses:\n";
-	cout << p << endl;
-	cout << p + 1 << endl;
-	cout << p + 2 << endl;
-	cout << p + 3 << endl;
+	for (int i = 0; i < 4; i++)
+	{
+		cout << (p + i) << endl;
+	}
 
 	cout << "Array Elements Values:\n";
-	cout << *p << endl;
-	cout << *(p + 1) << endl;
-	cout << *(p + 2) << endl;
-	cout << *(p + 3) << endl;
+	for (int i = 0; i < 4; i++)
+	{
+		cout << *(p + i) << endl;
+	}
 
 	return 0;
 
