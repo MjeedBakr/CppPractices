@@ -3,19 +3,26 @@
 
 using namespace std;
 
-
+void swap(int* num1, int *num2)
+{
+	int temp = *num1;
+	*num1 = *num2;
+	*num2 = temp;
+}
 
 int main() {
 
-	int a = 10;
-	int * p = &a;
+	int a = 10, b = 5;
+	cout << "Before Swapping \n";
+	cout << "a = " << a << "\n";
+	cout << "b = " << b << "\n";
 
-	cout << &a << endl;
-	cout << p << endl;
+	swap(&a, &b);
 
-	cout << "Pointer value " << p << endl;
-	cout << "Value of the address that p is pointing to is " << *p << endl;
 
+	cout << "after Swapping \n";
+	cout << "a = " << a << "\n";
+	cout << "b = " << b << "\n";
 
 	return 0;
 
