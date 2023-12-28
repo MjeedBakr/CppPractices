@@ -4,17 +4,30 @@ using namespace std;
 
 int main() {
 
-	int* ptrX;
-	float* ptrY;
+	int num;
+	cout << "Enter total number of Student: ";
+	cin >> num;
 
-	ptrX = new int(10);
-	ptrY = new float(9.5f);
+	float* ptr;
 
-	cout << *ptrX << endl;
-	cout << *ptrY << endl;
+	//memory allocation of num numbers of floats
+	ptr = new float[num];
 
-	delete ptrX;
-	delete ptrY;
+	cout << "Enter grades of students." << endl;
+
+	for (int i = 0; i < num; i++)
+	{
+		cout << "Student " << i + 1 << " Grade: ";
+		cin >> *(ptr + i);
+	}
+
+	cout << "\nDisplay Students grades." << endl;
+	for (int i = 0; i < num; i++)
+	{
+		cout << "Student " << i + 1 << ": " << *(ptr + i) << endl;
+	}
+
+	delete []ptr;
 
 
 
