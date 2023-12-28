@@ -4,17 +4,18 @@ using namespace std;
 
 int main() {
 
-	int i = 10;
-	float f = 5.8;
-	void* p;
+	int* ptrX;
+	float* ptrY;
 
-	p = &i;
-	cout << p << endl;
-	cout << *(static_cast<int*>(p)) << endl;
+	ptrX = new int(10);
+	ptrY = new float(9.5f);
 
-	p = &f;
-	cout << p << endl;
-	cout << *(static_cast<float*>(p)) << endl;
+	cout << *ptrX << endl;
+	cout << *ptrY << endl;
+
+	delete ptrX;
+	delete ptrY;
+
 
 
 	return 0;
