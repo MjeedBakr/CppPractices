@@ -1,33 +1,15 @@
 ﻿#include <iostream>
+#include <vector>
 using namespace std;
 
 
 int main() {
 
-	int num;
-	cout << "Enter total number of Student: ";
-	cin >> num;
+	vector <int> numbers{ 1, 3, 5, 7, 9 };
 
-	float* ptr;
-
-	//memory allocation of num numbers of floats
-	ptr = new float[num];
-
-	cout << "Enter grades of students." << endl;
-
-	for (int i = 0; i < num; i++)
-	{
-		cout << "Student " << i + 1 << " Grade: ";
-		cin >> *(ptr + i);
-	}
-
-	cout << "\nDisplay Students grades." << endl;
-	for (int i = 0; i < num; i++)
-	{
-		cout << "Student " << i + 1 << ": " << *(ptr + i) << endl;
-	}
-
-	delete []ptr;
+	//You can use both methods
+	cout << numbers[0] << endl;
+	cout << numbers.at(0) << endl;
 
 
 
