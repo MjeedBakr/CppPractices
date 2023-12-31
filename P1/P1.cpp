@@ -7,29 +7,11 @@ int main() {
 
 	vector <int> numbers{ 1, 3, 5, 7, 9 };
 
-	cout << "Initial Vector: ";
+	vector <int>::iterator i;
 
-	for (const int& i : numbers)
+	for (i = numbers.begin(); i != numbers.end(); i++)
 	{
-		cout << i << " ";
-	}
-
-	cout << "\nUpdated Vector: ";
-
-	for (int& i : numbers)
-	{
-		i = 20;
-		cout << i << " ";
-	}
-
-	numbers[0] = 10;
-	numbers.at(2) = 30;
-
-	cout << "\nUpdated Vector: ";
-
-	for (const int& i : numbers)
-	{
-		cout << i << " ";
+		cout << *i << " ";
 	}
 
 
