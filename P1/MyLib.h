@@ -159,3 +159,26 @@ namespace MyFun
 	}
 
 }
+
+namespace MyMatrix
+{
+	void fillMatrixWithRandomNumbers(int arr[3][3], int rows, int columns)
+	{
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+				arr[i][j] = MyRandom::randomNumber(1, 100);
+		}
+	}
+
+	void printMatrix(int arr[3][3], int rows, int columns)
+	{
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+				cout << arr[i][j] << "\t";
+			cout << "\n";
+		}
+		cout << endl;
+	}
+}
