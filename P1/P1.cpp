@@ -1,23 +1,23 @@
 ﻿#include <iostream>
-#include <string>
+#include <fstream>
 using namespace std;
 
 
 int main() {
 
-	char x;
-	char y;
+	fstream myFile;
 
-	x = toupper('a'); //the method returns the ascii code for upper a
-	y = tolower('B'); //the method returns the ascii code for lower B
-	
-	cout << isupper('A') << endl; //returns 0 if false and any number if true
-	cout << islower('a') << endl; //returns 0 if false and any number if true
-	cout << isdigit('5') << endl; //returns 0 if false and any number if true
+	myFile.open("myFile.txt", ios::out); //Activate Write mood
 
-	//Punctuation marks are:  !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-	cout << ispunct('/') << endl; //returns 0 if false and any number if true
+	if (myFile.is_open())
+	{
+		myFile << "Hi 1\n";
+		myFile << "Hi from line 2\n";
+		myFile << "Hi from line 3\n";
 
+		myFile.close();
+
+	}
 	return 0;
 
 
