@@ -7,12 +7,16 @@ int main() {
 
 	vector <int> numbers{ 1, 3, 5, 7, 9 };
 
-	vector <int>::iterator i;
-
-	for (i = numbers.begin(); i != numbers.end(); i++)
+	try 
 	{
-		cout << *i << " ";
+	cout << numbers.at(5);
+
 	}
+	catch (...)
+	{
+		cout << "Out of pound\n";
+	}
+
 
 
 	return 0;
