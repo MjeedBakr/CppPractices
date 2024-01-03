@@ -1,11 +1,12 @@
 ﻿#include <iostream>
 #include <fstream>
 #include<string>
+#include <vector>
 
 
 using namespace std;
 
-void printFileContent(string fileName)
+void loadDataFromFileToVector(string fileName, vector <string> &vFileContent)
 {
 	fstream myFile;
 	myFile.open(fileName, ios::in); //Activate Read Mode
@@ -16,7 +17,7 @@ void printFileContent(string fileName)
 
 		while (getline(myFile, lineContent))
 		{
-			cout << lineContent << endl;
+			vFileContent.push_back(lineContent);
 		}
 		myFile.close();
 	}
@@ -24,7 +25,14 @@ void printFileContent(string fileName)
 
 int main() {
 
-	printFileContent("myFile.txt");
+	vector <string> vFileContent;
+
+	loadDataFromFileToVector("myFile.txt", vFileContent);
+
+	for (string lineContent : vFileContent)
+	{
+		cout << lineContent << endl;
+	}
 	return 0;
 
 

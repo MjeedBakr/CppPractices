@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include<fstream>
+#include<vector>
 #include "MyLib.h"
 
 
@@ -218,6 +219,23 @@ namespace MyFile
 			while (getline(myFile, lineContent))
 			{
 				cout << lineContent << endl;
+			}
+			myFile.close();
+		}
+	}
+
+	void loadDataFromFileToVector(string fileName, vector <string>& vFileContent)
+	{
+		fstream myFile;
+		myFile.open(fileName, ios::in); //Activate Read Mode
+
+		if (myFile.is_open())
+		{
+			string lineContent;
+
+			while (getline(myFile, lineContent))
+			{
+				vFileContent.push_back(lineContent);
 			}
 			myFile.close();
 		}
