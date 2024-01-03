@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include<fstream>
 #include "MyLib.h"
 
 
@@ -200,5 +201,25 @@ namespace MyMatrix
 			printf("Row %d Sum = %d\n", i + 1, rowSum(arr, i, columns));
 		}
 		cout << endl;
+	}
+}
+
+namespace MyFile
+{
+	void printFileContent(string fileName)
+	{
+		fstream myFile;
+		myFile.open(fileName, ios::in); //Activate Read Mode
+
+		if (myFile.is_open())
+		{
+			string lineContent;
+
+			while (getline(myFile, lineContent))
+			{
+				cout << lineContent << endl;
+			}
+			myFile.close();
+		}
 	}
 }
