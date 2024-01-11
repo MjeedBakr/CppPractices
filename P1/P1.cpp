@@ -2,29 +2,40 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include "MyLib.h"
 
 
 using namespace std;
 
-void saveVectorToFile(string fileName, vector <string> vFileContent)
+
+void deleteRecordFromFile(string fileName, string record)
 {
-	fstream myFile;
-	myFile.open(fileName, ios::out);
+	vector <string> vFileContent;
+	MyFile::loadDataFromFileToVector("myFile.txt", vFileContent);
 
-	if (myFile.is_open())
-	{
-		for (string& line : vFileContent)
-			if (line != "")
-				myFile << line << endl;
+	for (string& line : vFileContent)
+		if (line == record)
+		{
+			line = "";
+			break;
+		}
 
-		myFile.close();
-	}
+	MyFile::saveVectorToFile("myFile.txt", vFileContent);
+	
 }
 
 int main() {
 	
-	vector <string> vNames = { "Ali", "Shadi", "Maher", "Fadi", "Lama" };
-	saveVectorToFile("myFile.txt", vNames);
+	cout << "File Content before delete: \n";
+	MyFile::printFileContent("myFile.txt");
+
+	deleteRecordFromFile("myFile.txt", "Maher");
+
+	cout << "File Content after delete: \n";
+	MyFile::printFileContent("myFile.txt");
+
+
+
 
 	return 0;
 
