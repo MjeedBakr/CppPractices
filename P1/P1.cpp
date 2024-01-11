@@ -1,41 +1,21 @@
-﻿#include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
-#include "MyLib.h"
+﻿#pragma warning(disable : 4996)
 
+#include <iostream>
+#include <ctime>
 
 using namespace std;
 
-
-void updateRecordFromFile(string fileName, string record, string updateTo)
-{
-	vector <string> vFileContent;
-	MyFile::loadDataFromFileToVector(fileName, vFileContent);
-
-	for (string& line : vFileContent)
-		if (line == record)
-		{
-			line = updateTo;
-			break;
-		}
-
-	MyFile::saveVectorToFile(fileName, vFileContent);
-	
-}
-
 int main() {
 	
-	cout << "File Content before update: \n";
-	MyFile::printFileContent("myFile.txt");
+	time_t t = time(0); //get time now
 
-	updateRecordFromFile("myFile.txt", "Ali", "Fahad");
-	updateRecordFromFile("myFile.txt", "Omar", "Sultan");
+	char* dt = ctime(&t); //convert it to string form
 
-	cout << "\n\nFile Content after update: \n";
-	MyFile::printFileContent("myFile.txt");
+	cout << "Local date and time is: " << dt << "\n";
 
-
+	tm* gmtm = gmtime(&t);  //convert it to tm structure for UTC date/time توقيت غرينتش
+	dt = asctime(gmtm);
+	cout << "UTC date and time is: " << dt;
 
 
 	return 0;
