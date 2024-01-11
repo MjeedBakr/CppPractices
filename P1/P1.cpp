@@ -8,30 +8,31 @@
 using namespace std;
 
 
-void deleteRecordFromFile(string fileName, string record)
+void updateRecordFromFile(string fileName, string record, string updateTo)
 {
 	vector <string> vFileContent;
-	MyFile::loadDataFromFileToVector("myFile.txt", vFileContent);
+	MyFile::loadDataFromFileToVector(fileName, vFileContent);
 
 	for (string& line : vFileContent)
 		if (line == record)
 		{
-			line = "";
+			line = updateTo;
 			break;
 		}
 
-	MyFile::saveVectorToFile("myFile.txt", vFileContent);
+	MyFile::saveVectorToFile(fileName, vFileContent);
 	
 }
 
 int main() {
 	
-	cout << "File Content before delete: \n";
+	cout << "File Content before update: \n";
 	MyFile::printFileContent("myFile.txt");
 
-	deleteRecordFromFile("myFile.txt", "Maher");
+	updateRecordFromFile("myFile.txt", "Ali", "Fahad");
+	updateRecordFromFile("myFile.txt", "Omar", "Sultan");
 
-	cout << "File Content after delete: \n";
+	cout << "\n\nFile Content after update: \n";
 	MyFile::printFileContent("myFile.txt");
 
 

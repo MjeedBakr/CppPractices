@@ -255,4 +255,37 @@ namespace MyFile
 			myFile.close();
 		}
 	}
+
+	void deleteRecordFromFile(string fileName, string record)
+	{
+		vector <string> vFileContent;
+		MyFile::loadDataFromFileToVector(fileName, vFileContent);
+
+		for (string& line : vFileContent)
+			if (line == record)
+			{
+				line = "";
+				break;
+			}
+
+		MyFile::saveVectorToFile(fileName, vFileContent);
+
+	}
+
+	void updateRecordFromFile(string fileName, string record, string updateTo)
+	{
+		vector <string> vFileContent;
+		MyFile::loadDataFromFileToVector(fileName, vFileContent);
+
+		for (string& line : vFileContent)
+			if (line == record)
+			{
+				line = updateTo;
+				break;
+			}
+
+		MyFile::saveVectorToFile(fileName, vFileContent);
+
+	}
+
 }
