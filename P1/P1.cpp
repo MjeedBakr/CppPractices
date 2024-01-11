@@ -1,38 +1,31 @@
 ﻿#include <iostream>
-#include <fstream>
-#include<string>
 #include <vector>
+#include <string>
+#include <fstream>
 
 
 using namespace std;
 
-void loadDataFromFileToVector(string fileName, vector <string> &vFileContent)
+void saveVectorToFile(string fileName, vector <string> vFileContent)
 {
 	fstream myFile;
-	myFile.open(fileName, ios::in); //Activate Read Mode
+	myFile.open(fileName, ios::out);
 
 	if (myFile.is_open())
 	{
-		string lineContent;
+		for (string& line : vFileContent)
+			if (line != "")
+				myFile << line << endl;
 
-		while (getline(myFile, lineContent))
-		{
-			vFileContent.push_back(lineContent);
-		}
 		myFile.close();
 	}
 }
 
 int main() {
+	
+	vector <string> vNames = { "Ali", "Shadi", "Maher", "Fadi", "Lama" };
+	saveVectorToFile("myFile.txt", vNames);
 
-	vector <string> vFileContent;
-
-	loadDataFromFileToVector("myFile.txt", vFileContent);
-
-	for (string lineContent : vFileContent)
-	{
-		cout << lineContent << endl;
-	}
 	return 0;
 
 
