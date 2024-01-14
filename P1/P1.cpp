@@ -25,28 +25,28 @@ void printMatrix(int arr[3][3], short rows, short columns)
 	cout << endl;
 }
 
-int arraySum(int arr[3], short arrayLength)
+void saveRowsSumInArray(int arr[3][3], short rows, short columns, int rowResult[3])
 {
-	int sum = 0;
-	for (int i = 0; i < arrayLength; i++)
+	int rowSum;
+	for (int i = 0; i < rows; i++)
 	{
-		sum += arr[i];
-	}
-	return sum;
-}
-
-void saveRowInArray(int arr[3][3], short rowNumber, short columns, int rowResult[3])
-{
-	for (int i = 0; i < columns; i++)
-	{
-		rowResult[i] = arr[rowNumber - 1][i];
+		rowSum = 0;
+		for (int j = 0; j < columns; j++)
+		{
+			rowSum += arr[i][j];
+		}
+		rowResult[i] = rowSum;
 	}
 }
 
-void printRowsSum(int arr[3], int arrayLength, int rowNumber)
+void printRowsSum(int arr[3], int arrLength)
 {
-	printf("Row %d Sum = %d\n",rowNumber, arraySum(arr, arrayLength));
-	cout << endl;
+	
+	for (int i = 0; i < arrLength; i++)
+	{
+		printf("Row %d Sum = %d\n", i +1, arr[i]);
+		cout << endl;
+	}
 }
 
 int main() {
@@ -62,18 +62,10 @@ int main() {
 
 	cout << "The following is sum of each row in matrix:\n";
 	
-	int row1[3];
-	int row2[3];
-	int row3[3];
+	int rowsSum[3];
+	saveRowsSumInArray(array, 3, 3, rowsSum);
 
-k	saveRowInArray(array, 1, 3, row1);
-	saveRowInArray(array, 2, 3, row2);
-	saveRowInArray(array, 3, 3, row3);
-
-	printRowsSum(row1, 3, 1);
-	printRowsSum(row2, 3, 2);
-	printRowsSum(row3, 3, 3);
-
+	printRowsSum(rowsSum, 3);
 	return 0;
 
 
