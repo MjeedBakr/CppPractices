@@ -35,11 +35,19 @@ int columnSum(int arr[3][3], short rows, short columnNumber)
 	return columnSum;
 }
 
-void columnsSum(int arr[3][3], short rows, short columns)
+void saveColumnsSumInArray(int arr[3][3], short rows, short columns, int arrResult[3])
 {
 	for (int i = 0; i < columns; i++)
 	{
-		printf("Col %d Sum = %d\n", i + 1, columnSum(arr, rows, i));
+		arrResult[i] = columnSum(arr, rows, i);	
+	}
+}
+
+void printColumnsSum(int arr[3], short columns)
+{
+	for (int i = 0; i < columns; i++)
+	{
+		printf("Col %d Sum = %d\n", i + 1, arr[i]);
 	}
 }
 
@@ -54,9 +62,11 @@ int main() {
 	cout << "The following is 3 x 3 Random Matrix:\n";
 	printMatrix(array, 3, 3);
 
+	int columnsSum[3];
 	cout << "The following is sum of each col in matrix:\n";
+	saveColumnsSumInArray(array, 3, 3, columnsSum);
+	printColumnsSum(columnsSum, 3);
 	
-	columnsSum(array, 3, 3);
 	return 0;
 
 
