@@ -25,24 +25,30 @@ void printMatrix(int arr[3][3], short rows, short columns)
 	cout << endl;
 }
 
+int rowSum(int arr[3][3], short rowNumber, short columns)
+{
+	int rowSum = 0;
+	for (int i = 0; i < columns; i++)
+	{
+		rowSum += arr[rowNumber][i];
+	}
+
+	return rowSum;
+}
+
 void saveRowsSumInArray(int arr[3][3], short rows, short columns, int rowResult[3])
 {
-	int rowSum;
+	
 	for (int i = 0; i < rows; i++)
 	{
-		rowSum = 0;
-		for (int j = 0; j < columns; j++)
-		{
-			rowSum += arr[i][j];
-		}
-		rowResult[i] = rowSum;
+		rowResult[i] = rowSum(arr, i, columns);
 	}
 }
 
-void printRowsSum(int arr[3], int arrLength)
+void printRowsSumArray(int arr[3], int rows)
 {
 	
-	for (int i = 0; i < arrLength; i++)
+	for (int i = 0; i < rows; i++)
 	{
 		printf("Row %d Sum = %d\n", i +1, arr[i]);
 		cout << endl;
@@ -65,7 +71,7 @@ int main() {
 	int rowsSum[3];
 	saveRowsSumInArray(array, 3, 3, rowsSum);
 
-	printRowsSum(rowsSum, 3);
+	printRowsSumArray(rowsSum, 3);
 	return 0;
 
 
