@@ -25,39 +25,41 @@ void printMatrix(int arr[3][3], short rows, short columns)
 	cout << endl;
 }
 
-void multiplyMatrix(int arr[3][3],int arr2[3][3], short rows, short columns, int arrResult[3][3])
+void printMidRowMatrix(int arr[3][3], short columns)
 {
+	for (int i = 0; i < columns; i++)
+	{
+		printf("%0*d\t", 2, arr[1][i]);
+	}
+	cout << endl;
+}
 
+void printMidColMatrix(int arr[3][3], short rows)
+{
 	for (int i = 0; i < rows; i++)
 	{
-		for (int j = 0; j < columns; j++)
-		{
-			arrResult[i][j] = arr[i][j] * arr2[i][j];
-		}
+		printf("%0*d\t", 2, arr[i][1]);
 	}
-
+	cout << endl;
 }
 
 int main() {
 
 	srand((unsigned)time(NULL));
 	
-	int arr[3][3], arr2[3][3];
+	int arr[3][3];
 
 	fillMatrixWithRandomNumbers(arr, 3, 3);
-	fillMatrixWithRandomNumbers(arr2, 3, 3);
 
-	cout << "Matrix 1\n";
+	cout << "Matrix with random numbers\n";
 	printMatrix(arr, 3, 3);
 
-	cout << "Matrix 2\n";
-	printMatrix(arr2, 3, 3);
+	cout << "middle row of matrix\n";
+	printMidRowMatrix(arr, 3);
 
-	int arrResult[3][3];
-	multiplyMatrix(arr, arr2, 3, 3, arrResult);
+	cout << "middle column of matrix\n";
+	printMidColMatrix(arr, 3);
 
-	cout << "Matrix Multiply Result\n";
-	printMatrix(arrResult, 3, 3);
 	
 	return 0;
 
