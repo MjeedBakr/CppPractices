@@ -29,16 +29,33 @@ void printMatrix(int arr[3][3], short rows, short columns)
 	cout << endl;
 }
 
+void transposeMatrix(int arr[3][3], short rows, short columns, int arr2[3][3])
+{
+
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			arr2[i][j] = arr[j][i];
+		}
+	}
+
+}
+
 int main() {
 
-	int array[3][3];
+	int arr[3][3];
 
-	fillMatrixWithOrderedNumbers(array, 3, 3);
+	fillMatrixWithOrderedNumbers(arr, 3, 3);
 
 	cout << "The following is 3 x 3 Random Matrix:\n";
-	printMatrix(array, 3, 3);
+	printMatrix(arr, 3, 3);
 
+	int arr2[3][3];
+	transposeMatrix(arr, 3, 3, arr2);
 
+	cout << "The following is 3 x 3 transpose Matrix:\n";
+	printMatrix(arr2, 3, 3);
 	
 	return 0;
 
