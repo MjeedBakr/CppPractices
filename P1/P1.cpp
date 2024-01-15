@@ -25,25 +25,16 @@ void printMatrix(int arr[3][3], short rows, short columns)
 	cout << endl;
 }
 
-void printMidRowMatrix(int arr[3][3], short rows, short columns)
+int sumMatrix(int arr[3][3], short rows, short columns)
 {
-	short middleRow = rows / 2;
-
-	for (int i = 0; i < columns; i++)
-	{
-		printf("%0*d\t", 2, arr[middleRow][i]);
-	}
-	cout << endl;
-}
-
-void printMidColMatrix(int arr[3][3], short rows, short columns)
-{
-	short middleColumn = columns / 2;
+	int sum = 0;
 	for (int i = 0; i < rows; i++)
 	{
-		printf("%0*d\t", 2, arr[i][middleColumn]);
+		for (int j = 0; j < columns; j++)
+			sum += arr[i][j];
 	}
-	cout << endl;
+
+	return sum;
 }
 
 int main() {
@@ -57,12 +48,9 @@ int main() {
 	cout << "Matrix with random numbers\n";
 	printMatrix(arr, 3, 3);
 
-	cout << "middle row of matrix\n";
-	printMidRowMatrix(arr, 3, 3);
+	cout << "\nSum of matrix is: " << sumMatrix(arr, 3, 3) << endl;
 
-	cout << "middle column of matrix\n";
-	printMidColMatrix(arr, 3, 3);
-
+	
 	
 	return 0;
 
