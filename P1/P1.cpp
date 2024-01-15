@@ -5,16 +5,12 @@
 using namespace std;
 using namespace MyRandom;
 
-void fillMatrixWithOrderedNumbers(int arr[3][3], short rows, short columns)
+void fillMatrixWithRandomNumbers(int arr[3][3], short rows, short columns)
 {
-	int number = 1;
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
-		{
-			arr[i][j] = number;
-			number++;
-		}
+			arr[i][j] = randomNumber(1, 10);
 	}
 }
 
@@ -23,20 +19,20 @@ void printMatrix(int arr[3][3], short rows, short columns)
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
-			cout << arr[i][j] << "\t";
+			printf("%0*d\t", 2, arr[i][j]);
 		cout << "\n";
 	}
 	cout << endl;
 }
 
-void transposeMatrix(int arr[3][3], short rows, short columns, int arrTransposed[3][3])
+void multiplyMatrix(int arr[3][3],int arr2[3][3], short rows, short columns, int arrResult[3][3])
 {
 
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
 		{
-			arrTransposed[i][j] = arr[j][i];
+			arrResult[i][j] = arr[i][j] * arr2[i][j];
 		}
 	}
 
@@ -44,18 +40,24 @@ void transposeMatrix(int arr[3][3], short rows, short columns, int arrTransposed
 
 int main() {
 
-	int arr[3][3];
+	srand((unsigned)time(NULL));
+	
+	int arr[3][3], arr2[3][3];
 
-	fillMatrixWithOrderedNumbers(arr, 3, 3);
+	fillMatrixWithRandomNumbers(arr, 3, 3);
+	fillMatrixWithRandomNumbers(arr2, 3, 3);
 
-	cout << "The following is 3 x 3 Random Matrix:\n";
+	cout << "Matrix 1\n";
 	printMatrix(arr, 3, 3);
 
-	int arrTransposed[3][3];
-	transposeMatrix(arr, 3, 3, arrTransposed);
+	cout << "Matrix 2\n";
+	printMatrix(arr2, 3, 3);
 
-	cout << "The following is 3 x 3 transpose Matrix:\n";
-	printMatrix(arrTransposed, 3, 3);
+	int arrResult[3][3];
+	multiplyMatrix(arr, arr2, 3, 3, arrResult);
+
+	cout << "Matrix Multiply Result\n";
+	printMatrix(arrResult, 3, 3);
 	
 	return 0;
 
