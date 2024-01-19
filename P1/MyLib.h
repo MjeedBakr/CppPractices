@@ -164,74 +164,95 @@ namespace MyFun
 
 namespace MyMatrix
 {
-	void fillMatrixWithRandomNumbers(int arr[3][3], int rows, int columns)
+	void fillMatrixWithRandomNumbers(int matrix[3][3], int rows, int columns)
 	{
 		for (int i = 0; i < rows; i++)
 		{
 			for (int j = 0; j < columns; j++)
-				arr[i][j] = MyRandom::randomNumber(1, 100);
+				matrix[i][j] = MyRandom::randomNumber(1, 100);
 		}
 	}
 
-	void printMatrix(int arr[3][3], int rows, int columns)
+	void printMatrix(int matrix[3][3], int rows, int columns)
 	{
 		for (int i = 0; i < rows; i++)
 		{
 			for (int j = 0; j < columns; j++)
-				cout << arr[i][j] << "\t";
+				cout << matrix[i][j] << "\t";
 			cout << "\n";
 		}
 		cout << endl;
 	}
 
-	int rowSum(int arr[3][3], short rowNumber, short columns)
+	int rowSum(int matrix[3][3], short rowNumber, short columns)
 	{
 		int rowSum = 0;
 		for (int i = 0; i < columns; i++)
 		{
-			rowSum += arr[rowNumber][i];
+			rowSum += matrix[rowNumber][i];
 		}
 
 		return rowSum;
 	}
 
-	void printRowMatrixSum(int arr[3][3], short rows, short columns)
+	void printRowMatrixSum(int matrix[3][3], short rows, short columns)
 	{
 		for (int i = 0; i < rows; i++)
 		{
-			printf("Row %d Sum = %d\n", i + 1, rowSum(arr, i, columns));
+			printf("Row %d Sum = %d\n", i + 1, rowSum(matrix, i, columns));
 		}
 		cout << endl;
 	}
 
-	int sumOfMatrices(int arr[3][3], short rows, short columns)
+	int sumOfMatrices(int matrix[3][3], short rows, short columns)
 	{
 		int sum = 0;
 		for (int i = 0; i < rows; i++)
 		{
 			for (int j = 0; j < columns; j++)
-				sum += arr[i][j];
+				sum += matrix[i][j];
 		}
 
 		return sum;
 	}
 
-	bool areTwoMatricesSumEqual(int arr1[3][3], int arr2[3][3], short rows, short columns)
+	bool areTwoMatricesSumEqual(int matrix1[3][3], int matrix2[3][3], short rows, short columns)
 	{
-		return (sumOfMatrices(arr1, rows, columns) == sumOfMatrices(arr2, rows, columns));
+		return (sumOfMatrices(matrix1, rows, columns) == sumOfMatrices(matrix2, rows, columns));
 
 	}
 
-	bool areTwoMatricesTypical(int arr1[3][3], int arr2[3][3], short rows, short columns)
+	bool areTwoMatricesTypical(int matrix1[3][3], int matrix2[3][3], short rows, short columns)
 	{
 		for (int i = 0; i < rows; i++)
 		{
 			for (int j = 0; j < columns; j++)
-				if (arr1[i][j] != arr2[i][j])
+				if (matrix1[i][j] != matrix2[i][j])
 					return false;
 		}
 
 		return true;
+	}
+
+	bool isMatrixIdentity(int matrix[3][3], short rows, short columns)
+	{
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+				if (i == j)
+				{
+					if (matrix[i][j] != 1)
+						return false;
+				}
+				else
+				{
+					if (matrix[i][j] != 0)
+						return false;
+				}
+		}
+
+		return true;
+
 	}
 
 }

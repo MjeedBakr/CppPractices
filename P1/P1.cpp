@@ -37,13 +37,21 @@ int sumMatrix(int arr[3][3], short rows, short columns)
 	return sum;
 }
 
-bool areTwoMatricesTypical(int arr1[3][3], int arr2[3][3], short rows, short columns)
+bool isMatrixIdentity(int matrix[3][3], short rows, short columns)
 {
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
-			if (arr1[i][j] != arr2[i][j])
-				return false;
+			if (i == j)
+			{
+				if(matrix[i][j] != 1)
+					return false;
+			}
+			else
+			{
+				if (matrix[i][j] != 0)
+					return false;
+			}
 	}
 
 	return true;
@@ -54,20 +62,22 @@ int main() {
 
 	srand((unsigned)time(NULL));
 	
-	int arr1[3][3], arr2[3][3];
+	int matrix[3][3];
+	int iMatrix[3][3] = { {1, 0, 0},
+						{0, 1, 0},
+						{0, 0, 1} };
 
-	fillMatrixWithRandomNumbers(arr1, 3, 3);
-	fillMatrixWithRandomNumbers(arr2, 3, 3);
+	fillMatrixWithRandomNumbers(matrix, 3, 3);
+	
 
 	cout << "Matrix 1\n";
-	printMatrix(arr1, 3, 3);
-	cout << "Matrix 2\n";
-	printMatrix(arr2, 3, 3);
+	printMatrix(matrix, 3, 3);
+	
 
-	if (areTwoMatricesTypical(arr1, arr2, 3, 3))
-		cout << "Yes: Metrices are Typical." << endl;
+	if (isMatrixIdentity(iMatrix, 3, 3))
+		cout << "Yes: Matrices is identity." << endl;
 	else
-		cout << "No: Metrices are NOT Typical." << endl;
+		cout << "No: Matrices is NOT identity." << endl;
 
 	
 	
