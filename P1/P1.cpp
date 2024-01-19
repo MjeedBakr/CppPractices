@@ -37,18 +37,30 @@ int sumMatrix(int arr[3][3], short rows, short columns)
 	return sum;
 }
 
+bool isTwoMatrixSumEqual(int arr1[3][3], int arr2[3][3], short rows, short columns)
+{
+	return (sumMatrix(arr1, rows, columns) == sumMatrix(arr2, rows, columns));
+
+}
+
 int main() {
 
 	srand((unsigned)time(NULL));
 	
-	int arr[3][3];
+	int arr1[3][3], arr2[3][3];
 
-	fillMatrixWithRandomNumbers(arr, 3, 3);
+	fillMatrixWithRandomNumbers(arr1, 3, 3);
+	fillMatrixWithRandomNumbers(arr2, 3, 3);
 
-	cout << "Matrix with random numbers\n";
-	printMatrix(arr, 3, 3);
+	cout << "Matrix 1\n";
+	printMatrix(arr1, 3, 3);
+	cout << "Matrix 2\n";
+	printMatrix(arr2, 3, 3);
 
-	cout << "\nSum of matrix is: " << sumMatrix(arr, 3, 3) << endl;
+	if (isTwoMatrixSumEqual(arr1, arr2, 3, 3))
+		cout << "Yes: Metrices are equal." << endl;
+	else
+		cout << "No: Metrices are NOT equal." << endl;
 
 	
 	

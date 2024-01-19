@@ -203,6 +203,24 @@ namespace MyMatrix
 		}
 		cout << endl;
 	}
+
+	int sumMatrix(int arr[3][3], short rows, short columns)
+	{
+		int sum = 0;
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+				sum += arr[i][j];
+		}
+
+		return sum;
+	}
+
+	bool areTwoMetricesSumEqual(int arr1[3][3], int arr2[3][3], short rows, short columns)
+	{
+		return (sumMatrix(arr1, rows, columns) == sumMatrix(arr2, rows, columns));
+
+	}
 }
 
 namespace MyFile
