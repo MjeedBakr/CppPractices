@@ -239,15 +239,13 @@ namespace MyMatrix
 		for (int i = 0; i < rows; i++)
 		{
 			for (int j = 0; j < columns; j++)
-				if (i == j)
+				if (i == j && matrix[i][j] != 1)
 				{
-					if (matrix[i][j] != 1)
-						return false;
+					return false;
 				}
-				else
+				else if (i != j && matrix[i][j] != 0)
 				{
-					if (matrix[i][j] != 0)
-						return false;
+					return false;
 				}
 		}
 
