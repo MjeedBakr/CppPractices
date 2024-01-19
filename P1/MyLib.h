@@ -253,6 +253,26 @@ namespace MyMatrix
 
 	}
 
+	bool isMatrixScalar(int matrix[3][3], short rows, short columns)
+	{
+		int scalarElement = matrix[0][0];
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+				if (i == j && matrix[i][j] != scalarElement)
+				{
+					return false;
+				}
+				else if (i != j && matrix[i][j] != 0)
+				{
+					return false;
+				}
+		}
+
+		return true;
+
+	}
+
 }
 
 namespace MyFile

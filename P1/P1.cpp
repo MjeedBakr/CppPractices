@@ -37,12 +37,13 @@ int sumMatrix(int arr[3][3], short rows, short columns)
 	return sum;
 }
 
-bool isMatrixIdentity(int matrix[3][3], short rows, short columns)
+bool isMatrixScalar(int matrix[3][3], short rows, short columns)
 {
+	int scalarElement = matrix[0][0];
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
-			if (i == j && matrix[i][j] != 1)
+			if (i == j && matrix[i][j] != scalarElement)
 			{
 				return false;
 			}
@@ -61,9 +62,9 @@ int main() {
 	srand((unsigned)time(NULL));
 	
 	int matrix[3][3];
-	int iMatrix[3][3] = { {1, 0, 0},
-						{0, 1, 0},
-						{0, 0, 1} };
+	int iMatrix[3][3] = { {9, 0, 0},
+						  {0, 9, 0},
+						  {0, 0, 9} };
 
 	fillMatrixWithRandomNumbers(matrix, 3, 3);
 	
@@ -72,10 +73,10 @@ int main() {
 	printMatrix(iMatrix, 3, 3);
 	
 
-	if (isMatrixIdentity(iMatrix, 3, 3))
-		cout << "Yes: Matrices is identity." << endl;
+	if (isMatrixScalar(iMatrix, 3, 3))
+		cout << "Yes: Matrices is Scalar." << endl;
 	else
-		cout << "No: Matrices is NOT identity." << endl;
+		cout << "No: Matrices is NOT Scalar." << endl;
 
 	
 	
