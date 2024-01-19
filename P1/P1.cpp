@@ -37,9 +37,16 @@ int sumMatrix(int arr[3][3], short rows, short columns)
 	return sum;
 }
 
-bool isTwoMatrixSumEqual(int arr1[3][3], int arr2[3][3], short rows, short columns)
+bool areTwoMatricesTypical(int arr1[3][3], int arr2[3][3], short rows, short columns)
 {
-	return (sumMatrix(arr1, rows, columns) == sumMatrix(arr2, rows, columns));
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+			if (arr1[i][j] != arr2[i][j])
+				return false;
+	}
+
+	return true;
 
 }
 
@@ -57,10 +64,10 @@ int main() {
 	cout << "Matrix 2\n";
 	printMatrix(arr2, 3, 3);
 
-	if (isTwoMatrixSumEqual(arr1, arr2, 3, 3))
-		cout << "Yes: Metrices are equal." << endl;
+	if (areTwoMatricesTypical(arr1, arr2, 3, 3))
+		cout << "Yes: Metrices are Typical." << endl;
 	else
-		cout << "No: Metrices are NOT equal." << endl;
+		cout << "No: Metrices are NOT Typical." << endl;
 
 	
 	

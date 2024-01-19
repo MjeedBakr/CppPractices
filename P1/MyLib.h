@@ -204,7 +204,7 @@ namespace MyMatrix
 		cout << endl;
 	}
 
-	int sumMatrix(int arr[3][3], short rows, short columns)
+	int sumOfMatrices(int arr[3][3], short rows, short columns)
 	{
 		int sum = 0;
 		for (int i = 0; i < rows; i++)
@@ -216,11 +216,24 @@ namespace MyMatrix
 		return sum;
 	}
 
-	bool areTwoMetricesSumEqual(int arr1[3][3], int arr2[3][3], short rows, short columns)
+	bool areTwoMatricesSumEqual(int arr1[3][3], int arr2[3][3], short rows, short columns)
 	{
-		return (sumMatrix(arr1, rows, columns) == sumMatrix(arr2, rows, columns));
+		return (sumOfMatrices(arr1, rows, columns) == sumOfMatrices(arr2, rows, columns));
 
 	}
+
+	bool areTwoMatricesTypical(int arr1[3][3], int arr2[3][3], short rows, short columns)
+	{
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+				if (arr1[i][j] != arr2[i][j])
+					return false;
+		}
+
+		return true;
+	}
+
 }
 
 namespace MyFile
