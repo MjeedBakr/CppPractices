@@ -273,6 +273,19 @@ namespace MyMatrix
 
 	}
 
+	int countNumberInMatrix(int matrix[3][3], int number, short rows, short columns)
+	{
+		int counter = 0;
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+				if (matrix[i][j] == number)
+					counter++;
+		}
+
+		return counter;
+	}
+
 }
 
 namespace MyFile

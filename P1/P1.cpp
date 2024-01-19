@@ -5,56 +5,37 @@
 using namespace std;
 using namespace MyRandom;
 
-void fillMatrixWithRandomNumbers(int arr[3][3], short rows, short columns)
+void fillMatrixWithRandomNumbers(int matrix[3][3], int rows, int columns)
 {
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
-			arr[i][j] = randomNumber(1, 10);
+			matrix[i][j] = MyRandom::randomNumber(1, 10);
 	}
 }
 
-void printMatrix(int arr[3][3], short rows, short columns)
+void printMatrix(int matrix[3][3], int rows, int columns)
 {
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
-			printf("%0*d\t", 2, arr[i][j]);
+			cout << matrix[i][j] << "\t";
 		cout << "\n";
 	}
 	cout << endl;
 }
 
-int sumMatrix(int arr[3][3], short rows, short columns)
+int countNumberInMatrix(int matrix[3][3], int number, short rows, short columns)
 {
-	int sum = 0;
+	int counter = 0;
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
-			sum += arr[i][j];
+			if (matrix[i][j] == number)
+				counter++;
 	}
 
-	return sum;
-}
-
-bool isMatrixScalar(int matrix[3][3], short rows, short columns)
-{
-	int scalarElement = matrix[0][0];
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < columns; j++)
-			if (i == j && matrix[i][j] != scalarElement)
-			{
-				return false;
-			}
-			else if (i != j && matrix[i][j] != 0)
-			{
-				return false;
-			}
-	}
-
-	return true;
-
+	return counter;
 }
 
 int main() {
@@ -70,13 +51,13 @@ int main() {
 	
 
 	cout << "Matrix 1\n";
-	printMatrix(iMatrix, 3, 3);
+	printMatrix(matrix, 3, 3);
 	
+	int number;
+	cout << "Enter the number to count in matrix: ";
+	cin >> number;
 
-	if (isMatrixScalar(iMatrix, 3, 3))
-		cout << "Yes: Matrices is Scalar." << endl;
-	else
-		cout << "No: Matrices is NOT Scalar." << endl;
+	printf("\nNumber %d count in matrix is %d\n", number, countNumberInMatrix(matrix, number, 3, 3));
 
 	
 	
