@@ -30,7 +30,7 @@ bool isPalindromeMatrix(int matrix[3][3], short rows, short columns)
 	
 	for (int i = 0; i < rows; i++)
 	{
-		for (int j = 0; j < columns; j++)
+		for (int j = 0; j < columns / 2; j++)
 			if (matrix[i][j] != matrix[i][columns - j - 1])
 				return false;
 	}
