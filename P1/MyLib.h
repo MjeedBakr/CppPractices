@@ -349,6 +349,19 @@ namespace MyMatrix
 		return minNumber;
 	}
 
+	bool isPalindromeMatrix(int matrix[3][3], short rows, short columns)
+	{
+
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+				if (matrix[i][j] != matrix[i][columns - j - 1])
+					return false;
+		}
+
+		return true;
+	}
+
 }
 
 namespace MyFile
