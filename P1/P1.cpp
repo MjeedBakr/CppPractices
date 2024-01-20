@@ -10,7 +10,7 @@ void fillMatrixWithRandomNumbers(int matrix[3][3], int rows, int columns)
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
-			matrix[i][j] = MyRandom::randomNumber(1, 10);
+			matrix[i][j] = MyRandom::randomNumber(1, 100);
 	}
 }
 
@@ -25,33 +25,30 @@ void printMatrix(int matrix[3][3], int rows, int columns)
 	cout << endl;
 }
 
-bool isNumberExistsInMatrix(int matrix[3][3], int number, short rows, short columns)
+int getMaxNumberInMatrix(int matrix[3][3], short rows, short columns)
 {
-
+	int maxNumber = matrix[0][0];
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
-			if (matrix[i][j] == number)
-				return true;
+			if (maxNumber < matrix[i][j])
+				maxNumber = matrix[i][j];
 	}
 
-	return false;
+	return maxNumber;
 }
 
-void printIntersectedNumbers(int matrix1[3][3], int matrix2[3][3], short rows, short columns)
+int getMinNumberInMatrix(int matrix[3][3], short rows, short columns)
 {
-	int number;
+	int minNumber = matrix[0][0];
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
-		{
-			number = matrix1[i][j];
-			if (isNumberExistsInMatrix(matrix2, number, rows, columns))
-				cout << setw(3) << number << "\t";
-
-		}
+			if (minNumber > matrix[i][j])
+				minNumber = matrix[i][j];
 	}
 
+	return minNumber;
 }
 
 int main() {
@@ -64,16 +61,17 @@ int main() {
 						  {0, 8, 9} };
 
 	fillMatrixWithRandomNumbers(matrix1, 3, 3);
-	fillMatrixWithRandomNumbers(matrix2, 3, 3);
 	
 
 	cout << "Matrix 1\n";
 	printMatrix(matrix1, 3, 3);
-	cout << "Matrix 2\n";
-	printMatrix(matrix2, 3, 3);
+
 	
-	cout << "Intersected Numbers are: \n";
-	printIntersectedNumbers(matrix1, matrix2, 3, 3);
+	cout << "Max Number is: \n";
+	cout << getMaxNumberInMatrix(matrix1, 3, 3) << endl;
+
+	cout << "Min Number is: \n";
+	cout << getMinNumberInMatrix(matrix1, 3, 3) << endl;
 	
 
 	

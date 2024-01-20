@@ -323,6 +323,32 @@ namespace MyMatrix
 
 	}
 
+	int getMaxNumberInMatrix(int matrix[3][3], short rows, short columns)
+	{
+		int maxNumber = matrix[0][0];
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+				if (maxNumber < matrix[i][j])
+					maxNumber = matrix[i][j];
+		}
+
+		return maxNumber;
+	}
+
+	int getMinNumberInMatrix(int matrix[3][3], short rows, short columns)
+	{
+		int minNumber = matrix[0][0];
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+				if (minNumber > matrix[i][j])
+					minNumber = matrix[i][j];
+		}
+
+		return minNumber;
+	}
+
 }
 
 namespace MyFile
