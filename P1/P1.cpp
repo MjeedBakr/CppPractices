@@ -25,25 +25,17 @@ void printMatrix(int matrix[3][3], int rows, int columns)
 	cout << endl;
 }
 
-int countNumberInMatrix(int matrix[3][3], int number, short rows, short columns)
+bool isNumberExistsInMatrix(int matrix[3][3], int number, short rows, short columns)
 {
-	int counter = 0;
+	
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
 			if (matrix[i][j] == number)
-				counter++;
+				return true;
 	}
 
-	return counter;
-}
-
-bool isMatrixSparse(int matrix[3][3], short rows, short columns)
-{
-	int zerosCounter = countNumberInMatrix(matrix, 0, rows, columns);
-	int matrixSize = rows * columns;
-	
-	return (zerosCounter > (matrixSize / 2));
+	return false;
 }
 
 int main() {
@@ -59,13 +51,16 @@ int main() {
 	
 
 	cout << "Matrix 1\n";
-	printMatrix(iMatrix, 3, 3);
+	printMatrix(matrix, 3, 3);
 	
+	int number = 0;
+	cout << "Please enter a number to check if it is in the matrix: ";
+	cin >> number;
 	
-	if (isMatrixSparse(iMatrix, 3, 3))
-		cout << "\nYes: It Is Sparse\n";
+	if (isNumberExistsInMatrix(matrix, number, 3, 3))
+		cout << "\nYes: It Is There\n";
 	else
-		cout << "\nNo: It Is NOT Sparse\n";
+		cout << "\nNo: It Is NOT There\n";
 
 	
 	

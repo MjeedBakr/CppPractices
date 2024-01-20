@@ -294,6 +294,19 @@ namespace MyMatrix
 		return (zerosCounter > (matrixSize / 2));
 	}
 
+	bool isNumberExistsInMatrix(int matrix[3][3], int number, short rows, short columns)
+	{
+
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+				if (matrix[i][j] == number)
+					return true;
+		}
+
+		return false;
+	}
+
 }
 
 namespace MyFile
