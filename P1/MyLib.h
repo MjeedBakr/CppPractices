@@ -307,6 +307,22 @@ namespace MyMatrix
 		return false;
 	}
 
+	void printIntersectedNumbers(int matrix1[3][3], int matrix2[3][3], short rows, short columns)
+	{
+		int number;
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+			{
+				number = matrix1[i][j];
+				if (isNumberExistsInMatrix(matrix2, number, rows, columns))
+					cout << setw(3) << number << "\t";
+
+			}
+		}
+
+	}
+
 }
 
 namespace MyFile

@@ -27,7 +27,7 @@ void printMatrix(int matrix[3][3], int rows, int columns)
 
 bool isNumberExistsInMatrix(int matrix[3][3], int number, short rows, short columns)
 {
-	
+
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < columns; j++)
@@ -38,29 +38,43 @@ bool isNumberExistsInMatrix(int matrix[3][3], int number, short rows, short colu
 	return false;
 }
 
+void printIntersectedNumbers(int matrix1[3][3], int matrix2[3][3], short rows, short columns)
+{
+	int number;
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < columns; j++)
+		{
+			number = matrix1[i][j];
+			if (isNumberExistsInMatrix(matrix2, number, rows, columns))
+				cout << setw(3) << number << "\t";
+
+		}
+	}
+
+}
+
 int main() {
 
 	srand((unsigned)time(NULL));
 	
-	int matrix[3][3];
-	int iMatrix[3][3] = { {9, 0, 0},
+	int matrix1[3][3];
+	int matrix2[3][3] = { {9, 0, 0},
 						  {0, 9, 0},
 						  {0, 8, 9} };
 
-	fillMatrixWithRandomNumbers(matrix, 3, 3);
+	fillMatrixWithRandomNumbers(matrix1, 3, 3);
+	fillMatrixWithRandomNumbers(matrix2, 3, 3);
 	
 
 	cout << "Matrix 1\n";
-	printMatrix(matrix, 3, 3);
+	printMatrix(matrix1, 3, 3);
+	cout << "Matrix 2\n";
+	printMatrix(matrix2, 3, 3);
 	
-	int number = 0;
-	cout << "Please enter a number to check if it is in the matrix: ";
-	cin >> number;
+	cout << "Intersected Numbers are: \n";
+	printIntersectedNumbers(matrix1, matrix2, 3, 3);
 	
-	if (isNumberExistsInMatrix(matrix, number, 3, 3))
-		cout << "\nYes: It Is There\n";
-	else
-		cout << "\nNo: It Is NOT There\n";
 
 	
 	
