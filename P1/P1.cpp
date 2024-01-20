@@ -38,6 +38,14 @@ int countNumberInMatrix(int matrix[3][3], int number, short rows, short columns)
 	return counter;
 }
 
+bool isMatrixSparse(int matrix[3][3], short rows, short columns)
+{
+	int zerosCounter = countNumberInMatrix(matrix, 0, rows, columns);
+	int matrixSize = rows * columns;
+	
+	return (zerosCounter > (matrixSize / 2));
+}
+
 int main() {
 
 	srand((unsigned)time(NULL));
@@ -45,19 +53,19 @@ int main() {
 	int matrix[3][3];
 	int iMatrix[3][3] = { {9, 0, 0},
 						  {0, 9, 0},
-						  {0, 0, 9} };
+						  {0, 8, 9} };
 
 	fillMatrixWithRandomNumbers(matrix, 3, 3);
 	
 
 	cout << "Matrix 1\n";
-	printMatrix(matrix, 3, 3);
+	printMatrix(iMatrix, 3, 3);
 	
-	int number;
-	cout << "Enter the number to count in matrix: ";
-	cin >> number;
-
-	printf("\nNumber %d count in matrix is %d\n", number, countNumberInMatrix(matrix, number, 3, 3));
+	
+	if (isMatrixSparse(iMatrix, 3, 3))
+		cout << "\nYes: It Is Sparse\n";
+	else
+		cout << "\nNo: It Is NOT Sparse\n";
 
 	
 	

@@ -286,6 +286,14 @@ namespace MyMatrix
 		return counter;
 	}
 
+	bool isMatrixSparse(int matrix[3][3], short rows, short columns)
+	{
+		int zerosCounter = countNumberInMatrix(matrix, 0, rows, columns);
+		int matrixSize = rows * columns;
+
+		return (zerosCounter > (matrixSize / 2));
+	}
+
 }
 
 namespace MyFile
