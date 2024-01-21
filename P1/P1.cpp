@@ -5,24 +5,22 @@
 using namespace std;
 using namespace MyRandom;
 
-void printFibonacciSeries(int end)
+void printFibonacciUsingLoop(short end)
 {
-	int indexZero = 1;
-	int indexOne = 1;
-	int temp = 0;
-	printf("\nFibonacci Series of %d\n", end);
-	cout << indexZero << "\t";
-	cout << indexOne << "\t";
+	int previousTwo = 0;
+	int previousOne = 1;
+	int fibonacciNumber = 0;
 
-	for (int i = 2; i < end; i++)
+	printf("\nFibonacci Series of %d\n", end);
+	cout << "1\t";
+
+	for (short i = 2; i <= end; i++)
 	{
+		fibonacciNumber = previousOne + previousTwo;
+		cout << fibonacciNumber << "\t";
 		
-		cout << indexZero + indexOne << "\t";
-		
-		temp = indexOne;
-		indexOne += indexZero;
-		indexZero = temp;
-		
+		previousTwo = previousOne;
+		previousOne = fibonacciNumber;
 		
 	}
 	cout << endl;
@@ -31,7 +29,7 @@ void printFibonacciSeries(int end)
 
 int main() {
 
-	printFibonacciSeries(10);
+	printFibonacciUsingLoop(10);
 
 	
 	return 0;
