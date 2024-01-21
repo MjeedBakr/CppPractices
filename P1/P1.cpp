@@ -5,32 +5,31 @@
 using namespace std;
 using namespace MyRandom;
 
-void printFibonacciUsingLoop(short end)
+
+void printFibonacciUsingRecursion(short end, int previousOne, int previousTwo)
 {
-	int previousTwo = 0;
-	int previousOne = 1;
-	int fibonacciNumber = 0;
-
-	printf("\nFibonacci Series of %d\n", end);
-	cout << "1\t";
-
-	for (short i = 2; i <= end; i++)
+	int fibNumber = 0;
+	if (end > 0)
 	{
-		fibonacciNumber = previousOne + previousTwo;
-		cout << fibonacciNumber << "\t";
-		
+		fibNumber = previousOne + previousTwo;
 		previousTwo = previousOne;
-		previousOne = fibonacciNumber;
-		
+		previousOne = fibNumber;
+
+		cout << fibNumber << "\t";
+
+		printFibonacciUsingRecursion(end - 1, previousOne, previousTwo);
 	}
-	cout << endl;
+
 }
 
 
 int main() {
 
-	printFibonacciUsingLoop(10);
+	
 
+	printf("\nFibonacci Series of %d\n", 10);
+
+	printFibonacciUsingRecursion(10, 1, 0);
 	
 	return 0;
 
