@@ -1,26 +1,30 @@
 ﻿#include <iostream>
+#include <string>
+#include <cctype>
 
 
 using namespace std;
 
 
 
-void printFibonacciSeries(short number, short fibNumber = 1, short previousOne = 1, short previousTwo = 0)
+void printFirstLetterOfEachWord(string sentence)
 {
-	if (number > 0)
+	cout << "\nFirst Letters of this string are:\n";
+	cout << sentence[0] << "\n";
+	for (int i = 1; i < sentence.length(); i++)
 	{
-		cout << fibNumber << "\t";
-
-		printFibonacciSeries(number - 1, fibNumber += previousTwo, fibNumber, previousOne);
+		if (sentence[i] == ' ')
+			cout << sentence[i + 1] << "\n";
 	}
-
 }
 
 int main() {
 
-	printFibonacciSeries(10);
+	cout << "Please enter your string:\n";
+	string sentence;
+	getline(cin, sentence);
 
-	
+	printFirstLetterOfEachWord(sentence);
 	return 0;
 
 
