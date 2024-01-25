@@ -1,35 +1,25 @@
 ﻿#include <iostream>
-#include <iomanip>
-#include "MyLib.h"
+
 
 using namespace std;
-using namespace MyRandom;
 
 
-void printFibonacciUsingRecursion(short end, int previousOne, int previousTwo)
+
+void printFibonacciSeries(short number, short fibNumber = 1, short previousOne = 1, short previousTwo = 0)
 {
-	int fibNumber = 0;
-	if (end > 0)
+	if (number > 0)
 	{
-		fibNumber = previousOne + previousTwo;
-		previousTwo = previousOne;
-		previousOne = fibNumber;
-
 		cout << fibNumber << "\t";
 
-		printFibonacciUsingRecursion(end - 1, previousOne, previousTwo);
+		printFibonacciSeries(number - 1, fibNumber += previousTwo, fibNumber, previousOne);
 	}
 
 }
 
-
 int main() {
 
-	
+	printFibonacciSeries(10);
 
-	printf("\nFibonacci Series of %d\n", 10);
-
-	printFibonacciUsingRecursion(10, 1, 0);
 	
 	return 0;
 
