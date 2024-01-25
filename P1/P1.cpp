@@ -1,30 +1,30 @@
 ﻿#include <iostream>
 #include <string>
-#include <cctype>
+#include "MyLib.h"
 
 
 using namespace std;
 
-
-
 void printFirstLetterOfEachWord(string sentence)
 {
+	bool isFirstLetter = true;
+
 	cout << "\nFirst Letters of this string are:\n";
-	cout << sentence[0] << "\n";
-	for (int i = 1; i < sentence.length(); i++)
+
+	
+	for (int i = 0; i < sentence.length(); i++)
 	{
-		if (sentence[i] == ' ')
-			cout << sentence[i + 1] << "\n";
+		if (sentence[i] != ' ' && isFirstLetter)
+			cout << sentence[i] << "\n";
+
+		isFirstLetter = (sentence[i] == ' ' ? true : false);
 	}
 }
 
 int main() {
+	
 
-	cout << "Please enter your string:\n";
-	string sentence;
-	getline(cin, sentence);
-
-	printFirstLetterOfEachWord(sentence);
+	printFirstLetterOfEachWord(MyRead::readString("Please enter your string:\n"));
 	return 0;
 
 
