@@ -8,12 +8,18 @@ using namespace std;
 
 string convertToUpper(string str)
 {
-	for (char& i : str)
+	bool isFirstLetter = true;
+
+
+	for (int i = 0; i < str.length(); i++)
 	{
-		i = toupper(i);
+		if (str[i] != ' ' && isFirstLetter)
+			str[i] = toupper(str[i]);
+
+		isFirstLetter = (str[i] == ' ' ? true : false);
 	}
-	cout << str << endl;
-	return str;
+
+	return str;	
 }
 
 int main() {
