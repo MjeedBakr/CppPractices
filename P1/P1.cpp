@@ -1,30 +1,25 @@
 ﻿#include <iostream>
 #include <string>
+#include <cctype>
 #include "MyLib.h"
 
 
 using namespace std;
 
-void printFirstLetterOfEachWord(string sentence)
+string convertToUpper(string str)
 {
-	bool isFirstLetter = true;
-
-	cout << "\nFirst Letters of this string are:\n";
-
-	
-	for (int i = 0; i < sentence.length(); i++)
+	for (char& i : str)
 	{
-		if (sentence[i] != ' ' && isFirstLetter)
-			cout << sentence[i] << "\n";
-
-		isFirstLetter = (sentence[i] == ' ' ? true : false);
+		i = toupper(i);
 	}
+	cout << str << endl;
+	return str;
 }
 
 int main() {
 	
 
-	printFirstLetterOfEachWord(MyRead::readString("Please enter your string:\n"));
+	convertToUpper(MyRead::readString("Please enter your string:\n"));
 	return 0;
 
 
