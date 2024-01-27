@@ -6,7 +6,7 @@
 
 using namespace std;
 
-string convertToUpper(string str)
+string convertToLower(string str)
 {
 	bool isFirstLetter = true;
 
@@ -14,7 +14,7 @@ string convertToUpper(string str)
 	for (int i = 0; i < str.length(); i++)
 	{
 		if (str[i] != ' ' && isFirstLetter)
-			str[i] = toupper(str[i]);
+			str[i] = tolower(str[i]);
 
 		isFirstLetter = (str[i] == ' ' ? true : false);
 	}
@@ -25,7 +25,7 @@ string convertToUpper(string str)
 int main() {
 	
 
-	convertToUpper(MyRead::readString("Please enter your string:\n"));
+	convertToLower(MyRead::readString("Please enter your string:\n"));
 	return 0;
 
 
