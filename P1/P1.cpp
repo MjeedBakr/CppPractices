@@ -6,26 +6,37 @@
 
 using namespace std;
 
-string convertToLower(string str)
+string convertToLower(string &str)
 {
-	bool isFirstLetter = true;
 
-
-	for (int i = 0; i < str.length(); i++)
-	{
-		if (str[i] != ' ' && isFirstLetter)
-			str[i] = tolower(str[i]);
-
-		isFirstLetter = (str[i] == ' ' ? true : false);
-	}
+	for (char& i : str)
+		i = tolower(i);
 
 	return str;	
 }
 
+string convertToupper(string &str)
+{
+
+	for (char& i : str)
+		i = toupper(i);
+
+	return str;	
+}
+
+
 int main() {
 	
 
-	convertToLower(MyRead::readString("Please enter your string:\n"));
+	string sentence = MyRead::readString("Please enter your string:\n");;
+
+	cout << "\nString After Upper:\n";
+	cout << convertToupper(sentence);
+
+
+
+	cout << "\nString After Lower:\n";
+	cout << convertToLower(sentence);
 	return 0;
 
 
