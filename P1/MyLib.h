@@ -471,7 +471,7 @@ namespace MyString
 		return str;
 	}
 
-	string convertToupper(string& str)
+	string convertToUpper(string& str)
 	{
 
 		for (char& i : str)
@@ -480,7 +480,7 @@ namespace MyString
 		return str;
 	}
 
-	string convertToLower(string str)
+	string convertFirstLettersToLower(string &str)
 	{
 		bool isFirstLetter = true;
 
@@ -496,7 +496,7 @@ namespace MyString
 		return str;
 	}
 
-	string convertToUpper(string str)
+	string convertFirstLettersToUpper(string& str)
 	{
 		bool isFirstLetter = true;
 
@@ -528,14 +528,13 @@ namespace MyString
 		}
 	}
 
-
-	char invertLetterCase(char letter)
+	char invertLetterCase(char &letter)
 	{
 
 		return isupper(letter) ? tolower(letter) : toupper(letter);
 	}
 
-	string invertStringCase(string str)
+	string invertStringCase(string &str)
 	{
 		for (int i = 0; i < str.length(); i++)
 		{
@@ -546,5 +545,29 @@ namespace MyString
 		}
 		return str;
 	}
+
+	short countSmallLetters(string sentence)
+	{
+		short smallLetters = 0;
+
+		for (short i = 0; i < sentence.length(); i++)
+			if (islower(sentence[i]))
+				smallLetters++;
+
+		return smallLetters;
+	}
+
+	short countCapitalLetters(string sentence)
+	{
+		short capitalLetters = 0;
+
+		for (short i = 0; i < sentence.length(); i++)
+			if (isupper(sentence[i]))
+				capitalLetters++;
+
+		return capitalLetters;
+	}
+
+
 }
 

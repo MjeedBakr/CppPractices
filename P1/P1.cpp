@@ -5,32 +5,37 @@
 
 using namespace std;
 
-char invertLetterCase(char letter)
+short countSmallLetters(string sentence)
 {
+	short smallLetters = 0;
 
-	return isupper(letter) ? tolower(letter) : toupper(letter);
+	for (short i = 0; i < sentence.length(); i++)
+		if (islower(sentence[i]))
+			smallLetters++;
+
+	return smallLetters;
 }
 
-string invertStringCase(string str)
+short countCapitalLetters(string sentence)
 {
-	for (int i = 0; i < str.length(); i++)
-	{
-		if (str[i] == ' ')
-			continue;
-		else
-			str [i] = invertLetterCase(str[i]);
-	}
-	return str;
+	short capitalLetters = 0;
+
+	for (short i = 0; i < sentence.length(); i++)
+		if (isupper(sentence[i]))
+			capitalLetters++;
+
+	return capitalLetters;
 }
 
 
 int main() {
 	
 
-	string sentence = MyRead::readString("Please enter your String:\n");;
+	string sentence = MyRead::readString("Please enter your String:\n");
 
-	cout << "\nString after inverting all letters:\n";
-	cout << invertStringCase(sentence) << endl;
+	cout << "\nString Length = " << sentence.length() << endl;
+	printf("Capital Letters Count = %d\n", countCapitalLetters(sentence));
+	printf("Small Letters Count = %d\n", countSmallLetters(sentence));
 
 	return 0;
 
