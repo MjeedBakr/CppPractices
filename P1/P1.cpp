@@ -3,40 +3,23 @@
 #include <cctype>
 #include "MyLib.h"
 
-
 using namespace std;
 
-string convertToLower(string &str)
+char invertLetterCase(char letter)
 {
 
-	for (char& i : str)
-		i = tolower(i);
-
-	return str;	
-}
-
-string convertToupper(string &str)
-{
-
-	for (char& i : str)
-		i = toupper(i);
-
-	return str;	
+	return isupper(letter) ? tolower(letter) : toupper(letter);
 }
 
 
 int main() {
 	
 
-	string sentence = MyRead::readString("Please enter your string:\n");;
+	char letter = MyRead::readChar("Please enter your char:\n");;
 
-	cout << "\nString After Upper:\n";
-	cout << convertToupper(sentence);
+	cout << "\nChar after inverting case:\n";
+	cout << invertLetterCase(letter);
 
-
-
-	cout << "\nString After Lower:\n";
-	cout << convertToLower(sentence);
 	return 0;
 
 

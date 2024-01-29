@@ -38,6 +38,15 @@ namespace MyRead
 		return str;
 	}
 
+	char readChar(string message)
+	{
+		char str;
+		cout << message;
+		cin >> str;
+
+		return str;
+	}
+
 	int readIntInRange(int from, int to, string message)
 	{
 		int number;
