@@ -5,37 +5,26 @@
 
 using namespace std;
 
-short countSmallLetters(string sentence)
+short countLetterInString(string str, char letter)
 {
-	short smallLetters = 0;
+	short count = 0;
+	for (short i = 0; i < str.length(); i++)
+	{
+		if (str[i] == letter)
+			count++;
+	}
 
-	for (short i = 0; i < sentence.length(); i++)
-		if (islower(sentence[i]))
-			smallLetters++;
-
-	return smallLetters;
+	return count;
 }
-
-short countCapitalLetters(string sentence)
-{
-	short capitalLetters = 0;
-
-	for (short i = 0; i < sentence.length(); i++)
-		if (isupper(sentence[i]))
-			capitalLetters++;
-
-	return capitalLetters;
-}
-
 
 int main() {
 	
 
 	string sentence = MyRead::readString("Please enter your String:\n");
+	char letter = MyRead::readChar("Please enter a character:\n");
 
-	cout << "\nString Length = " << sentence.length() << endl;
-	printf("Capital Letters Count = %d\n", countCapitalLetters(sentence));
-	printf("Small Letters Count = %d\n", countSmallLetters(sentence));
+	
+	cout << "\nLetter " << letter << " Count = " << countLetterInString(sentence, letter) << endl;
 
 	return 0;
 

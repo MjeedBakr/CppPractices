@@ -568,6 +568,17 @@ namespace MyString
 		return capitalLetters;
 	}
 
+	short countLetterInString(string str, char letter)
+	{
+		short count = 0;
+		for (short i = 0; i < str.length(); i++)
+		{
+			if (str[i] == letter)
+				count++;
+		}
+
+		return count;
+	}
 
 }
 
