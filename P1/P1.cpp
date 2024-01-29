@@ -11,14 +11,26 @@ char invertLetterCase(char letter)
 	return isupper(letter) ? tolower(letter) : toupper(letter);
 }
 
+string invertStringCase(string str)
+{
+	for (int i = 0; i < str.length(); i++)
+	{
+		if (str[i] == ' ')
+			continue;
+		else
+			str [i] = invertLetterCase(str[i]);
+	}
+	return str;
+}
+
 
 int main() {
 	
 
-	char letter = MyRead::readChar("Please enter your char:\n");;
+	string sentence = MyRead::readString("Please enter your String:\n");;
 
-	cout << "\nChar after inverting case:\n";
-	cout << invertLetterCase(letter);
+	cout << "\nString after inverting all letters:\n";
+	cout << invertStringCase(sentence) << endl;
 
 	return 0;
 

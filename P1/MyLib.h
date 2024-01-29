@@ -459,3 +459,92 @@ namespace MyFile
 
 }
 
+namespace MyString
+{
+
+	string convertToLower(string& str)
+	{
+
+		for (char& i : str)
+			i = tolower(i);
+
+		return str;
+	}
+
+	string convertToupper(string& str)
+	{
+
+		for (char& i : str)
+			i = toupper(i);
+
+		return str;
+	}
+
+	string convertToLower(string str)
+	{
+		bool isFirstLetter = true;
+
+
+		for (int i = 0; i < str.length(); i++)
+		{
+			if (str[i] != ' ' && isFirstLetter)
+				str[i] = tolower(str[i]);
+
+			isFirstLetter = (str[i] == ' ' ? true : false);
+		}
+
+		return str;
+	}
+
+	string convertToUpper(string str)
+	{
+		bool isFirstLetter = true;
+
+
+		for (int i = 0; i < str.length(); i++)
+		{
+			if (str[i] != ' ' && isFirstLetter)
+				str[i] = toupper(str[i]);
+
+			isFirstLetter = (str[i] == ' ' ? true : false);
+		}
+
+		return str;
+	}
+
+	void printFirstLetterOfEachWord(string sentence)
+	{
+		bool isFirstLetter = true;
+
+		cout << "\nFirst Letters of this string are:\n";
+
+
+		for (int i = 0; i < sentence.length(); i++)
+		{
+			if (sentence[i] != ' ' && isFirstLetter)
+				cout << sentence[i] << "\n";
+
+			isFirstLetter = (sentence[i] == ' ' ? true : false);
+		}
+	}
+
+
+	char invertLetterCase(char letter)
+	{
+
+		return isupper(letter) ? tolower(letter) : toupper(letter);
+	}
+
+	string invertStringCase(string str)
+	{
+		for (int i = 0; i < str.length(); i++)
+		{
+			if (str[i] == ' ')
+				continue;
+			else
+				str[i] = invertLetterCase(str[i]);
+		}
+		return str;
+	}
+}
+
