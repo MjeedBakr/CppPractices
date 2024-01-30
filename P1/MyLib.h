@@ -461,6 +461,7 @@ namespace MyFile
 
 namespace MyString
 {
+	enum enCase { Upper = 0, Lower = 1, NoCase = 3 };
 
 	string convertToLower(string& str)
 	{
@@ -568,6 +569,11 @@ namespace MyString
 		return capitalLetters;
 	}
 
+	enCase findCaseType(char letter)
+	{
+		return (isupper(letter) ? enCase::Upper : enCase::Lower);
+	}
+
 	short countLetterInString(string str, char letter)
 	{
 		short count = 0;
@@ -576,6 +582,43 @@ namespace MyString
 			if (str[i] == letter)
 				count++;
 		}
+
+		return count;
+	}
+
+	short countLetterInStringNoCase(string str, char letter)
+	{
+		short count = 0;
+		for (short i = 0; i < str.length(); i++)
+		{
+			if (str[i] == letter || str[i] == MyString::invertLetterCase(letter))
+				count++;
+		}
+
+		return count;
+	}
+
+	short countLettersInString(string str, char letter, enCase caseType = enCase::Lower)
+	{
+		short count = 0;
+
+		if (caseType != enCase::NoCase)
+		{
+			caseType = findCaseType(letter);
+		}
+
+		switch (caseType)
+		{
+		case Upper:
+		case Lower:
+			count = countLetterInString(str, letter);
+			break;
+
+		case NoCase:
+			count = countLetterInStringNoCase(str, letter);
+			break;
+		}
+
 
 		return count;
 	}
