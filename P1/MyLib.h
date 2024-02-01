@@ -623,5 +623,18 @@ namespace MyString
 		return count;
 	}
 
+	bool isVowel(char letter)
+	{
+		letter = tolower(letter);
+		char vowelLetters[5] = { 'a', 'e', 'i', 'o', 'u' };
+
+		for (char& vowelLetter : vowelLetters)
+		{
+			if (vowelLetter == letter)
+				return true;
+		}
+		return false;
+	}
+
 }
 

@@ -7,6 +7,7 @@ using namespace std;
 
 bool isVowel(char letter)
 {
+	letter = tolower(letter);
 	char vowelLetters[5] = {'a', 'e', 'i', 'o', 'u'};
 
 	for (char& vowelLetter : vowelLetters)
