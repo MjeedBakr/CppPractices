@@ -636,5 +636,16 @@ namespace MyString
 		return false;
 	}
 
+	short countVowelsLetters(string sentence)
+	{
+		short count = 0;
+
+		for (char& letter : sentence)
+			if (isVowel(letter))
+				count++;
+
+		return count;
+	}
+
 }
 

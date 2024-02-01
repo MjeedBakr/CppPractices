@@ -18,17 +18,25 @@ bool isVowel(char letter)
 	return false;
 }
 
+short countVowelsLetters(string sentence)
+{
+	short count = 0;
+
+	for (char& letter : sentence)
+		if (isVowel(letter))
+			count++;
+
+	return count;
+}
+
 int main() {
 	
 
 	
-	char letter = MyRead::readChar("Please enter a character:\n");
+	string sentence = MyRead::readString("Please enter a String:\n");
 
 	
-	if (isVowel(letter))
-		cout << "\nYES Letter '" << letter << "' is vowel" << endl;
-	else
-		cout << "\nNO Letter '" << letter << "' is not vowel" << endl;
+	cout << "\nnumber of vowels is: " << countVowelsLetters(sentence) << endl;
 
 	return 0;
 
