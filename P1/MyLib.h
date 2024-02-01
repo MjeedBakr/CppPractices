@@ -636,7 +636,7 @@ namespace MyString
 		return false;
 	}
 
-	short countVowelsLetters(string sentence)
+	short countVowelsInString(string sentence)
 	{
 		short count = 0;
 
@@ -645,6 +645,17 @@ namespace MyString
 				count++;
 
 		return count;
+	}
+
+	void printVowelsInString(string sentence)
+	{
+
+		cout << "\nVowels in string are: ";
+		for (char& letter : sentence)
+			if (isVowel(letter))
+				cout << letter << "\t";
+
+		cout << endl;
 	}
 
 }

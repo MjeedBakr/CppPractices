@@ -5,6 +5,7 @@
 
 using namespace std;
 
+
 bool isVowel(char letter)
 {
 	letter = tolower(letter);
@@ -18,16 +19,17 @@ bool isVowel(char letter)
 	return false;
 }
 
-short countVowelsLetters(string sentence)
+void printVowelsInString(string sentence)
 {
-	short count = 0;
 
+	cout << "\nVowels in string are: ";
 	for (char& letter : sentence)
 		if (isVowel(letter))
-			count++;
+			cout << letter << "\t";
 
-	return count;
+	cout << endl;
 }
+	
 
 int main() {
 	
@@ -36,7 +38,8 @@ int main() {
 	string sentence = MyRead::readString("Please enter a String:\n");
 
 	
-	cout << "\nnumber of vowels is: " << countVowelsLetters(sentence) << endl;
+	
+	printVowelsInString(sentence);
 
 	return 0;
 
