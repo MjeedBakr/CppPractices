@@ -9,19 +9,27 @@ using namespace std;
 void printWordsInSentence(string sentence)
 {
 	string word = "";
-	for (int i = 0; i < sentence.length(); i++)
+	string delimiter = " ";
+	short position = 0;
+
+	//get the position of the delimiter and check if its any delimeter
+	while ((position = sentence.find(delimiter)) != std::string::npos)
 	{
-		if (sentence[i] != ' ')
-		{
-			word += sentence[i];
-		}
-		else
+		word = sentence.substr(0, position);
+		if (word != "")
 		{
 			cout << word << endl;
-			word = "";
 		}
+
+		//remove the printed word from the sentence
+		sentence.erase(0, position + delimiter.length());
 	}
-	cout << word << endl;
+
+	//print last word of the string
+	if (!sentence.empty())
+	{
+		cout << sentence << endl;
+	}
 }
 	
 
