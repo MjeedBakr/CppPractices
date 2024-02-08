@@ -668,7 +668,7 @@ namespace MyString
 		while ((position = sentence.find(delimiter)) != std::string::npos)
 		{
 			word = sentence.substr(0, position);
-			if (word != "")
+			if (!word.empty())
 			{
 				cout << word << endl;
 			}
@@ -682,6 +682,36 @@ namespace MyString
 		{
 			cout << sentence << endl;
 		}
+	}
+
+	short countWordsInSentence(string sentence)
+	{
+		short numberOfWords = 0;
+		string word = "";
+		string delimiter = " ";
+		short position = 0;
+
+		//get the position of the delimiter and check if its any delimeter
+		while ((position = sentence.find(delimiter)) != std::string::npos)
+		{
+			word = sentence.substr(0, position);
+			if (!word.empty())
+			{
+				numberOfWords++;
+			}
+
+			//remove the printed word from the sentence
+			sentence.erase(0, position + delimiter.length());
+		}
+
+		//count the last word of the string
+		if (!sentence.empty())
+		{
+			numberOfWords++;
+		}
+
+		return numberOfWords;
+
 	}
 
 }

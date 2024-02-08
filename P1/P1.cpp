@@ -6,8 +6,9 @@
 using namespace std;
 
 
-void printWordsInSentence(string sentence)
+short countWordsInSentence(string sentence)
 {
+	short numberOfWords = 0;
 	string word = "";
 	string delimiter = " ";
 	short position = 0;
@@ -18,18 +19,21 @@ void printWordsInSentence(string sentence)
 		word = sentence.substr(0, position);
 		if (word != "")
 		{
-			cout << word << endl;
+			numberOfWords++;
 		}
 
 		//remove the printed word from the sentence
 		sentence.erase(0, position + delimiter.length());
 	}
 
-	//print last word of the string
+	//count the last word of the string
 	if (!sentence.empty())
 	{
-		cout << sentence << endl;
+		numberOfWords++;
 	}
+
+	return numberOfWords;
+
 }
 	
 
@@ -41,7 +45,7 @@ int main() {
 
 	
 	
-	printWordsInSentence(sentence);
+	cout << "\nThe number of words in your string are: " << countWordsInSentence(sentence) << endl;
 
 	return 0;
 
