@@ -1,39 +1,36 @@
 ﻿#include <iostream>
 #include <string>
 #include <cctype>
+#include <vector>
 #include "MyLib.h"
 
 using namespace std;
 
 
-short countWordsInSentence(string sentence)
+vector<string> splitSentence(string sentence, string delimiter)
 {
-	short numberOfWords = 0;
 	string word = "";
-	string delimiter = " ";
-	short position = 0;
+	vector<string> vWords;
+	int position = 0;
 
-	//get the position of the delimiter and check if its any delimeter
 	while ((position = sentence.find(delimiter)) != std::string::npos)
 	{
 		word = sentence.substr(0, position);
-		if (word != "")
+		if (!word.empty())
 		{
-			numberOfWords++;
+			vWords.push_back(word);
 		}
 
-		//remove the printed word from the sentence
 		sentence.erase(0, position + delimiter.length());
+
 	}
 
-	//count the last word of the string
 	if (!sentence.empty())
 	{
-		numberOfWords++;
+		vWords.push_back(sentence);
 	}
 
-	return numberOfWords;
-
+	return vWords;
 }
 	
 
@@ -42,10 +39,16 @@ int main() {
 
 	
 	string sentence = MyRead::readString("Please enter a String:\n");
+	vector<string> vWords = splitSentence(sentence, " ");
 
 	
 	
-	cout << "\nThe number of words in your string are: " << countWordsInSentence(sentence) << endl;
+	cout << "\nTokens = " << vWords.size() << endl;
+
+	for (string word : vWords)
+	{
+		cout << word << endl;
+	}
 
 	return 0;
 
