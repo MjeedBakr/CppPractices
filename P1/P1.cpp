@@ -6,28 +6,22 @@
 using namespace std;
 
 
-bool isVowel(char letter)
+void printWordsInSentence(string sentence)
 {
-	letter = tolower(letter);
-	char vowelLetters[5] = {'a', 'e', 'i', 'o', 'u'};
-
-	for (char& vowelLetter : vowelLetters)
+	string word = "";
+	for (int i = 0; i < sentence.length(); i++)
 	{
-		if (vowelLetter == letter)
-			return true;
+		if (sentence[i] != ' ')
+		{
+			word += sentence[i];
+		}
+		else
+		{
+			cout << word << endl;
+			word = "";
+		}
 	}
-	return false;
-}
-
-void printVowelsInString(string sentence)
-{
-
-	cout << "\nVowels in string are: ";
-	for (char& letter : sentence)
-		if (isVowel(letter))
-			cout << letter << "\t";
-
-	cout << endl;
+	cout << word << endl;
 }
 	
 
@@ -39,7 +33,7 @@ int main() {
 
 	
 	
-	printVowelsInString(sentence);
+	printWordsInSentence(sentence);
 
 	return 0;
 
