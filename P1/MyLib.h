@@ -714,5 +714,30 @@ namespace MyString
 
 	}
 
+	vector<string> splitSentence(string sentence, string delimiter)
+	{
+		string word = "";
+		vector<string> vWords;
+		int position = 0;
+
+		while ((position = sentence.find(delimiter)) != std::string::npos)
+		{
+			word = sentence.substr(0, position);
+			if (!word.empty())
+			{
+				vWords.push_back(word);
+			}
+
+			sentence.erase(0, position + delimiter.length());
+
+		}
+
+		if (!sentence.empty())
+		{
+			vWords.push_back(sentence);
+		}
+
+		return vWords;
+	}
 }
 

@@ -45,7 +45,7 @@ int main() {
 	
 	cout << "\nTokens = " << vWords.size() << endl;
 
-	for (string word : vWords)
+	for (string &word : vWords)
 	{
 		cout << word << endl;
 	}
