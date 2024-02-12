@@ -6,49 +6,65 @@
 
 using namespace std;
 
-
-vector<string> splitSentence(string sentence, string delimiter)
+string trimLeft(string sentence)
 {
-	string word = "";
-	vector<string> vWords;
+	char delimiter = ' ';
 	int position = 0;
 
-	while ((position = sentence.find(delimiter)) != std::string::npos)
+	for (int i = 0; i < sentence.length(); i++)
 	{
-		word = sentence.substr(0, position);
-		if (!word.empty())
+		if (sentence[i] == delimiter)
 		{
-			vWords.push_back(word);
+			position++;
 		}
-
-		sentence.erase(0, position + delimiter.length());
-
+		else
+		{
+			sentence.erase(0, position);
+			return sentence;
+		}
 	}
-
-	if (!sentence.empty())
-	{
-		vWords.push_back(sentence);
-	}
-
-	return vWords;
+	return sentence;
 }
-	
+
+string trimRight(string sentence)
+{
+	char delimiter = ' ';
+	int position = sentence.length();
+
+	for (int i = sentence.length(); i > 0; i--)
+	{
+		if (sentence[i - 1] == delimiter)
+		{
+			position--;
+		}
+		else
+		{
+			sentence.erase(position, sentence.length());
+			return sentence;
+		}
+	}
+	return sentence;
+}
+
+string trim(string sentence)
+{
+	sentence = trimLeft(sentence);
+	sentence = trimRight(sentence);
+
+	return sentence;
+}
 
 int main() {
-	
 
-	
+
+
 	string sentence = MyRead::readString("Please enter a String:\n");
-	vector<string> vWords = splitSentence(sentence, " ");
 
-	
-	
-	cout << "\nTokens = " << vWords.size() << endl;
 
-	for (string & word : vWords)
-	{
-		cout << word << endl;
-	}
+	cout << "\String = " << sentence << endl;
+	cout << "\Trim Left = " << trimLeft(sentence) << endl;
+	cout << "\Trim Right = " << trimRight(sentence) << endl;
+	cout << "\Trim = " << trim(sentence) << endl;
 
 	return 0;
 
