@@ -772,5 +772,17 @@ namespace MyString
 	{
 		return(trimLeft(trimRight(sentence)));
 	}
+
+	string joinString(vector<string> vWords, string delimiter)
+	{
+		string sentence = "";
+
+		for (string& word : vWords)
+		{
+			sentence += word + delimiter;
+		}
+
+		return sentence.substr(0, sentence.length() - delimiter.length());
+	}
 }
 

@@ -8,26 +8,26 @@ using namespace std;
 
 string joinString(vector<string> vWords, string delimiter)
 {
-	string sentence = vWords.at(0);
+	string sentence = "";
 
-	for (int i = 1; i < vWords.size(); i++)
+	for (string &word : vWords)
 	{
-		sentence += delimiter + vWords.at(i);
+		sentence += word + delimiter;
 	}
 
-	return sentence;
+	return sentence.substr(0, sentence.length() - delimiter.length());
 }
 
 int main() {
 
 	vector <string> vWords{ "Ahmad", "Ali", "Ghala", "Sara" };
 	cout << "\nVector after join:\n";
-	cout << joinString(vWords, "|") << endl;
+	cout << joinString(vWords, "###");
 
 
 
 
-	return 0;
+	system("pause>0");
 
 
 
