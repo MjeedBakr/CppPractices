@@ -739,5 +739,38 @@ namespace MyString
 
 		return vWords;
 	}
+
+	string trimLeft(string sentence)
+	{
+
+		for (short i = 0; i < sentence.length(); i++)
+		{
+			if (sentence[i] != ' ')
+			{
+				return sentence.substr(i, sentence.length() - i);
+			}
+
+		}
+		return "";
+	}
+
+	string trimRight(string sentence)
+	{
+
+		for (short i = sentence.length(); i >= 0; i--)
+		{
+			if (sentence[i] != ' ')
+			{
+				return sentence.substr(0, i + 1);
+			}
+
+		}
+		return "";
+	}
+
+	string trim(string sentence)
+	{
+		return(trimLeft(trimRight(sentence)));
+	}
 }
 

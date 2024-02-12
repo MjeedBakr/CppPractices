@@ -8,50 +8,35 @@ using namespace std;
 
 string trimLeft(string sentence)
 {
-	char delimiter = ' ';
-	int position = 0;
-
-	for (int i = 0; i < sentence.length(); i++)
+	
+	for (short i = 0; i < sentence.length(); i++)
 	{
-		if (sentence[i] == delimiter)
+		if (sentence[i] != ' ')
 		{
-			position++;
+			return sentence.substr(i, sentence.length() - i);
 		}
-		else
-		{
-			sentence.erase(0, position);
-			return sentence;
-		}
+
 	}
-	return sentence;
+	return "";
 }
 
 string trimRight(string sentence)
 {
-	char delimiter = ' ';
-	int position = sentence.length();
 
-	for (int i = sentence.length(); i > 0; i--)
+	for (short i = sentence.length(); i >= 0; i--)
 	{
-		if (sentence[i - 1] == delimiter)
+		if (sentence[i] != ' ')
 		{
-			position--;
+			return sentence.substr(0, i + 1);
 		}
-		else
-		{
-			sentence.erase(position, sentence.length());
-			return sentence;
-		}
+
 	}
-	return sentence;
+	return "";
 }
 
 string trim(string sentence)
 {
-	sentence = trimLeft(sentence);
-	sentence = trimRight(sentence);
-
-	return sentence;
+	return(trimLeft(trimRight(sentence)));
 }
 
 int main() {
@@ -61,10 +46,10 @@ int main() {
 	string sentence = MyRead::readString("Please enter a String:\n");
 
 
-	cout << "\String = " << sentence << endl;
-	cout << "\Trim Left = " << trimLeft(sentence) << endl;
-	cout << "\Trim Right = " << trimRight(sentence) << endl;
-	cout << "\Trim = " << trim(sentence) << endl;
+	cout << "String = " << sentence << endl;
+	cout << "Trim Left = " << trimLeft(sentence) << endl;
+	cout << "Trim Right = " << trimRight(sentence) << endl;
+	cout << "Trim = " << trim(sentence) << endl;
 
 	return 0;
 
