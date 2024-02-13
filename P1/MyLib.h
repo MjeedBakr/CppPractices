@@ -818,5 +818,18 @@ namespace MyString
 		return s1;
 	}
 
+	string replaceWordInString(string sentence, string oldWord, string newWord)
+	{
+		short position = sentence.find(oldWord);
+
+		while (position != std::string::npos)
+		{
+			sentence = sentence.replace(position, oldWord.length(), newWord);
+			position = sentence.find(oldWord);
+		}
+
+		return sentence;
+	}
+
 }
 

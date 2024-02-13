@@ -8,16 +8,15 @@ using namespace std;
 
 string replaceWordInString(string sentence, string oldWord, string newWord)
 {
-	string s1 = "";
-	int position = 0;
+	short position = sentence.find(oldWord);
 
-	while ((position = sentence.find(oldWord)) != std::string::npos)
+	while (position != std::string::npos)
 	{
-		s1 += sentence.substr(0, position) + newWord;
-		sentence.erase(0, position + oldWord.length());
+		sentence = sentence.replace(position, oldWord.length(), newWord);
+		position = sentence.find(oldWord);
 	}
 
-	return s1 + sentence;
+	return sentence;
 }
 
 
