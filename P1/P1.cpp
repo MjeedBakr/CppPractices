@@ -6,39 +6,36 @@
 
 using namespace std;
 
-vector<string> reverseVector(vector<string> vVector)
+string reverseWordsInString(string sentence)
 {
-	vector <string> newVector;
-	string word;
+	vector<string> vString;
+	string s1 = "";
+	vString = MyString::splitSentence(sentence, " ");
 
-	for (short i = 0; i < vVector.size(); i++)
+	//declare iterator
+	vector<string>::iterator iter = vString.end();
+
+	while (iter != vString.begin())
 	{
-		word = vVector.at(vVector.size() - i - 1);
-		newVector.push_back(word);
+		--iter;
+
+		s1 += *iter + " ";
 	}
 
-	return newVector;
+	s1 = s1.substr(0, s1.length() - 1); //remove last space
+
+	return s1;
 }
 
 
 int main() {
 
-	string sentence = MyRead::readString("Please Enter Your String?");
+	string sentence = MyRead::readString("Please Enter Your String:\n");
 
-	vector<string> vWords;
-	vWords = MyString::splitSentence(sentence, " ");
 
-	vWords = reverseVector(vWords);
-
-	cout << "\nString after reversing words: \n";
-	for (string& word : vWords)
-	{
-		cout << word << " ";
-	}
+	cout << "\nString after reversing words:";
+	cout << "\n" << reverseWordsInString(sentence);
 	
-
-
-
 
 	system("pause>0");
 

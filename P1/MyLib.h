@@ -796,5 +796,27 @@ namespace MyString
 
 		return sentence.substr(0, sentence.length() - delimiter.length());
 	}
+
+	string reverseWordsInString(string sentence)
+	{
+		vector<string> vString;
+		string s1 = "";
+		vString = MyString::splitSentence(sentence, " ");
+
+		//declare iterator
+		vector<string>::iterator iter = vString.end();
+
+		while (iter != vString.begin())
+		{
+			--iter;
+
+			s1 += *iter + " ";
+		}
+
+		s1 = s1.substr(0, s1.length() - 1); //remove last space
+
+		return s1;
+	}
+
 }
 
