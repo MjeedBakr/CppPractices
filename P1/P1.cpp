@@ -6,25 +6,18 @@
 
 using namespace std;
 
-string reverseWordsInString(string sentence)
+string replaceWordInString(string sentence, string oldWord, string newWord)
 {
-	vector<string> vString;
 	string s1 = "";
-	vString = MyString::splitSentence(sentence, " ");
+	int position = 0;
 
-	//declare iterator
-	vector<string>::iterator iter = vString.end();
-
-	while (iter != vString.begin())
+	while ((position = sentence.find(oldWord)) != std::string::npos)
 	{
-		--iter;
-
-		s1 += *iter + " ";
+		s1 += sentence.substr(0, position) + newWord;
+		sentence.erase(0, position + oldWord.length());
 	}
 
-	s1 = s1.substr(0, s1.length() - 1); //remove last space
-
-	return s1;
+	return s1 + sentence;
 }
 
 
@@ -33,8 +26,8 @@ int main() {
 	string sentence = MyRead::readString("Please Enter Your String:\n");
 
 
-	cout << "\nString after reversing words:";
-	cout << "\n" << reverseWordsInString(sentence);
+	cout << "\nString after replace:";
+	cout << "\n" << replaceWordInString(sentence, "Jordan", "USA");
 	
 
 	system("pause>0");
