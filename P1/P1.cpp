@@ -6,39 +6,36 @@
 
 using namespace std;
 
-string joinString(vector<string> vWords, string delimiter)
+vector<string> reverseVector(vector<string> vVector)
 {
-	string sentence = "";
+	vector <string> newVector;
+	string word;
 
-	for (string &word : vWords)
+	for (short i = 0; i < vVector.size(); i++)
 	{
-		sentence += word + delimiter;
+		word = vVector.at(vVector.size() - i - 1);
+		newVector.push_back(word);
 	}
 
-	return sentence.substr(0, sentence.length() - delimiter.length());
+	return newVector;
 }
 
-string joinString(string words[100], int arrLength, string delimiter)
-{
-	string sentence = "";
-
-	for (int i = 0; i < arrLength; i++)
-	{
-		sentence += words[i] + delimiter;
-	}
-
-	return sentence.substr(0, sentence.length() - delimiter.length());
-}
 
 int main() {
 
-	vector <string> vWords{ "Ahmad", "Ali", "Ghala", "Sara" };
-	cout << "\nVector after join:\n";
-	cout << joinString(vWords, "###");
+	string sentence = MyRead::readString("Please Enter Your String?");
 
-	string arrWords[100] = { "Ali", "Yasser", "Mohammed" };
-	cout << "\nArray after join:\n";
-	cout << joinString(arrWords, 3, "###");
+	vector<string> vWords;
+	vWords = MyString::splitSentence(sentence, " ");
+
+	vWords = reverseVector(vWords);
+
+	cout << "\nString after reversing words: \n";
+	for (string& word : vWords)
+	{
+		cout << word << " ";
+	}
+	
 
 
 
