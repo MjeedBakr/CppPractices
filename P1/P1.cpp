@@ -45,24 +45,19 @@ string converRecordToLine(strucClient client, string delimiter = "#//#")
 strucClient convertLineToRecord(string lineData, string delimiter = "#//#")
 {
 	strucClient client;
-	short delimiterPosition = lineData.find(delimiter);
+	vector<string> vClientData;
 
-	client.accountNumber = lineData.substr(0, delimiterPosition);
-	lineData.erase(0, delimiterPosition + delimiter.length());
+	vClientData = MyString::splitSentence(lineData, delimiter);
 
-	delimiterPosition = lineData.find(delimiter);
-	client.PinCode = lineData.substr(0, delimiterPosition);
-	lineData.erase(0, delimiterPosition + delimiter.length());
+	client.accountNumber = vClientData[0];
 
-	delimiterPosition = lineData.find(delimiter);
-	client.name = lineData.substr(0, delimiterPosition);
-	lineData.erase(0, delimiterPosition + delimiter.length());
+	client.PinCode = vClientData[1];
 
-	delimiterPosition = lineData.find(delimiter);
-	client.phone = lineData.substr(0, delimiterPosition);
-	lineData.erase(0, delimiterPosition + delimiter.length());
+	client.name = vClientData[2];
 
-	client.accountBalance = stod(lineData);
+	client.phone = vClientData[3];
+
+	client.accountBalance = stod(vClientData[4]);
 
 	return client;
 }
