@@ -869,7 +869,7 @@ namespace MyRead
 	{
 		string str;
 		cout << message;
-		getline(cin, str);
+		getline(cin >> ws, str);
 
 		return MyString::trim(str);
 	}

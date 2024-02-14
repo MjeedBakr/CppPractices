@@ -6,6 +6,8 @@
 
 using namespace std;
 
+const string clientsFileName = "ClientsData.txt";
+
 struct strucClient
 {
 	string accountNumber;
@@ -73,32 +75,40 @@ void printClientData(strucClient client)
 	
 }
 
-void addClientDataToFile(string lineData)
+void addClientDataToFile(string fileName, string lineData)
 {
 	fstream myFile;
 
-	myFile.open("ClientsData.txt", ios::out | ios::app);
+	myFile.open(fileName, ios::out | ios::app);
 
 	if (myFile.is_open())
 	{
 		myFile << lineData << endl;
+		myFile.close();
 	}
 
-	myFile.close();
+}
 
-	cout << "\nClient Added Successfully, ";
-
+void addNewClient()
+{
+	strucClient client;
+	client = readClientData();
+	addClientDataToFile(clientsFileName, converRecordToLine(client));
 }
 
 void addClients()
 {
-	string addMore;
+	char addMore = 'Y';
 
 	do
 	{
-		addClientDataToFile(converRecordToLine(readClientData()));
-		addMore = MyRead::readString("do you want to add more clients?");
-	} while (addMore == "y" || addMore == "Y");
+		system("cls");
+		cout << "Adding New Client:\n\n";
+
+		addNewClient();
+		cout << "\nClient Added Successfully, do you want to add more clients?";
+		cin >> addMore;
+	} while (toupper(addMore) == 'Y');
 }
 
 int main() {
