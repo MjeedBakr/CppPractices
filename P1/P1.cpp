@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include <string>
-#include <cctype>
+#include <fstream>
 #include <iomanip>
 #include "MyLib.h"
 
@@ -26,7 +26,6 @@ strucClient readClientData()
 	client.accountBalance = MyRead::readDouble("Enter AccountBalance: ");
 
 	return client;
-
 }
 
 string converRecordToLine(strucClient client, string delimiter = "#//#")
@@ -74,6 +73,34 @@ void printClientData(strucClient client)
 	
 }
 
+void addClientDataToFile(string lineData)
+{
+	fstream myFile;
+
+	myFile.open("ClientsData.txt", ios::out | ios::app);
+
+	if (myFile.is_open())
+	{
+		myFile << lineData << endl;
+	}
+
+	myFile.close();
+
+	cout << "\nClient Added Successfully, ";
+
+}
+
+void addClients()
+{
+	string addMore;
+
+	do
+	{
+		addClientDataToFile(converRecordToLine(readClientData()));
+		addMore = MyRead::readString("do you want to add more clients?");
+	} while (addMore == "y" || addMore == "Y");
+}
+
 int main() {
 
 
@@ -82,10 +109,7 @@ int main() {
 	string lineData = "A150#//#1234#//#Abdulmajeed Bakr#//#0544363422#//#5270.000000";
 	cout << "Line Record is:\n" << lineData << endl;
 
-	client = convertLineToRecord(lineData);
-
-
-	printClientData(client);
+	addClients();
 
 
 	system("pause>0");
