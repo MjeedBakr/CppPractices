@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <cctype>
-#include <vector>
+#include <iomanip>
 #include "MyLib.h"
 
 using namespace std;
@@ -42,18 +42,55 @@ string converRecordToLine(strucClient client, string delimiter = "#//#")
 	return stClientRecord;
 }
 
+strucClient convertLineToRecord(string lineData, string delimiter = "#//#")
+{
+	strucClient client;
+	short delimiterPosition = lineData.find(delimiter);
+
+	client.accountNumber = lineData.substr(0, delimiterPosition);
+	lineData.erase(0, delimiterPosition + delimiter.length());
+
+	delimiterPosition = lineData.find(delimiter);
+	client.PinCode = lineData.substr(0, delimiterPosition);
+	lineData.erase(0, delimiterPosition + delimiter.length());
+
+	delimiterPosition = lineData.find(delimiter);
+	client.name = lineData.substr(0, delimiterPosition);
+	lineData.erase(0, delimiterPosition + delimiter.length());
+
+	delimiterPosition = lineData.find(delimiter);
+	client.phone = lineData.substr(0, delimiterPosition);
+	lineData.erase(0, delimiterPosition + delimiter.length());
+
+	client.accountBalance = stod(lineData);
+
+	return client;
+}
+
+void printClientData(strucClient client)
+{
+	cout << "\nThe following is the extracted client record:\n";
+
+	cout << "\nAccount Number : " << client.accountNumber;
+	cout << "\nPin Code       : " << client.PinCode;
+	cout << "\nName           : " << client.name;
+	cout << "\nPhone          : " << client.phone;
+	cout << "\nAccount Balance: " << client.accountBalance;
+	
+}
+
 int main() {
 
-	cout << "\nPlease Enter Client Data: \n\n";
 
 	strucClient client;
-	client = readClientData();
 
-	cout << "\n\n" << endl;
-	cout << "Client Record for Saving is: \n";
+	string lineData = "A150#//#1234#//#Abdulmajeed Bakr#//#0544363422#//#5270.000000";
+	cout << "Line Record is:\n" << lineData << endl;
+
+	client = convertLineToRecord(lineData);
 
 
-	cout << converRecordToLine(client);
+	printClientData(client);
 
 
 	system("pause>0");
