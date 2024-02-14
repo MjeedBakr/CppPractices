@@ -6,49 +6,32 @@
 
 using namespace std;
 
-string convertToUpperByVal(string str)
+string removePunctuations(string sentence)
 {
-
-	for (char& i : str)
-		i = toupper(i);
-
-	return str;
-}
-
-string replaceWordInStringUsingSplit(string sentence, string oldWord, string newWord, bool matchCase = true)
-{
+	short position;
 	
-	vector<string> vString = MyString::splitSentence(sentence, " ");
-
-	for (string& word : vString)
+	for (char l : sentence)
 	{
-		if (matchCase)
+		if (ispunct(l))
 		{
-			if (word == oldWord)
-				word = newWord;
-		}
-		else
-		{
-			if (convertToUpperByVal(word) == convertToUpperByVal(oldWord))
-				word = newWord;
+			position = sentence.find(l);
+			sentence.replace(position, 1, "");
 		}
 	}
 
-	return MyString::joinString(vString, " ");
+	return sentence;
 
 }
 
 
 int main() {
 
-	string sentence = "Welcome to Jordan , Jordan is a nice country";
+	string sentence = "Welcome to Jordan, Jordan is a nice country; it,s amazing.";
 
 
-	cout << "\nString after replace match case:";
-	cout << "\n" << replaceWordInStringUsingSplit(sentence, "jordan", "Saudi Arabia");
+	cout << "\nPunctuations removed:";
+	cout << "\n" << removePunctuations(sentence);
 
-	cout << "\nString after replace no match case:";
-	cout << "\n" << replaceWordInStringUsingSplit(sentence, "jordan", "Saudi Arabia", false);
 	
 
 	system("pause>0");
