@@ -9,76 +9,6 @@
 
 using namespace std;
 
-namespace MyRead
-{
-	int readInt(string message)
-	{
-		int number;
-		cout << message;
-		cin >> number;
-
-		while (cin.fail())
-		{
-			cin.clear();
-			cin.ignore(std::numeric_limits < std::streamsize>::max(), '\n');
-
-			cout << "Invalid number, enter a valid one:";
-			cin >> number;
-		}
-
-		return number;
-	}
-
-	string readString(string message)
-	{
-		string str;
-		cout << message;
-		getline(cin, str);
-
-		return str;
-	}
-
-	char readChar(string message)
-	{
-		char str;
-		cout << message;
-		cin >> str;
-
-		return str;
-	}
-
-	int readIntInRange(int from, int to, string message)
-	{
-		int number;
-
-		number = MyRead::readInt(message);
-
-		while (number > to || number < from)
-		{
-			cout << "\nPlease Enter a number between " << from << " and " << to << ": ";
-			cin >> number;
-		}
-
-
-		return number;
-	}
-
-	int readPositiveNumber(string message)
-	{
-		int number;
-		number = MyRead::readInt(message);
-
-		while (number < 1)
-		{
-			cout << "Please enter a positive number: ";
-			cin >> number;
-		}
-
-		return number;
-
-	}
-}
-
 
 namespace MyRandom
 {
@@ -879,3 +809,108 @@ namespace MyString
 	}
 }
 
+namespace MyRead
+{
+	int readInt(string message)
+	{
+		int number;
+		cout << message;
+		cin >> number;
+
+		while (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(std::numeric_limits < std::streamsize>::max(), '\n');
+
+			cout << "Invalid number, enter a valid one:";
+			cin >> number;
+		}
+
+		return number;
+	}
+
+	float readFloat(string message)
+	{
+		float number;
+		cout << message;
+		cin >> number;
+
+		while (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(std::numeric_limits < std::streamsize>::max(), '\n');
+
+			cout << "Invalid number, enter a valid one:";
+			cin >> number;
+		}
+
+		return number;
+	}
+
+	double readDouble(string message)
+	{
+		double number;
+		cout << message;
+		cin >> number;
+
+		while (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(std::numeric_limits < std::streamsize>::max(), '\n');
+
+			cout << "Invalid number, enter a valid one:";
+			cin >> number;
+		}
+
+		return number;
+	}
+
+	string readString(string message)
+	{
+		string str;
+		cout << message;
+		getline(cin, str);
+
+		return MyString::trim(str);
+	}
+
+	char readChar(string message)
+	{
+		char str;
+		cout << message;
+		cin >> str;
+
+		return str;
+	}
+
+	int readIntInRange(int from, int to, string message)
+	{
+		int number;
+
+		number = MyRead::readInt(message);
+
+		while (number > to || number < from)
+		{
+			cout << "\nPlease Enter a number between " << from << " and " << to << ": ";
+			cin >> number;
+		}
+
+
+		return number;
+	}
+
+	int readPositiveNumber(string message)
+	{
+		int number;
+		number = MyRead::readInt(message);
+
+		while (number < 1)
+		{
+			cout << "Please enter a positive number: ";
+			cin >> number;
+		}
+
+		return number;
+
+	}
+}

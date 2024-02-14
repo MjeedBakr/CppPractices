@@ -6,27 +6,54 @@
 
 using namespace std;
 
-string removePunctuations(string sentence)
+struct strucClient
 {
-	string s1 = "";
-	
-	for (int i = 0; i < sentence.length(); i++)
-	{
-		if (!ispunct(sentence[i]))
-		{
-			s1 += sentence[i];
-		}
-	}
+	string accountNumber;
+	string PinCode;
+	string name;
+	string phone;
+	double accountBalance;
+};
 
-	return s1;
+strucClient readClientData()
+{
+	strucClient client;
+
+	client.accountNumber = MyRead::readString("Enter Account Number: ");
+	client.PinCode = MyRead::readString("Enter PinCode: ");
+	client.name = MyRead::readString("Enter Name: ");
+	client.phone = MyRead::readString("Enter Phone: ");
+	client.accountBalance = MyRead::readDouble("Enter AccountBalance: ");
+
+	return client;
+
+}
+
+string converRecordToLine(strucClient client, string delimiter = "#//#")
+{
+	string stClientRecord = "";
+
+	stClientRecord += client.accountNumber + delimiter;
+	stClientRecord += client.PinCode + delimiter;
+	stClientRecord += client.name + delimiter;
+	stClientRecord += client.phone + delimiter;
+	stClientRecord += to_string(client.accountBalance);
+
+	return stClientRecord;
 }
 
 int main() {
 
-	string sentence = "Welcome to Jordan, Jordan is a nice country; it,s amazing.";
+	cout << "\nPlease Enter Client Data: \n\n";
 
-	cout << "\nPunctuations removed:";
-	cout << "\n" << removePunctuations(sentence);
+	strucClient client;
+	client = readClientData();
+
+	cout << "\n\n" << endl;
+	cout << "Client Record for Saving is: \n";
+
+
+	cout << converRecordToLine(client);
 
 
 	system("pause>0");
