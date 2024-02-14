@@ -862,5 +862,20 @@ namespace MyString
 		return MyString::joinString(vString, " ");
 
 	}
+
+	string removePunctuations(string sentence)
+	{
+		string s1 = "";
+
+		for (int i = 0; i < sentence.length(); i++)
+		{
+			if (!ispunct(sentence[i]))
+			{
+				s1 += sentence[i];
+			}
+		}
+
+		return s1;
+	}
 }
 

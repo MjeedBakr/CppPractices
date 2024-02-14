@@ -8,34 +8,27 @@ using namespace std;
 
 string removePunctuations(string sentence)
 {
-	short position;
+	string s1 = "";
 	
-	for (char l : sentence)
+	for (int i = 0; i < sentence.length(); i++)
 	{
-		if (ispunct(l))
+		if (!ispunct(sentence[i]))
 		{
-			position = sentence.find(l);
-			sentence.replace(position, 1, "");
+			s1 += sentence[i];
 		}
 	}
 
-	return sentence;
-
+	return s1;
 }
-
 
 int main() {
 
 	string sentence = "Welcome to Jordan, Jordan is a nice country; it,s amazing.";
 
-
 	cout << "\nPunctuations removed:";
 	cout << "\n" << removePunctuations(sentence);
 
-	
 
 	system("pause>0");
-
-
 
 }
