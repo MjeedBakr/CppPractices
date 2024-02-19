@@ -17,32 +17,6 @@ struct strucClient
 	double accountBalance;
 };
 
-strucClient readClientData()
-{
-	strucClient client;
-
-	client.accountNumber = MyRead::readString("Enter Account Number: ");
-	client.PinCode = MyRead::readString("Enter PinCode: ");
-	client.name = MyRead::readString("Enter Name: ");
-	client.phone = MyRead::readString("Enter Phone: ");
-	client.accountBalance = MyRead::readDouble("Enter AccountBalance: ");
-
-	return client;
-}
-
-string converRecordToLine(strucClient client, string delimiter = "#//#")
-{
-	string stClientRecord = "";
-
-	stClientRecord += client.accountNumber + delimiter;
-	stClientRecord += client.PinCode + delimiter;
-	stClientRecord += client.name + delimiter;
-	stClientRecord += client.phone + delimiter;
-	stClientRecord += to_string(client.accountBalance);
-
-	return stClientRecord;
-}
-
 strucClient convertLineToRecord(string lineData, string delimiter = "#//#")
 {
 	strucClient client;
@@ -63,65 +37,72 @@ strucClient convertLineToRecord(string lineData, string delimiter = "#//#")
 	return client;
 }
 
-void printClientData(strucClient client)
+vector<strucClient> loadClientsDataFromFile(string fileName)
 {
-	cout << "\nThe following is the extracted client record:\n";
 
-	cout << "\nAccount Number : " << client.accountNumber;
-	cout << "\nPin Code       : " << client.PinCode;
-	cout << "\nName           : " << client.name;
-	cout << "\nPhone          : " << client.phone;
-	cout << "\nAccount Balance: " << client.accountBalance;
-	
-}
+	vector <strucClient> vClients;
 
-void addClientDataToFile(string fileName, string lineData)
-{
 	fstream myFile;
-
-	myFile.open(fileName, ios::out | ios::app);
+	myFile.open(fileName, ios::in); //read mode
 
 	if (myFile.is_open())
 	{
-		myFile << lineData << endl;
+		string line;
+		strucClient client;
+
+		while (getline(myFile, line))
+		{
+			client = convertLineToRecord(line);
+			vClients.push_back(client);
+		}
+
 		myFile.close();
 	}
 
+	return vClients;
 }
 
-void addNewClient()
+void printClientRecord(strucClient client)
 {
-	strucClient client;
-	client = readClientData();
-	addClientDataToFile(clientsFileName, converRecordToLine(client));
+	cout << "| " << setw(15) << left << client.accountNumber;
+	cout << "| " << setw(10) << left << client.PinCode;
+	cout << "| " << setw(40) << left << client.name;
+	cout << "| " << setw(12) << left << client.phone;
+	cout << "| " << setw(12) << left << client.accountBalance;
 }
 
-void addClients()
+void printAllClientsData(vector <strucClient> vClients)
 {
-	char addMore = 'Y';
+	cout << "\n\t\t\t\tClient List (" << vClients.size() << ") Client(s).";
+	cout << "\n_______________________________________________________";
+	cout << "_________________________________________\n" << endl;
 
-	do
+	cout << "| " << left << setw(15) << "Account Number";
+	cout << "| " << left << setw(10) << "Pin Code";
+	cout << "| " << left << setw(40) << "Client Name";
+	cout << "| " << left << setw(12) << "Phone";
+	cout << "| " << left << setw(12) << "Balance";
+	cout << "\n_______________________________________________________";
+	cout << "_________________________________________\n" << endl;
+
+	for (strucClient client : vClients)
 	{
-		system("cls");
-		cout << "Adding New Client:\n\n";
+		printClientRecord(client);
+		cout << endl;
+	}
 
-		addNewClient();
-		cout << "\nClient Added Successfully, do you want to add more clients?";
-		cin >> addMore;
-	} while (toupper(addMore) == 'Y');
+	cout << "\n_______________________________________________________";
+	cout << "_________________________________________\n" << endl;
 }
 
 int main() {
 
 
-	strucClient client;
-
-	string lineData = "A150#//#1234#//#Abdulmajeed Bakr#//#0544363422#//#5270.000000";
-	cout << "Line Record is:\n" << lineData << endl;
-
-	addClients();
+	vector <strucClient> vClients = loadClientsDataFromFile(clientsFileName);
+	printAllClientsData(vClients);
 
 
 	system("pause>0");
+	return 0;
 
 }
