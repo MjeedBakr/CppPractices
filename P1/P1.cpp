@@ -62,8 +62,9 @@ vector<strucClient> loadClientsDataFromFile(string fileName)
 	return vClients;
 }
 
-void printClientRecord(strucClient client)
+void printClientCard(strucClient client)
 {
+	cout << "\nThe follwing are the client details:\n";
 	cout << "\nAccount Number: " << client.accountNumber;
 	cout << "\nPin Code      : " << client.PinCode;
 	cout << "\nName          : " << client.name;
@@ -71,30 +72,43 @@ void printClientRecord(strucClient client)
 	cout << "\nAccount Balance: " << client.accountBalance;
 }
 
-void findClientByNumber(vector<strucClient> vClients)
+bool findClientByAccountNumber(string accountNumber, strucClient &client)
 {
-	string input = MyRead::readString("Please enter Account Nubmber: ");
+	vector<strucClient> vClients = loadClientsDataFromFile(clientsFileName);
 
-	for (strucClient client : vClients)
+	for (strucClient c : vClients)
 	{
-		if (client.accountNumber == input)
+		if (c.accountNumber == accountNumber)
 		{
-			cout << "\nThe follwing are the client details:\n";
-			printClientRecord(client);
-			return;
+			client = c;
+			return true;
 		}
 	}
+	return false;
 
-	cout << "\nClient with Account Number (" << input << ") Not Found!";
+}
 
+string readClientAccountNumber()
+{
+	string accountNumber = "";
+
+	accountNumber = MyRead::readString("Please enter account number : ");
+	return accountNumber;
 }
 
 int main() {
 
+	strucClient client;
+	string accountNumber = readClientAccountNumber();
 
-	vector <strucClient> vClients = loadClientsDataFromFile(clientsFileName);
-	findClientByNumber(vClients);
-
+	if (findClientByAccountNumber(accountNumber, client))
+	{
+		printClientCard(client);
+	}
+	else
+	{
+		cout << "\nClient with Account Number (" << accountNumber << ") Not Found!";
+	}
 
 	system("pause>0");
 	return 0;
