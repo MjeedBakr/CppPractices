@@ -871,7 +871,9 @@ namespace MyRead
 		cout << message;
 		getline(cin >> ws, str);
 
-		return MyString::trim(str);
+		str = MyString::trim(str);
+
+		return str;
 	}
 
 	char readChar(string message)

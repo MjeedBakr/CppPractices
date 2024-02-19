@@ -64,42 +64,36 @@ vector<strucClient> loadClientsDataFromFile(string fileName)
 
 void printClientRecord(strucClient client)
 {
-	cout << "| " << setw(15) << left << client.accountNumber;
-	cout << "| " << setw(10) << left << client.PinCode;
-	cout << "| " << setw(40) << left << client.name;
-	cout << "| " << setw(12) << left << client.phone;
-	cout << "| " << setw(12) << left << client.accountBalance;
+	cout << "\nAccount Number: " << client.accountNumber;
+	cout << "\nPin Code      : " << client.PinCode;
+	cout << "\nName          : " << client.name;
+	cout << "\nPhone         : " << client.phone;
+	cout << "\nAccount Balance: " << client.accountBalance;
 }
 
-void printAllClientsData(vector <strucClient> vClients)
+void findClientByNumber(vector<strucClient> vClients)
 {
-	cout << "\n\t\t\t\tClient List (" << vClients.size() << ") Client(s).";
-	cout << "\n_______________________________________________________";
-	cout << "_________________________________________\n" << endl;
-
-	cout << "| " << left << setw(15) << "Account Number";
-	cout << "| " << left << setw(10) << "Pin Code";
-	cout << "| " << left << setw(40) << "Client Name";
-	cout << "| " << left << setw(12) << "Phone";
-	cout << "| " << left << setw(12) << "Balance";
-	cout << "\n_______________________________________________________";
-	cout << "_________________________________________\n" << endl;
+	string input = MyRead::readString("Please enter Account Nubmber: ");
 
 	for (strucClient client : vClients)
 	{
-		printClientRecord(client);
-		cout << endl;
+		if (client.accountNumber == input)
+		{
+			cout << "\nThe follwing are the client details:\n";
+			printClientRecord(client);
+			return;
+		}
 	}
 
-	cout << "\n_______________________________________________________";
-	cout << "_________________________________________\n" << endl;
+	cout << "\nClient with Account Number (" << input << ") Not Found!";
+
 }
 
 int main() {
 
 
 	vector <strucClient> vClients = loadClientsDataFromFile(clientsFileName);
-	printAllClientsData(vClients);
+	findClientByNumber(vClients);
 
 
 	system("pause>0");
