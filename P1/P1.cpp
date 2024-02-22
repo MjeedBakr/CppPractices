@@ -37,6 +37,33 @@ strucClient convertLineToRecord(string lineData, string delimiter = "#//#")
 	return client;
 }
 
+string converRecordToLine(strucClient client, string delimiter = "#//#")
+{
+	string stClientRecord = "";
+
+	stClientRecord += client.accountNumber + delimiter;
+	stClientRecord += client.PinCode + delimiter;
+	stClientRecord += client.name + delimiter;
+	stClientRecord += client.phone + delimiter;
+	stClientRecord += to_string(client.accountBalance);
+
+	return stClientRecord;
+}
+
+void addClientDataToFile(string fileName, string lineData)
+{
+	fstream myFile;
+
+	myFile.open(fileName, ios::out | ios::app);
+
+	if (myFile.is_open())
+	{
+		myFile << lineData << endl;
+		myFile.close();
+	}
+
+}
+
 vector<strucClient> loadClientsDataFromFile(string fileName)
 {
 
@@ -96,6 +123,41 @@ string readClientAccountNumber()
 	return accountNumber;
 }
 
+vector<strucClient> deleteClientFromVector(strucClient client)
+{
+	vector<strucClient> vClients = loadClientsDataFromFile(clientsFileName);
+	vector<strucClient> vNewClients = loadClientsDataFromFile(clientsFileName);
+	for (strucClient& c : vClients)
+	{
+		if (c.accountNumber != client.accountNumber)
+		{
+			vNewClients.push_back(c);
+		}
+	}
+
+	return vNewClients;
+
+}
+
+void deleteClientFromFile(strucClient client)
+{
+	char choice = ' ';
+	cout << "\nAre you sure you want to ddelete this client? y/n";
+	cin >> choice;
+	if (choice == 'Y'||choice == 'y')
+	{
+		vector<strucClient> vNewClients = deleteClientFromVector(client);
+
+		for (strucClient c : vNewClients)
+		{
+			addClientDataToFile(clientsFileName, converRecordToLine(client));
+		}
+
+		cout << "\nClient Deleted Successfully.";
+	}
+	
+}
+
 int main() {
 
 	strucClient client;
@@ -104,6 +166,7 @@ int main() {
 	if (findClientByAccountNumber(accountNumber, client))
 	{
 		printClientCard(client);
+		deleteClientFromFile(client);
 	}
 	else
 	{
