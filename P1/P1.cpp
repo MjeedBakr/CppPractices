@@ -16,6 +16,7 @@ struct strucClient
 	string phone;
 	double accountBalance;
 	bool markForDelete = false;
+	bool markForEdit = false;
 };
 
 strucClient convertLineToRecord(string lineData, string delimiter = "#//#")
@@ -108,34 +109,28 @@ string readClientAccountNumber()
 	return accountNumber;
 }
 
-vector<strucClient> deleteClientFromVector(strucClient client)
-{
-	vector<strucClient> vClients = loadClientsDataFromFile(clientsFileName);
-	vector<strucClient> vNewClients = loadClientsDataFromFile(clientsFileName);
-	for (strucClient& c : vClients)
-	{
-		if (c.accountNumber != client.accountNumber)
-		{
-			vNewClients.push_back(c);
-		}
-	}
-
-	return vNewClients;
-
-}
-
-bool markClientForDeleteByAccountNumber(string accountNumber, vector <strucClient>& vClients)
+bool markClientForEditByAccountNumber(string accountNumber, vector <strucClient>& vClients)
 {
 	for (strucClient& c : vClients)
 	{
 		if (c.accountNumber == accountNumber)
 		{
-			c.markForDelete = true;
+			c.markForEdit = true;
 			return true;
 		}
 	}
 
 	return false;
+}
+
+void updateClientData(strucClient &client)
+{
+
+	client.PinCode = MyRead::readString("Enter PinCode: ");
+	client.name = MyRead::readString("Enter Name: ");
+	client.phone = MyRead::readString("Enter Phone: ");
+	client.accountBalance = MyRead::readDouble("Enter AccountBalance: ");
+
 }
 
 vector <strucClient> saveClientsDataToFile(string fileName, vector <strucClient> vClients)
@@ -149,11 +144,11 @@ vector <strucClient> saveClientsDataToFile(string fileName, vector <strucClient>
 	{
 		for (strucClient c : vClients)
 		{
-			if (c.markForDelete == false)
-			{
-				lineContent = converRecordToLine(c);
-				myFile << lineContent << endl;
-			}
+			if (c.markForEdit == true)
+				updateClientData(c);
+		
+			lineContent = converRecordToLine(c);
+			myFile << lineContent << endl;
 		}
 
 		myFile.close();
@@ -162,7 +157,7 @@ vector <strucClient> saveClientsDataToFile(string fileName, vector <strucClient>
 	return vClients;
 }
 
-bool deleteClientByAccountNumber(string accountNumber, vector <strucClient>& vClients)
+bool updateClientByAccountNumber(string accountNumber, vector <strucClient>& vClients)
 {
 	strucClient client;
 	char choice = 'n';
@@ -171,18 +166,19 @@ bool deleteClientByAccountNumber(string accountNumber, vector <strucClient>& vCl
 	{
 		printClientCard(client);
 		
-		cout << "\n\nAre you sure you want to delete this client? y/n ";
+		cout << "\n\nAre you sure you want to update this client? y/n ";
 		cin >> choice;
 		
 		if (choice == 'y' || choice == 'Y')
 		{
-			markClientForDeleteByAccountNumber(accountNumber, vClients);
+			markClientForEditByAccountNumber(accountNumber, vClients);
+			//update data
 			saveClientsDataToFile(clientsFileName, vClients);
 
 			//refresh clients vector
 			vClients = loadClientsDataFromFile(clientsFileName);
 
-			cout << "\n\nClient Deleted Successfully.";
+			cout << "\n\nClient updated Successfully.";
 			return true;
 		}
 	}
@@ -199,7 +195,7 @@ int main() {
 	vector <strucClient> vClients = loadClientsDataFromFile(clientsFileName);
 	string accountNumber = readClientAccountNumber();
 
-	deleteClientByAccountNumber(accountNumber, vClients);
+	updateClientByAccountNumber(accountNumber, vClients);
 
 
 	system("pause>0");
