@@ -15,6 +15,7 @@ struct strucClient
 	string name;
 	string phone;
 	double accountBalance;
+	bool markForDelete = false;
 };
 
 strucClient convertLineToRecord(string lineData, string delimiter = "#//#")
@@ -48,20 +49,6 @@ string converRecordToLine(strucClient client, string delimiter = "#//#")
 	stClientRecord += to_string(client.accountBalance);
 
 	return stClientRecord;
-}
-
-void addClientDataToFile(string fileName, string lineData)
-{
-	fstream myFile;
-
-	myFile.open(fileName, ios::out | ios::app);
-
-	if (myFile.is_open())
-	{
-		myFile << lineData << endl;
-		myFile.close();
-	}
-
 }
 
 vector<strucClient> loadClientsDataFromFile(string fileName)
@@ -99,10 +86,8 @@ void printClientCard(strucClient client)
 	cout << "\nAccount Balance: " << client.accountBalance;
 }
 
-bool findClientByAccountNumber(string accountNumber, strucClient &client)
+bool findClientByAccountNumber(string accountNumber,vector <strucClient> vClients, strucClient &client)
 {
-	vector<strucClient> vClients = loadClientsDataFromFile(clientsFileName);
-
 	for (strucClient c : vClients)
 	{
 		if (c.accountNumber == accountNumber)
@@ -139,39 +124,83 @@ vector<strucClient> deleteClientFromVector(strucClient client)
 
 }
 
-void deleteClientFromFile(strucClient client)
+bool markClientForDeleteByAccountNumber(string accountNumber, vector <strucClient>& vClients)
 {
-	char choice = ' ';
-	cout << "\nAre you sure you want to ddelete this client? y/n";
-	cin >> choice;
-	if (choice == 'Y'||choice == 'y')
+	for (strucClient& c : vClients)
 	{
-		vector<strucClient> vNewClients = deleteClientFromVector(client);
-
-		for (strucClient c : vNewClients)
+		if (c.accountNumber == accountNumber)
 		{
-			addClientDataToFile(clientsFileName, converRecordToLine(client));
+			c.markForDelete = true;
+			return true;
 		}
-
-		cout << "\nClient Deleted Successfully.";
 	}
-	
+
+	return false;
 }
 
-int main() {
+vector <strucClient> saveClientsDataToFile(string fileName, vector <strucClient> vClients)
+{
+	fstream myFile;
+	myFile.open(fileName, ios::out);//overwrite
 
+	string lineContent;
+
+	if (myFile.is_open())
+	{
+		for (strucClient c : vClients)
+		{
+			if (c.markForDelete == false)
+			{
+				lineContent = converRecordToLine(c);
+				myFile << lineContent << endl;
+			}
+		}
+
+		myFile.close();
+	}
+
+	return vClients;
+}
+
+bool deleteClientByAccountNumber(string accountNumber, vector <strucClient>& vClients)
+{
 	strucClient client;
-	string accountNumber = readClientAccountNumber();
+	char choice = 'n';
 
-	if (findClientByAccountNumber(accountNumber, client))
+	if (findClientByAccountNumber(accountNumber,vClients, client))
 	{
 		printClientCard(client);
-		deleteClientFromFile(client);
+		
+		cout << "\n\nAre you sure you want to delete this client? y/n ";
+		cin >> choice;
+		
+		if (choice == 'y' || choice == 'Y')
+		{
+			markClientForDeleteByAccountNumber(accountNumber, vClients);
+			saveClientsDataToFile(clientsFileName, vClients);
+
+			//refresh clients vector
+			vClients = loadClientsDataFromFile(clientsFileName);
+
+			cout << "\n\nClient Deleted Successfully.";
+			return true;
+		}
 	}
 	else
 	{
 		cout << "\nClient with Account Number (" << accountNumber << ") Not Found!";
+		return false;
 	}
+
+}
+
+int main() {
+
+	vector <strucClient> vClients = loadClientsDataFromFile(clientsFileName);
+	string accountNumber = readClientAccountNumber();
+
+	deleteClientByAccountNumber(accountNumber, vClients);
+
 
 	system("pause>0");
 	return 0;
