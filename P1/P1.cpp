@@ -1,202 +1,202 @@
 ﻿#include <iostream>
 #include <string>
-#include <fstream>
 #include <iomanip>
 #include "MyLib.h"
+#include <chrono>
+using namespace std::chrono;
+
+enum enNumberType {Non, Hundred, Thousand, Million};
 
 using namespace std;
 
-const string clientsFileName = "ClientsData.txt";
-
-struct strucClient
+string getNumberTypeText(enNumberType numberType)
 {
-	string accountNumber;
-	string PinCode;
-	string name;
-	string phone;
-	double accountBalance;
-	bool markForDelete = false;
-	bool markForEdit = false;
-};
-
-strucClient convertLineToRecord(string lineData, string delimiter = "#//#")
-{
-	strucClient client;
-	vector<string> vClientData;
-
-	vClientData = MyString::splitSentence(lineData, delimiter);
-
-	client.accountNumber = vClientData[0];
-
-	client.PinCode = vClientData[1];
-
-	client.name = vClientData[2];
-
-	client.phone = vClientData[3];
-
-	client.accountBalance = stod(vClientData[4]);
-
-	return client;
-}
-
-string converRecordToLine(strucClient client, string delimiter = "#//#")
-{
-	string stClientRecord = "";
-
-	stClientRecord += client.accountNumber + delimiter;
-	stClientRecord += client.PinCode + delimiter;
-	stClientRecord += client.name + delimiter;
-	stClientRecord += client.phone + delimiter;
-	stClientRecord += to_string(client.accountBalance);
-
-	return stClientRecord;
-}
-
-vector<strucClient> loadClientsDataFromFile(string fileName)
-{
-
-	vector <strucClient> vClients;
-
-	fstream myFile;
-	myFile.open(fileName, ios::in); //read mode
-
-	if (myFile.is_open())
+	switch (numberType)
 	{
-		string line;
-		strucClient client;
+	case Non:
+		return "";
+	case Hundred:
+		return " Hundred";
+	case Thousand:
+		return " Thousand";
+	case Million:
+		return " Million";
+	}
+}
 
-		while (getline(myFile, line))
-		{
-			client = convertLineToRecord(line);
-			vClients.push_back(client);
-		}
+string getOneNumberTxt(long number)
+{
+	switch (number)
+	{
+	case 1:
+		return "One";
+	case 2:
+		return "Two";
+	case 3:
+		return "Three";
+	case 4:
+		return "Four";
+	case 5:
+		return "Five";
+	case 6:
+		return "Six";
+	case 7:
+		return "Seven";
+	case 8:
+		return "Eight";
+	case 9:
+		return "Nine";
+	default:
+		return "";
+	}
+}
 
-		myFile.close();
+string getTen2XNumbersTxt(long number)
+{
+	switch (number)
+	{
+	case 10:
+		return "ten";
+	case 20:
+		return "Twenty";
+	case 30:
+		return "thirty";
+	case 40:
+		return "forty";
+	case 50:
+		return "fifty";
+	case 60:
+		return "sixty";
+	case 70:
+		return "seventy";
+	case 80:
+		return "Eighty";
+	case 90:
+		return "Ninety";
+	default:
+		return "";
+	}
+}
+
+string getTensNumbersTxt(long number)
+{
+	switch (number)
+	{
+	case 11:
+		return "Eleven";
+	case 12:
+		return "Twelve";
+	case 13:
+		return "Thirteen";
+	case 14:
+		return "Fourteen";
+	case 15:
+		return "Fifteen";
+	case 16:
+		return "Sixteen";
+	case 17:
+		return "Seventeen";
+	case 18:
+		return "Eighteen";
+	case 19:
+		return "Nineteen";
+	default:
+		return "";
+	}
+}
+
+string getRestOfTwoNumbersTxt(long number)
+{
+	string txt = "";
+	long tenNumber = (number / 10) * 10;
+	long rightNumber = number - tenNumber;
+	txt += getTen2XNumbersTxt(tenNumber);
+
+	if (rightNumber != 0)
+	{
+		txt += "-" + getOneNumberTxt(rightNumber);
 	}
 
-	return vClients;
+	return txt;
+
+
 }
 
-void printClientCard(strucClient client)
+string getThreeNumbersTxt(long number, enNumberType numberType = enNumberType::Non)
 {
-	cout << "\nThe follwing are the client details:\n";
-	cout << "\nAccount Number: " << client.accountNumber;
-	cout << "\nPin Code      : " << client.PinCode;
-	cout << "\nName          : " << client.name;
-	cout << "\nPhone         : " << client.phone;
-	cout << "\nAccount Balance: " << client.accountBalance;
-}
-
-bool findClientByAccountNumber(string accountNumber,vector <strucClient> vClients, strucClient &client)
-{
-	for (strucClient c : vClients)
+	string numberTypeTxt = "";
+	if (number > 99)
 	{
-		if (c.accountNumber == accountNumber)
-		{
-			client = c;
-			return true;
-		}
-	}
-	return false;
-
-}
-
-string readClientAccountNumber()
-{
-	string accountNumber = "";
-
-	accountNumber = MyRead::readString("Please enter account number : ");
-	return accountNumber;
-}
-
-bool markClientForEditByAccountNumber(string accountNumber, vector <strucClient>& vClients)
-{
-	for (strucClient& c : vClients)
-	{
-		if (c.accountNumber == accountNumber)
-		{
-			c.markForEdit = true;
-			return true;
-		}
+		numberTypeTxt = getNumberTypeText(enNumberType::Hundred);
 	}
 
-	return false;
+	string leftNumberTxt = getOneNumberTxt(number / 100);
+
+	long rightNumbers = number % 100;
+	string rightNumbersTxt = "";
+
+	if (rightNumbers <= 9)
+		rightNumbersTxt = getOneNumberTxt(rightNumbers);
+	else if (rightNumbers <= 19 && rightNumbers != 10)
+		rightNumbersTxt = getTensNumbersTxt(rightNumbers);
+	else if (rightNumbers <= 100)
+		rightNumbersTxt = getRestOfTwoNumbersTxt(rightNumbers);
+
+	return leftNumberTxt + numberTypeTxt + " " + rightNumbersTxt;
 }
 
-void updateClientData(strucClient &client)
+string getNumbersTxt(long number, enNumberType numberType = enNumberType::Non)
 {
+	string numberTypeTxt = getNumberTypeText(numberType);
+	string txtNumber = "";
+	txtNumber = getThreeNumbersTxt(number);
 
-	client.PinCode = MyRead::readString("Enter PinCode: ");
-	client.name = MyRead::readString("Enter Name: ");
-	client.phone = MyRead::readString("Enter Phone: ");
-	client.accountBalance = MyRead::readDouble("Enter AccountBalance: ");
-
+	return txtNumber + numberTypeTxt;
 }
 
-vector <strucClient> saveClientsDataToFile(string fileName, vector <strucClient> vClients)
+string getNumbersTxt4To6Digits(long number, enNumberType numberType = enNumberType::Thousand)
 {
-	fstream myFile;
-	myFile.open(fileName, ios::out);//overwrite
+	long first3 = number / 1000;
+	long second3 = number % 1000;
+	string txtNumberFirst3 = getNumbersTxt(first3, numberType);
+	string txtNumberSecond3 = getNumbersTxt(second3);
 
-	string lineContent;
-
-	if (myFile.is_open())
-	{
-		for (strucClient c : vClients)
-		{
-			if (c.markForEdit == true)
-				updateClientData(c);
-		
-			lineContent = converRecordToLine(c);
-			myFile << lineContent << endl;
-		}
-
-		myFile.close();
-	}
-
-	return vClients;
+	return txtNumberFirst3 + " " + txtNumberSecond3;
 }
 
-bool updateClientByAccountNumber(string accountNumber, vector <strucClient>& vClients)
+string getNumbersTxt7To9Digits(long number, enNumberType numberType = enNumberType::Million)
 {
-	strucClient client;
-	char choice = 'n';
+	long first3 = number / 1000000;
+	string txtNumberFirst3 = getNumbersTxt(first3, numberType);
 
-	if (findClientByAccountNumber(accountNumber,vClients, client))
-	{
-		printClientCard(client);
-		
-		cout << "\n\nAre you sure you want to update this client? y/n ";
-		cin >> choice;
-		
-		if (choice == 'y' || choice == 'Y')
-		{
-			markClientForEditByAccountNumber(accountNumber, vClients);
-			//update data
-			saveClientsDataToFile(clientsFileName, vClients);
+	long remainNumbers = number % 1000000;
+	string txtNumberRemain = getNumbersTxt4To6Digits(remainNumbers);
 
-			//refresh clients vector
-			vClients = loadClientsDataFromFile(clientsFileName);
+	return txtNumberFirst3 + " " + txtNumberRemain;
+}
 
-			cout << "\n\nClient updated Successfully.";
-			return true;
-		}
-	}
-	else
-	{
-		cout << "\nClient with Account Number (" << accountNumber << ") Not Found!";
-		return false;
-	}
-
+string getNumberTxt(long number)
+{
+	if (number < 1000)
+		return getThreeNumbersTxt(number);
+	else if (number < 1000000)
+		return getNumbersTxt4To6Digits(number);
+	else if (number <= 999999999)
+		return getNumbersTxt7To9Digits(number);
 }
 
 int main() {
 
-	vector <strucClient> vClients = loadClientsDataFromFile(clientsFileName);
-	string accountNumber = readClientAccountNumber();
 
-	updateClientByAccountNumber(accountNumber, vClients);
 
+	long number;
+	while (true)
+	{
+		cout << "Enter a number from 1 to Million: ";
+		cin >> number;
+		cout << getNumberTxt(number) << endl;
+	}
+	
 
 	system("pause>0");
 	return 0;
