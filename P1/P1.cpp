@@ -2,199 +2,81 @@
 #include <string>
 #include <iomanip>
 #include "MyLib.h"
-#include <chrono>
-using namespace std::chrono;
-
-enum enNumberType {Non, Hundred, Thousand, Million};
 
 using namespace std;
 
-string getNumberTypeText(enNumberType numberType)
+string NumberToText(long Number)
 {
-	switch (numberType)
-	{
-	case Non:
-		return "";
-	case Hundred:
-		return " Hundred";
-	case Thousand:
-		return " Thousand";
-	case Million:
-		return " Million";
+	if (Number == 0)
+	{ 
+		return"";
 	}
-}
-
-string getOneNumberTxt(long number)
-{
-	switch (number)
+	
+	if (Number >= 1 && Number <= 19)
+	{ 
+		string arr[] = { "", "One","Two","Three","Four","Five","Six","Seven", "Eight",
+			"Nine","Ten","Eleven","Twelve","Thirteen","Fourteen", "Fifteen","Sixteen",
+			"Seventeen","Eighteen","Nineteen" };
+		return  arr[Number] + " ";
+	} 
+	
+	if (Number >= 20 && Number <= 99)
 	{
-	case 1:
-		return "One";
-	case 2:
-		return "Two";
-	case 3:
-		return "Three";
-	case 4:
-		return "Four";
-	case 5:
-		return "Five";
-	case 6:
-		return "Six";
-	case 7:
-		return "Seven";
-	case 8:
-		return "Eight";
-	case 9:
-		return "Nine";
-	default:
-		return "";
+		string arr[] = { "","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy",
+			"Eighty","Ninety" };
+		return  arr[Number / 10] + " " + NumberToText(Number % 10);
 	}
-}
-
-string getTen2XNumbersTxt(long number)
-{
-	switch (number)
+	
+	if (Number >= 100 && Number <= 199) 
 	{
-	case 10:
-		return "ten";
-	case 20:
-		return "Twenty";
-	case 30:
-		return "thirty";
-	case 40:
-		return "forty";
-	case 50:
-		return "fifty";
-	case 60:
-		return "sixty";
-	case 70:
-		return "seventy";
-	case 80:
-		return "Eighty";
-	case 90:
-		return "Ninety";
-	default:
-		return "";
+		return "One Hundred " + NumberToText(Number % 100); 
 	}
-}
-
-string getTensNumbersTxt(long number)
-{
-	switch (number)
+	
+	if (Number >= 200 && Number <= 999) 
 	{
-	case 11:
-		return "Eleven";
-	case 12:
-		return "Twelve";
-	case 13:
-		return "Thirteen";
-	case 14:
-		return "Fourteen";
-	case 15:
-		return "Fifteen";
-	case 16:
-		return "Sixteen";
-	case 17:
-		return "Seventeen";
-	case 18:
-		return "Eighteen";
-	case 19:
-		return "Nineteen";
-	default:
-		return "";
+		return   NumberToText(Number / 100) + "Hundreds " + NumberToText(Number % 100); 
 	}
-}
-
-string getRestOfTwoNumbersTxt(long number)
-{
-	string txt = "";
-	long tenNumber = (number / 10) * 10;
-	long rightNumber = number - tenNumber;
-	txt += getTen2XNumbersTxt(tenNumber);
-
-	if (rightNumber != 0)
-	{
-		txt += "-" + getOneNumberTxt(rightNumber);
+	
+	if (Number >= 1000 && Number <= 1999) 
+	{ 
+		return "One Thousand " + NumberToText(Number % 1000); 
 	}
 
-	return txt;
-
-
-}
-
-string getThreeNumbersTxt(long number, enNumberType numberType = enNumberType::Non)
-{
-	string numberTypeTxt = "";
-	if (number > 99)
+	if (Number >= 2000 && Number <= 999999) 
+	{ 
+		return NumberToText(Number / 1000) + "Thousands " + NumberToText(Number % 1000); 
+	}
+	
+	if (Number >= 1000000 && Number <= 1999999) 
+	{ 
+		return "One Million " + NumberToText(Number % 1000000); 
+	} 
+	
+	if (Number >= 2000000 && Number <= 999999999) 
 	{
-		numberTypeTxt = getNumberTypeText(enNumberType::Hundred);
+		return NumberToText(Number / 1000000) + "Millions " + NumberToText(Number % 1000000);
+	} 
+
+	if (Number >= 1000000000 && Number <= 1999999999)
+	{
+		return "One Billion " + NumberToText(Number % 1000000000);
 	}
 
-	string leftNumberTxt = getOneNumberTxt(number / 100);
+	else 
+	{
+		return NumberToText(Number / 1000000000) + "Billions " + NumberToText(Number % 1000000000); 
+	}
 
-	long rightNumbers = number % 100;
-	string rightNumbersTxt = "";
-
-	if (rightNumbers <= 9)
-		rightNumbersTxt = getOneNumberTxt(rightNumbers);
-	else if (rightNumbers <= 19 && rightNumbers != 10)
-		rightNumbersTxt = getTensNumbersTxt(rightNumbers);
-	else if (rightNumbers <= 100)
-		rightNumbersTxt = getRestOfTwoNumbersTxt(rightNumbers);
-
-	return leftNumberTxt + numberTypeTxt + " " + rightNumbersTxt;
-}
-
-string getNumbersTxt(long number, enNumberType numberType = enNumberType::Non)
-{
-	string numberTypeTxt = getNumberTypeText(numberType);
-	string txtNumber = "";
-	txtNumber = getThreeNumbersTxt(number);
-
-	return txtNumber + numberTypeTxt;
-}
-
-string getNumbersTxt4To6Digits(long number, enNumberType numberType = enNumberType::Thousand)
-{
-	long first3 = number / 1000;
-	long second3 = number % 1000;
-	string txtNumberFirst3 = getNumbersTxt(first3, numberType);
-	string txtNumberSecond3 = getNumbersTxt(second3);
-
-	return txtNumberFirst3 + " " + txtNumberSecond3;
-}
-
-string getNumbersTxt7To9Digits(long number, enNumberType numberType = enNumberType::Million)
-{
-	long first3 = number / 1000000;
-	string txtNumberFirst3 = getNumbersTxt(first3, numberType);
-
-	long remainNumbers = number % 1000000;
-	string txtNumberRemain = getNumbersTxt4To6Digits(remainNumbers);
-
-	return txtNumberFirst3 + " " + txtNumberRemain;
-}
-
-string getNumberTxt(long number)
-{
-	if (number < 1000)
-		return getThreeNumbersTxt(number);
-	else if (number < 1000000)
-		return getNumbersTxt4To6Digits(number);
-	else if (number <= 999999999)
-		return getNumbersTxt7To9Digits(number);
-}
+} 
 
 int main() {
-
-
 
 	long number;
 	while (true)
 	{
 		cout << "Enter a number from 1 to Million: ";
 		cin >> number;
-		cout << getNumberTxt(number) << endl;
+		cout << NumberToText(number) << endl;
 	}
 	
 
