@@ -5,78 +5,28 @@
 
 using namespace std;
 
-string NumberToText(long Number)
+bool isLeapYear(short year)
 {
-	if (Number == 0)
-	{ 
-		return"";
-	}
-	
-	if (Number >= 1 && Number <= 19)
-	{ 
-		string arr[] = { "", "One","Two","Three","Four","Five","Six","Seven", "Eight",
-			"Nine","Ten","Eleven","Twelve","Thirteen","Fourteen", "Fifteen","Sixteen",
-			"Seventeen","Eighteen","Nineteen" };
-		return  arr[Number] + " ";
-	} 
-	
-	if (Number >= 20 && Number <= 99)
+	if (year % 400 == 0)
 	{
-		string arr[] = { "","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy",
-			"Eighty","Ninety" };
-		return  arr[Number / 10] + " " + NumberToText(Number % 10);
+		return true;
 	}
-	
-	if (Number >= 100 && Number <= 199) 
+	else if (year % 4 == 0 && year % 100 != 0)
 	{
-		return "One Hundred " + NumberToText(Number % 100); 
-	}
-	
-	if (Number >= 200 && Number <= 999) 
-	{
-		return   NumberToText(Number / 100) + "Hundreds " + NumberToText(Number % 100); 
-	}
-	
-	if (Number >= 1000 && Number <= 1999) 
-	{ 
-		return "One Thousand " + NumberToText(Number % 1000); 
+		return true;
 	}
 
-	if (Number >= 2000 && Number <= 999999) 
-	{ 
-		return NumberToText(Number / 1000) + "Thousands " + NumberToText(Number % 1000); 
-	}
-	
-	if (Number >= 1000000 && Number <= 1999999) 
-	{ 
-		return "One Million " + NumberToText(Number % 1000000); 
-	} 
-	
-	if (Number >= 2000000 && Number <= 999999999) 
-	{
-		return NumberToText(Number / 1000000) + "Millions " + NumberToText(Number % 1000000);
-	} 
-
-	if (Number >= 1000000000 && Number <= 1999999999)
-	{
-		return "One Billion " + NumberToText(Number % 1000000000);
-	}
-
-	else 
-	{
-		return NumberToText(Number / 1000000000) + "Billions " + NumberToText(Number % 1000000000); 
-	}
-
-} 
+	return false;
+}
 
 int main() {
 
-	long number;
+	short number;
 	while (true)
 	{
-		cout << "Enter a number from 1 to Million: ";
+		cout << "Enter a year: ";
 		cin >> number;
-		cout << NumberToText(number) << endl;
+		cout << isLeapYear(number) << endl;
 	}
 	
 
