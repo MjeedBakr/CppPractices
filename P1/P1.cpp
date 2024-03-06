@@ -32,26 +32,20 @@ long getNumberOfSecondsInYear(short year)
 
 short getNumberOfDaysInMonth(short year, short month)
 {
-	switch (month)
-	{
-	case 1:
-	case 3:
-	case 5:
-	case 7:
-	case 8:
-	case 10:
-	case 12:
-		return 31;
+	if (month < 1 || month > 12)
+		return 0;
 
-	case 4:
-	case 6:
-	case 9:
-	case 11:
-		return 30;
-
-	case 2:
+	if (month == 2)
 		return isLeapYear(year) ? 29 : 28;
-	}
+
+	short arr31Days[7] = {1, 3, 5, 7, 8, 10, 12};
+
+	for (short i = 0; i <= 7; i++)
+		if (arr31Days[i - 1] == month)
+			return 31;
+
+	//Then its 30 Days
+	return 30;
 }
 
 short getNumberOfHoursInMonth(short year, short month)
