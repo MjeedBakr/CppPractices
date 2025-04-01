@@ -5,47 +5,32 @@
 
 using namespace std;
 
-string getDayName(short dayNumber)
+class clsPerson
 {
-	string arrDays[7] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-	
-	return arrDays[dayNumber];
-}
+	int x;
 
-string getDateFormat(short day, short month, short year)
-{
-	string date = to_string(day) + "/" + to_string(month) + "/" + to_string(year);
-	return date;
-}
+private:
+	int age;
 
-// Gregorian Calender
-short getDayOrder(short day, short month, short year)
-{
-	short a, y, m;
-	a = (14 - month) / 12;
-	y = year - a;
-	m = month + (12 * a) - 2;
+public:
+	string firstName;
+	string lastName;
 
-	return (day + y + (y/4) - (y/100) + (y/400) + ((31 * m) / 12) ) % 7;
-}
+	string fullName()
+	{
+		return firstName + " " + lastName;
+	}
+
+};
 
 int main() {
 
-	short year;
-	cout << "Please enter a year: ";
-	cin >> year;
+	clsPerson person1;
 
-	short month;
-	cout << "\nPlease enter a Month: ";
-	cin >> month;
+	person1.firstName = "Abdulmajeed";
+	person1.lastName = "Bakr";
 
-	short day;
-	cout << "\nPlease enter a Day: ";
-	cin >> day;
-
-	cout << "\nDate       :" << getDateFormat(day, month, year) << endl;
-	cout << "Day Order  :" << getDayOrder(day, month, year) << endl;
-	cout << "Day Name   :" << getDayName(getDayOrder(day, month, year));
+	cout << person1.fullName() << endl;
 
 	system("pause>0");
 	return 0;
