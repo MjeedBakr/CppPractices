@@ -17,25 +17,32 @@ public:
 		_firstName = firstName;
 	}
 
-	string firstName()
+	string getFirstName()
 	{
 		return _firstName;
 	}
+
+	// Map Set and Get to firstName for easier call
+	__declspec(property(get = getFirstName, put = setFirstName)) string firstName;
 
 	void setLastName(string lastName)
 	{
 		_lastName = lastName;
 	}
 
-	string lastName()
+	string getLastName()
 	{
 		return _lastName;
 	}
 
-	string fullName()
+	__declspec(property(get = getLastName, put = setLastName)) string lastName;
+
+	string getFullName()
 	{
 		return _firstName + " " + _lastName;
 	}
+
+	__declspec(property(get = getFullName)) string fullName;
 
 };
 
@@ -44,8 +51,8 @@ public:
 int main()
 {
 	clsPerson person1;
-	person1.setFirstName("Abdulmajeed");
-	person1.setLastName("Bakr");
+	person1.firstName = "Abdulmajeed";
+	person1.lastName = "Bakr";
 
-	cout << "Person1: " << person1.fullName() << endl;
+	cout << "Person1: " << person1.fullName << endl;
 }
