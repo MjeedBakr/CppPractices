@@ -8,10 +8,11 @@ using namespace std;
 class clsCalculator
 {
 private:
-	int _number = 0;
-	enum enOperation {ADD, SUB, DIV, MUL, CLR};
+	float _result = 0;
+	enum enOperation {ADD, SUB, DIV, MUL, CLR, CANCEL};
 	enOperation _lastOperation;
-	int _lastValue = 0;
+	float _lastNumber = 0;
+	float _previousResult;
 
 	string getOpearionText(enOperation operation)
 	{
@@ -27,6 +28,8 @@ private:
 			return "Dividing";
 		case enOperation::MUL:
 			return "Multiplying";
+		case enOperation::CANCEL:
+			return "Canceling Last Operation";
 		default:
 			return "Doing nothing to";
 		}
@@ -34,47 +37,58 @@ private:
 
 public:
 
-	void add(int number)
+	void add(float number)
 	{
-		_lastValue = number;
-		_number += number;
+		_lastNumber = number;
+		_previousResult = _result;
+		_result += number;
 		_lastOperation = enOperation::ADD;
 	}
 
-	void subtract(int number)
+	void subtract(float number)
 	{
-		_lastValue = number;
-		_number -= number;
+		_lastNumber = number;
+		_previousResult = _result;
+		_result -= number;
 		_lastOperation = enOperation::SUB;
 	}
 	
-	void multiply(int number)
+	void multiply(float number)
 	{
-		_lastValue = number;
-		_number *= number;
+		_lastNumber = number;
+		_previousResult = _result;
+		_result *= number;
 		_lastOperation = enOperation::MUL;
 	}
 
-	void divide(int number)
+	void divide(float number)
 	{
 		if (number < 1)
 			number = 1;
 		
-		_lastValue = number;
-		_number /= number;
+		_lastNumber = number;
+		_previousResult = _result;
+		_result /= number;
 		_lastOperation = enOperation::DIV;
 	}
 
 	void clear()
 	{
-		_lastValue = 0;
-		_number = 0;
+		_lastNumber = 0;
+		_result = 0;
 		_lastOperation = enOperation::CLR;
+	}
+
+	void cancelLastOpeartion()
+	{
+		_lastNumber = 0;
+		_result = _previousResult;
+		_lastOperation = enOperation::CANCEL;
 	}
 
 	void printResult()
 	{
-		cout << "Result After " << getOpearionText(_lastOperation) << " " << _lastValue << " is: " << _number << endl;
+		cout << "Result After " << getOpearionText(_lastOperation) << " " << _lastNumber << " is: " << _result << endl;
 	}
 
 };
@@ -83,7 +97,7 @@ int main()
 {
 	clsCalculator calculator1;
 
-	calculator1.printResult();
+	calculator1.clear();
 
 	calculator1.add(10);
 	calculator1.printResult();
@@ -103,7 +117,7 @@ int main()
 	calculator1.multiply(3);
 	calculator1.printResult();
 
-	calculator1.clear();
+	calculator1.cancelLastOpeartion();
 	calculator1.printResult();
 	
 	system("pause>0");
