@@ -5,54 +5,107 @@
 
 using namespace std;
 
-class clsPerson
+class clsCalculator
 {
 private:
-	string _firstName;
-	string _lastName;
+	int _number = 0;
+	enum enOperation {ADD, SUB, DIV, MUL, CLR};
+	enOperation _lastOperation;
+	int _lastValue = 0;
+
+	string getOpearionText(enOperation operation)
+	{
+		switch (operation)
+		{
+		case enOperation::ADD:
+			return "Adding";
+		case enOperation::SUB:
+			return "Subtracting";
+		case enOperation::CLR:
+			return "Clear";
+		case enOperation::DIV:
+			return "Dividing";
+		case enOperation::MUL:
+			return "Multiplying";
+		default:
+			return "Doing nothing to";
+		}
+	}
 
 public:
-	void setFirstName(string firstName)
+
+	void add(int number)
 	{
-		_firstName = firstName;
+		_lastValue = number;
+		_number += number;
+		_lastOperation = enOperation::ADD;
 	}
 
-	string getFirstName()
+	void subtract(int number)
 	{
-		return _firstName;
+		_lastValue = number;
+		_number -= number;
+		_lastOperation = enOperation::SUB;
+	}
+	
+	void multiply(int number)
+	{
+		_lastValue = number;
+		_number *= number;
+		_lastOperation = enOperation::MUL;
 	}
 
-	// Map Set and Get to firstName for easier call
-	__declspec(property(get = getFirstName, put = setFirstName)) string firstName;
-
-	void setLastName(string lastName)
+	void divide(int number)
 	{
-		_lastName = lastName;
+		if (number < 1)
+			number = 1;
+		
+		_lastValue = number;
+		_number /= number;
+		_lastOperation = enOperation::DIV;
 	}
 
-	string getLastName()
+	void clear()
 	{
-		return _lastName;
+		_lastValue = 0;
+		_number = 0;
+		_lastOperation = enOperation::CLR;
 	}
 
-	__declspec(property(get = getLastName, put = setLastName)) string lastName;
-
-	string getFullName()
+	void printResult()
 	{
-		return _firstName + " " + _lastName;
+		cout << "Result After " << getOpearionText(_lastOperation) << " " << _lastValue << " is: " << _number << endl;
 	}
-
-	__declspec(property(get = getFullName)) string fullName;
 
 };
 
-
-
 int main()
 {
-	clsPerson person1;
-	person1.firstName = "Abdulmajeed";
-	person1.lastName = "Bakr";
+	clsCalculator calculator1;
 
-	cout << "Person1: " << person1.fullName << endl;
+	calculator1.printResult();
+
+	calculator1.add(10);
+	calculator1.printResult();
+
+	calculator1.add(100);
+	calculator1.printResult();
+
+	calculator1.subtract(20);
+	calculator1.printResult();
+
+	calculator1.divide(0);
+	calculator1.printResult();
+
+	calculator1.divide(2);
+	calculator1.printResult();
+
+	calculator1.multiply(3);
+	calculator1.printResult();
+
+	calculator1.clear();
+	calculator1.printResult();
+	
+	system("pause>0");
+	return 0;
 }
