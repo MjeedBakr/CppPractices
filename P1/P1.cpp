@@ -5,40 +5,36 @@
 
 using namespace std;
 
-class clsPerson
+class clsA
 {
 public:
-	string FullName;
-	//This is Instructor will be called when object is built.
-	clsPerson()
+	int var;
+	static int counter;
+	clsA()
 	{
-		FullName = "Mohammed Abu-Hadhoud";
-		cout << "\nHi, I'm Constructor";
+		counter++;
 	}
-	//This is destructor will be called when object is destroyed.
-	~clsPerson()
+	void Print()
 	{
-		cout << "\nHi, I'm Destructor";
+		cout << "\nvar = " << var << endl;
+		cout << "counter = " << counter << endl;
 	}
 };
 
-void Fun1()
-{
-	clsPerson Person1;
-	//after exiting from function, person1 will be
-	//destroyed and destructor will be called.
-}
-void Fun2()
-{
-	clsPerson* Person2 = new clsPerson;
-	//always use delete whenever you use new, otherwise object will remain in memory
-	delete Person2;
-}
+int clsA::counter = 0; //static variable initialisation outside the class
 
 int main()
 {
-	Fun1();
-	Fun2();
-	system("pause>0");
-	return 0;
+	clsA A1, A2, A3;
+	A1.var = 10;
+	A2.var = 20;
+	A3.var = 30;
+	A1.Print();
+	A2.Print();
+	A3.Print();
+	A1.counter = 500;
+	cout << "\nafter chaning the static member counter in one object:\n";
+		A1.Print();
+	A2.Print();
+	A3.Print();
 }
