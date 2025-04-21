@@ -5,121 +5,40 @@
 
 using namespace std;
 
-class clsCalculator
+class clsPerson
 {
-private:
-	float _result = 0;
-	enum enOperation {ADD, SUB, DIV, MUL, CLR, CANCEL};
-	enOperation _lastOperation;
-	float _lastNumber = 0;
-	float _previousResult;
-
-	string getOpearionText(enOperation operation)
-	{
-		switch (operation)
-		{
-		case enOperation::ADD:
-			return "Adding";
-		case enOperation::SUB:
-			return "Subtracting";
-		case enOperation::CLR:
-			return "Clear";
-		case enOperation::DIV:
-			return "Dividing";
-		case enOperation::MUL:
-			return "Multiplying";
-		case enOperation::CANCEL:
-			return "Canceling Last Operation";
-		default:
-			return "Doing nothing to";
-		}
-	}
-
 public:
-
-	void add(float number)
+	string FullName;
+	//This is Instructor will be called when object is built.
+	clsPerson()
 	{
-		_lastNumber = number;
-		_previousResult = _result;
-		_result += number;
-		_lastOperation = enOperation::ADD;
+		FullName = "Mohammed Abu-Hadhoud";
+		cout << "\nHi, I'm Constructor";
 	}
-
-	void subtract(float number)
+	//This is destructor will be called when object is destroyed.
+	~clsPerson()
 	{
-		_lastNumber = number;
-		_previousResult = _result;
-		_result -= number;
-		_lastOperation = enOperation::SUB;
+		cout << "\nHi, I'm Destructor";
 	}
-	
-	void multiply(float number)
-	{
-		_lastNumber = number;
-		_previousResult = _result;
-		_result *= number;
-		_lastOperation = enOperation::MUL;
-	}
-
-	void divide(float number)
-	{
-		if (number < 1)
-			number = 1;
-		
-		_lastNumber = number;
-		_previousResult = _result;
-		_result /= number;
-		_lastOperation = enOperation::DIV;
-	}
-
-	void clear()
-	{
-		_lastNumber = 0;
-		_result = 0;
-		_lastOperation = enOperation::CLR;
-	}
-
-	void cancelLastOpeartion()
-	{
-		_lastNumber = 0;
-		_result = _previousResult;
-		_lastOperation = enOperation::CANCEL;
-	}
-
-	void printResult()
-	{
-		cout << "Result After " << getOpearionText(_lastOperation) << " " << _lastNumber << " is: " << _result << endl;
-	}
-
 };
+
+void Fun1()
+{
+	clsPerson Person1;
+	//after exiting from function, person1 will be
+	//destroyed and destructor will be called.
+}
+void Fun2()
+{
+	clsPerson* Person2 = new clsPerson;
+	//always use delete whenever you use new, otherwise object will remain in memory
+	delete Person2;
+}
 
 int main()
 {
-	clsCalculator calculator1;
-
-	calculator1.clear();
-
-	calculator1.add(10);
-	calculator1.printResult();
-
-	calculator1.add(100);
-	calculator1.printResult();
-
-	calculator1.subtract(20);
-	calculator1.printResult();
-
-	calculator1.divide(0);
-	calculator1.printResult();
-
-	calculator1.divide(2);
-	calculator1.printResult();
-
-	calculator1.multiply(3);
-	calculator1.printResult();
-
-	calculator1.cancelLastOpeartion();
-	calculator1.printResult();
-	
+	Fun1();
+	Fun2();
 	system("pause>0");
 	return 0;
 }
